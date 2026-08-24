@@ -222,6 +222,18 @@ button.primary:hover {
   background: #0C447C;
 }
 
+button.copy-btn {
+  background: #EAF3DE;
+  color: #3B6D11;
+  border-color: #3B6D11;
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+button.copy-btn:hover {
+  background: #D4E7BE;
+}
+
 .session-list { display: grid; gap: 1rem; }
 
 .session-card {
@@ -274,12 +286,106 @@ button.primary:hover {
   font-size: 17px;
   font-weight: 500;
   margin-bottom: 1rem;
+  color: #185fa5;
 }
 
 .info-card p {
   color: #5f5e5a;
   margin-bottom: 1rem;
   font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #2c2c2a;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d3d1c7;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2c2c2a;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #185fa5;
+  background: #E6F1FB;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.output-box {
+  background: #f5f5f0;
+  border: 1px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #2c2c2a;
+  line-height: 1.8;
+  position: relative;
+  min-height: 100px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.output-box.empty {
+  color: #b4b2a9;
+}
+
+.output-box .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.step-guide {
+  background: white;
+  border: 1px solid #d3d1c7;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.step-guide h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #185fa5;
+}
+
+.step-guide ol {
+  margin-left: 1.5rem;
+}
+
+.step-guide li {
+  margin-bottom: 0.8rem;
+  font-size: 14px;
+  color: #5f5e5a;
+  line-height: 1.6;
+}
+
+.step-guide li strong {
+  color: #2c2c2a;
 }
 
 #feedback {
@@ -303,6 +409,7 @@ button.primary:hover {
 @media (max-width: 600px) {
   .hub-header h1 { font-size: 26px; }
   .nav-tab { padding: 10px 14px; font-size: 14px; }
+  .output-box .copy-btn { position: static; margin-top: 0.5rem; }
 }
 </style>
 </head>
@@ -317,6 +424,7 @@ button.primary:hover {
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchTab(event, 'inicio')">Inicio</button>
     <button class="nav-tab" onclick="switchTab(event, 'vocabulario')">Vocabulario</button>
+    <button class="nav-tab" onclick="switchTab(event, 'añadir')">➕ Añadir palabras</button>
     <button class="nav-tab" onclick="switchTab(event, 'quiz')">Quiz</button>
     <button class="nav-tab" onclick="switchTab(event, 'sesiones')">Sesiones</button>
   </div>
@@ -344,12 +452,13 @@ button.primary:hover {
     <div class="info-card">
       <h3>Próximo paso</h3>
       <p>Día 3: El verbo <strong>kommen</strong>, nacionalidades y profesiones</p>
-      <button class="primary" onclick="switchTab(null, 'sesiones'); document.querySelectorAll('.nav-tab')[3].click();">Ver sesiones →</button>
+      <button class="primary" onclick="switchTab(null, 'sesiones'); document.querySelectorAll('.nav-tab')[4].click();">Ver sesiones →</button>
     </div>
 
     <div class="info-card">
       <h3>Cómo usar este Hub</h3>
       <p><strong>Vocabulario:</strong> Todas tus palabras organizadas por día y categoría</p>
+      <p><strong>➕ Añadir palabras:</strong> Ingresa nuevas palabras para que Claude las corrija</p>
       <p><strong>Quiz:</strong> Ejercicios interactivos para practicar</p>
       <p><strong>Sesiones:</strong> Historial de tus clases</p>
     </div>
@@ -461,6 +570,50 @@ button.primary:hover {
     </div>
   </div>
 
+  <div id="añadir" class="content-section">
+    <div class="step-guide">
+      <h4>✨ Cómo agregar nuevas palabras</h4>
+      <ol>
+        <li><strong>Escribe la palabra en español</strong> en el primer campo (ej: "gato", "rápido", "trabajar")</li>
+        <li><strong>Agrega contexto</strong> si lo necesitas (ej: "Es un gato negro" o "Se llama contexto")</li>
+        <li>Click en <strong>"Generar formato"</strong></li>
+        <li><strong>Copia el texto</strong> que aparece abajo (el botón "Copiar" lo hace automático)</li>
+        <li><strong>Pégalo aquí en el chat</strong> conmigo (Claude)</li>
+        <li><strong>Yo corrijo y agrego</strong>: palabra alemana, artículo, tipo, ejemplos</li>
+        <li><strong>Tú agregas</strong> la palabra corregida a tu lista en la sección "Vocabulario"</li>
+      </ol>
+    </div>
+
+    <div class="info-card">
+      <h3>Ingresa una nueva palabra</h3>
+
+      <div class="form-group">
+        <label for="wordSpanish">Palabra en español *</label>
+        <input type="text" id="wordSpanish" placeholder="ej: gato, correr, bonito, libro..." />
+      </div>
+
+      <div class="form-group">
+        <label for="wordContext">Contexto o ejemplo (opcional)</label>
+        <textarea id="wordContext" placeholder="ej: 'Veo un gato negro en la calle' o 'A mí me encanta correr en el parque'"></textarea>
+      </div>
+
+      <button class="primary" onclick="generateFormat()">Generar formato para Claude</button>
+
+      <div id="outputContainer" style="display: none; margin-top: 1.5rem;">
+        <h4 style="font-size: 14px; font-weight: 500; margin-bottom: 0.5rem;">📋 Copia esto y pégalo en el chat:</h4>
+        <div class="output-box empty" id="outputBox">Aparecerá aquí...</div>
+        <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar texto</button>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1rem; background: #E6F1FB; border-radius: 8px; font-size: 13px; color: #0C447C;">
+        <strong>Ejemplo de lo que copiarás:</strong><br/>
+        "Palabra: gato<br/>
+        Contexto: Veo un gato negro<br/>
+        ¿Cómo se dice en alemán? ¿Cuál es el artículo (der/die/das)?"
+      </div>
+    </div>
+  </div>
+
   <div id="quiz" class="content-section">
     <div class="quiz-container">
       <div class="quiz-question" id="quizQ"></div>
@@ -546,6 +699,41 @@ function switchTab(event, tabId) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   if (event) event.target.classList.add('active');
+}
+
+function generateFormat() {
+  const wordSpanish = document.getElementById('wordSpanish').value.trim();
+  const wordContext = document.getElementById('wordContext').value.trim();
+  
+  if (!wordSpanish) {
+    alert('Escribe una palabra en español primero');
+    return;
+  }
+  
+  let output = `Palabra: ${wordSpanish}`;
+  if (wordContext) {
+    output += `\nContexto: ${wordContext}`;
+  }
+  output += `\n\n¿Cómo se dice en alemán? ¿Cuál es el artículo (der/die/das)?`;
+  
+  const outputBox = document.getElementById('outputBox');
+  outputBox.textContent = output;
+  outputBox.classList.remove('empty');
+  document.getElementById('outputContainer').style.display = 'block';
+}
+
+function copyToClipboard() {
+  const outputBox = document.getElementById('outputBox');
+  const text = outputBox.textContent;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => {
+      btn.textContent = originalText;
+    }, 2000);
+  });
 }
 
 function loadQuestion() {
