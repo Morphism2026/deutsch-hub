@@ -3,969 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#1a1a2e">
+<meta name="theme-color" content="#0f0f14">
 <title>Deutsch Hub · Aki</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f0f14;
-  --bg-elevated: #1a1a24;
-  --bg-card: #22222e;
-  --bg-hover: #2a2a38;
-  --border: #2d2d3a;
-  --border-strong: #3a3a4a;
-  --text: #e8e8f0;
-  --text-muted: #9999a8;
-  --text-dim: #6b6b7a;
-  --accent: #7f77dd;
-  --accent-hover: #8f87ed;
-  --accent-soft: rgba(127, 119, 221, 0.15);
-  --success: #5dcaa5;
-  --success-soft: rgba(93, 202, 165, 0.15);
-  --warning: #ef9f27;
-  --warning-soft: rgba(239, 159, 39, 0.15);
-  --danger: #e24b4a;
-  --danger-soft: rgba(226, 75, 74, 0.15);
-  --info: #378add;
-  --info-soft: rgba(55, 138, 221, 0.15);
-  --radius: 12px;
-  --radius-lg: 16px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --bg: #0f0f14; --bg-elevated: #1a1a24; --bg-card: #22222e; --bg-hover: #2a2a38;
+  --border: #2d2d3a; --border-strong: #3a3a4a;
+  --text: #e8e8f0; --text-muted: #9999a8; --text-dim: #6b6b7a;
+  --accent: #7f77dd; --accent-hover: #8f87ed; --accent-soft: rgba(127, 119, 221, 0.15);
+  --success: #5dcaa5; --success-soft: rgba(93, 202, 165, 0.15);
+  --warning: #ef9f27; --warning-soft: rgba(239, 159, 39, 0.15);
+  --danger: #e24b4a; --danger-soft: rgba(226, 75, 74, 0.15);
+  --info: #378add; --info-soft: rgba(55, 138, 221, 0.15);
+  --radius: 12px; --radius-lg: 16px; --shadow: 0 4px 24px rgba(0,0,0,0.3);
 }
-
 [data-theme="light"] {
-  --bg: #f5f5f0;
-  --bg-elevated: #ffffff;
-  --bg-card: #ffffff;
-  --bg-hover: #f0f0e8;
-  --border: #e0e0d8;
-  --border-strong: #c8c8c0;
-  --text: #1a1a24;
-  --text-muted: #5f5e5a;
-  --text-dim: #888780;
+  --bg: #f5f5f0; --bg-elevated: #ffffff; --bg-card: #ffffff; --bg-hover: #f0f0e8;
+  --border: #e0e0d8; --border-strong: #c8c8c0;
+  --text: #1a1a24; --text-muted: #5f5e5a; --text-dim: #888780;
   --shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  min-height: 100vh;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* ============ HEADER ============ */
-.top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  backdrop-filter: blur(10px);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 17px;
-}
-
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, var(--accent), #d4537e);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.top-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  transition: all 0.15s;
-}
-
-.icon-btn:hover {
-  background: var(--bg-hover);
-  border-color: var(--border-strong);
-}
-
-/* ============ LAYOUT ============ */
-.app {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 80px;
-}
-
-.container {
-  padding: 20px;
-}
-
-/* ============ NAVIGATION ============ */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  display: flex;
-  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
-.nav-btn {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 8px 4px;
-  color: var(--text-muted);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-family: inherit;
-  transition: color 0.15s;
-}
-
-.nav-btn.active {
-  color: var(--accent);
-}
-
-.nav-btn-icon {
-  font-size: 20px;
-}
-
-.nav-btn-label {
-  font-weight: 500;
-}
-
-/* ============ VIEWS ============ */
-.view {
-  display: none;
-  animation: fadeIn 0.25s ease-out;
-}
-
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; transition: background 0.3s, color 0.3s; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--bg-elevated); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(10px); }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
+.logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #d4537e); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.icon-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; }
+.icon-btn:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+.app { max-width: 1000px; margin: 0 auto; padding-bottom: 90px; }
+.container { padding: 20px; }
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-elevated); border-top: 1px solid var(--border); display: flex; padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); z-index: 100; backdrop-filter: blur(10px); }
+.nav-btn { flex: 1; background: transparent; border: none; padding: 8px 4px; color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-family: inherit; transition: color 0.15s; }
+.nav-btn.active { color: var(--accent); }
+.nav-btn-icon { font-size: 20px; }
+.view { display: none; animation: fadeIn 0.25s ease-out; }
 .view.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============ TYPOGRAPHY ============ */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 h1, h2, h3, h4 { font-weight: 600; }
 h1 { font-size: 28px; margin-bottom: 6px; }
 h2 { font-size: 22px; margin-bottom: 20px; }
 h3 { font-size: 17px; margin-bottom: 12px; }
-h4 { font-size: 15px; margin-bottom: 8px; }
-
-.view-subtitle {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-/* ============ CARDS ============ */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 16px;
-  transition: border-color 0.15s;
-}
-
-.card:hover { border-color: var(--border-strong); }
-
-.card-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.card-title-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-
-/* ============ STATS ============ */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.stat-value {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.stat-subtext {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-top: 4px;
-}
-
-/* ============ BUTTONS ============ */
-.btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: 1px solid var(--border-strong);
-  background: transparent;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
+.view-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.card-title { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.card-title-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+.stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 26px; font-weight: 700; }
+.stat-subtext { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.btn { padding: 10px 18px; border-radius: 8px; border: 1px solid var(--border-strong); background: transparent; color: var(--text); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
 .btn:hover { background: var(--bg-hover); border-color: var(--accent); }
-
-.btn-primary {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
-
-.btn-success {
-  background: var(--success);
-  color: #06251a;
-  border-color: var(--success);
-}
-
-.btn-danger {
-  background: var(--danger);
-  color: white;
-  border-color: var(--danger);
-}
-
-.btn-full { width: 100%; justify-content: center; }
+.btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-full { width: 100%; }
 .btn-sm { padding: 6px 12px; font-size: 12px; }
-
-/* ============ SESSIONS ============ */
-.session-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.session-item:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
-.session-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.session-number {
-  font-size: 11px;
-  color: var(--accent);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.session-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 2px 0 6px;
-}
-
-.session-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.session-meta {
-  display: flex;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-dim);
-}
-
-.session-meta span { display: flex; align-items: center; gap: 4px; }
-
-.badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
+.dict-search-hero { background: linear-gradient(135deg, var(--accent-soft), rgba(212, 83, 126, 0.1)); border: 1px solid var(--accent); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+.dict-search-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.dict-search-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+.dict-search-input { width: 100%; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border-strong); background: var(--bg); color: var(--text); font-family: inherit; font-size: 16px; margin-bottom: 12px; }
+.dict-search-input:focus { outline: none; border-color: var(--accent); }
+.dict-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dict-btn { padding: 12px 8px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--bg-card); color: var(--text); cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.dict-btn:hover { border-color: var(--accent); background: var(--bg-hover); }
+.dict-btn-name { font-weight: 600; }
+.dict-btn-desc { font-size: 10px; color: var(--text-dim); }
+.session-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; cursor: pointer; transition: all 0.15s; }
+.session-item:hover { border-color: var(--accent); transform: translateY(-1px); }
+.session-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.session-number { font-size: 11px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.session-title { font-size: 16px; font-weight: 600; margin: 2px 0 6px; }
+.session-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.session-meta { display: flex; gap: 12px; font-size: 12px; color: var(--text-dim); }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
 .badge-success { background: var(--success-soft); color: var(--success); }
 .badge-warning { background: var(--warning-soft); color: var(--warning); }
-.badge-info { background: var(--info-soft); color: var(--info); }
-.badge-accent { background: var(--accent-soft); color: var(--accent); }
-
-/* ============ SESSION DETAIL ============ */
-.session-detail-header {
-  margin-bottom: 20px;
-}
-
-.back-btn {
-  background: transparent;
-  border: none;
-  color: var(--accent);
-  cursor: pointer;
-  padding: 4px 0;
-  font-size: 14px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: inherit;
-}
-
-.block {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 16px;
-}
-
-.block-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.block-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
+.back-btn { background: transparent; border: none; color: var(--accent); cursor: pointer; padding: 4px 0; font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; font-family: inherit; }
+.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.block-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.block-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .block-title { font-size: 16px; font-weight: 600; }
 .block-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
 .block-content { font-size: 14px; line-height: 1.7; }
 .block-content p { margin-bottom: 12px; }
 .block-content strong { color: var(--accent); font-weight: 600; }
-.block-content code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  background: var(--bg);
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: var(--accent);
-}
-
-.conjugation-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-.conjugation-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.conjugation-table td:first-child {
-  color: var(--text-muted);
-  width: 40%;
-}
-
-.conjugation-table td:last-child {
-  font-weight: 600;
-  color: var(--accent);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* ============ VOCAB ============ */
-.vocab-controls {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.search-input {
-  flex: 1;
-  min-width: 180px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.filter-chips {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 16px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-}
-
+.block-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--bg); padding: 2px 6px; border-radius: 4px; color: var(--accent); }
+.conjugation-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+.conjugation-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.conjugation-table td:first-child { color: var(--text-muted); width: 40%; }
+.conjugation-table td:last-child { font-weight: 600; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+.vocab-controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.search-input { flex: 1; min-width: 180px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; }
+.search-input:focus { outline: none; border-color: var(--accent); }
+.filter-chips { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
 .filter-chips::-webkit-scrollbar { display: none; }
-
-.chip {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 13px;
-  white-space: nowrap;
-  transition: all 0.15s;
-  font-family: inherit;
-}
-
-.chip.active {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.vocab-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  transition: border-color 0.15s;
-}
-
+.chip { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; font-size: 13px; white-space: nowrap; transition: all 0.15s; font-family: inherit; }
+.chip.active { background: var(--accent); color: white; border-color: var(--accent); }
+.vocab-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; transition: border-color 0.15s; }
 .vocab-card:hover { border-color: var(--border-strong); }
-
-.vocab-info { flex: 1; min-width: 0; }
-
-.vocab-german {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 2px;
-}
-
-.article {
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
+.vocab-main { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 4px; }
+.vocab-german { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.article { font-size: 12px; padding: 2px 8px; border-radius: 6px; font-weight: 500; }
 .article-der { background: rgba(55, 138, 221, 0.2); color: #85B7EB; }
 .article-die { background: rgba(212, 83, 126, 0.2); color: #ED93B1; }
 .article-das { background: rgba(93, 202, 165, 0.2); color: #97C459; }
-
-.vocab-spanish {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.vocab-actions {
-  display: flex;
-  gap: 4px;
-}
-
-.vocab-badge {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 8px;
-  background: var(--bg-hover);
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-/* ============ FORMS ============ */
-.form-group {
-  margin-bottom: 16px;
-}
-
-.form-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: var(--text);
-}
-
-.form-input,
-.form-textarea,
-.form-select {
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-  transition: border-color 0.15s;
-}
-
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 80px;
-  font-family: inherit;
-}
-
-.form-hint {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-top: 4px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-@media (max-width: 480px) {
-  .form-row { grid-template-columns: 1fr; }
-}
-
-/* ============ QUIZ ============ */
-.quiz-progress {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 20px;
-}
-
-.quiz-progress-bar {
-  flex: 1;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.quiz-progress-fill {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.3s;
-}
-
-.quiz-question-text {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.quiz-option {
-  display: block;
-  width: 100%;
-  padding: 14px 18px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text);
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  font-size: 14px;
-  margin-bottom: 8px;
-  transition: all 0.15s;
-}
-
-.quiz-option:hover {
-  border-color: var(--accent);
-  background: var(--bg-hover);
-}
-
-.quiz-option.selected {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.quiz-option.correct {
-  border-color: var(--success);
-  background: var(--success-soft);
-  color: var(--success);
-}
-
-.quiz-option.wrong {
-  border-color: var(--danger);
-  background: var(--danger-soft);
-  color: var(--danger);
-}
-
-.quiz-feedback {
-  padding: 14px;
-  border-radius: 10px;
-  margin-top: 12px;
-  font-size: 14px;
-  display: none;
-}
-
-.quiz-feedback.correct {
-  background: var(--success-soft);
-  color: var(--success);
-  border: 1px solid var(--success);
-}
-
-.quiz-feedback.wrong {
-  background: var(--danger-soft);
-  color: var(--danger);
-  border: 1px solid var(--danger);
-}
-
-/* ============ MODAL ============ */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(4px);
-}
-
+.vocab-spanish { font-size: 13px; color: var(--text-muted); }
+.vocab-details { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 12px; color: var(--text-dim); }
+.vocab-detail-item { background: var(--bg); padding: 3px 8px; border-radius: 6px; }
+.vocab-detail-item strong { color: var(--accent); font-weight: 500; }
+.vocab-example { font-size: 12px; color: var(--text-muted); font-style: italic; margin-top: 6px; padding: 6px 10px; background: var(--bg); border-radius: 6px; border-left: 2px solid var(--accent); }
+.vocab-actions-row { display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end; }
+.vocab-badge { font-size: 10px; padding: 2px 8px; border-radius: 8px; background: var(--bg-hover); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.form-input, .form-textarea, .form-select { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; transition: border-color 0.15s; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+.form-textarea { resize: vertical; min-height: 80px; }
+.form-hint { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+.quiz-progress { display: flex; gap: 4px; margin-bottom: 20px; }
+.quiz-progress-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.quiz-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+.quiz-question-text { font-size: 18px; font-weight: 500; margin-bottom: 20px; line-height: 1.5; }
+.quiz-option { display: block; width: 100%; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer; text-align: left; font-family: inherit; font-size: 14px; margin-bottom: 8px; transition: all 0.15s; }
+.quiz-option:hover { border-color: var(--accent); background: var(--bg-hover); }
+.quiz-option.correct { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+.quiz-option.wrong { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+.quiz-feedback { padding: 14px; border-radius: 10px; margin-top: 12px; font-size: 14px; display: none; }
+.quiz-feedback.correct { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+.quiz-feedback.wrong { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
 .modal-overlay.active { display: flex; }
-
-.modal {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: modalIn 0.2s ease-out;
-}
-
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
+.modal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; animation: modalIn 0.2s ease-out; }
+@keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .modal-title { font-size: 18px; font-weight: 600; }
-
-.modal-close {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 22px;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-}
-
+.modal-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px; width: 32px; height: 32px; border-radius: 6px; }
 .modal-close:hover { background: var(--bg-hover); }
-
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-/* ============ EMPTY STATE ============ */
-.empty {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--text-muted);
-}
-
-.empty-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
-  opacity: 0.5;
-}
-
-.empty-text {
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-/* ============ TOAST ============ */
-.toast {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  padding: 12px 20px;
-  border-radius: 10px;
-  z-index: 2000;
-  box-shadow: var(--shadow);
-  font-size: 14px;
-  display: none;
-  animation: toastIn 0.3s ease-out;
-}
-
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+.empty { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty-text { font-size: 14px; margin-bottom: 16px; }
+.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--bg-elevated); border: 1px solid var(--border-strong); padding: 12px 20px; border-radius: 10px; z-index: 2000; box-shadow: var(--shadow); font-size: 14px; display: none; animation: toastIn 0.3s ease-out; }
 .toast.active { display: block; }
-
-@keyframes toastIn {
-  from { opacity: 0; transform: translate(-50%, 20px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
-}
-
-/* ============ GENERATOR ============ */
-.session-generator {
-  background: linear-gradient(135deg, var(--accent-soft), rgba(212, 83, 126, 0.1));
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.generator-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.generator-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-}
-
-.copy-output {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  margin-top: 12px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-/* ============ RESPONSIVE ============ */
-@media (min-width: 640px) {
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
-  .container { padding: 32px; }
-  h1 { font-size: 32px; }
-}
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.info-box { background: var(--info-soft); border-left: 3px solid var(--info); padding: 12px 14px; border-radius: 8px; font-size: 13px; color: var(--info); margin: 12px 0; }
+.dict-quick-tips { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+.dict-quick-tips strong { color: var(--text); font-weight: 600; }
+@media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } .container { padding: 32px; } h1 { font-size: 32px; } }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
-  <div class="logo">
-    <div class="logo-icon">🇩🇪</div>
-    <div>Deutsch Hub</div>
-  </div>
-  <div class="top-actions">
-    <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Cambiar tema">🌙</button>
-  </div>
+  <div class="logo"><div class="logo-icon">🇩🇪</div><div>Deutsch Hub</div></div>
+  <div><button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button></div>
 </div>
 
-<!-- APP -->
 <div class="app">
   <div class="container">
 
-    <!-- ============ HOME ============ -->
     <div id="view-home" class="view active">
-      <h1>Hola, Aki 👋</h1>
+      <h1>Hallo, Aki 👋</h1>
       <p class="view-subtitle">Guten Tag! Continuemos con tu alemán.</p>
 
       <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-label">Sesiones</div>
-          <div class="stat-value" id="statSessions">2</div>
-          <div class="stat-subtext">completadas</div>
+        <div class="stat"><div class="stat-label">Sesiones</div><div class="stat-value" id="statSessions">2</div><div class="stat-subtext">completadas</div></div>
+        <div class="stat"><div class="stat-label">Vocabulario</div><div class="stat-value" id="statVocab">0</div><div class="stat-subtext">palabras</div></div>
+        <div class="stat"><div class="stat-label">Racha</div><div class="stat-value">5 🔥</div><div class="stat-subtext">días</div></div>
+        <div class="stat"><div class="stat-label">Nivel</div><div class="stat-value">A1</div><div class="stat-subtext">en progreso</div></div>
+      </div>
+
+      <div class="dict-search-hero">
+        <div class="dict-search-title">🔍 Buscar palabra</div>
+        <div class="dict-search-desc">Diccionarios profesionales de alemán (gratis)</div>
+        <input type="text" class="dict-search-input" id="heroSearch" placeholder="Escribe: gato, correr, bonito..." onkeypress="if(event.key==='Enter') openDictionary('leo')">
+        <div class="dict-buttons">
+          <button class="dict-btn" onclick="openDictionary('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Más completo</span></button>
+          <button class="dict-btn" onclick="openDictionary('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Con audio</span></button>
+          <button class="dict-btn" onclick="openDictionary('dictcc')"><span class="dict-btn-name">dict.cc</span><span class="dict-btn-desc">Ejemplos</span></button>
         </div>
-        <div class="stat">
-          <div class="stat-label">Vocabulario</div>
-          <div class="stat-value" id="statVocab">0</div>
-          <div class="stat-subtext">palabras</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Racha</div>
-          <div class="stat-value" id="statStreak">5 🔥</div>
-          <div class="stat-subtext">días seguidos</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Nivel</div>
-          <div class="stat-value">A1</div>
-          <div class="stat-subtext">en progreso</div>
-        </div>
+        <div class="dict-quick-tips"><strong>💡 Tip:</strong> Busca la palabra → copia artículo y plural → agrégalo abajo</div>
       </div>
 
       <div class="card">
-        <div class="card-title">
-          <div class="card-title-icon">🎯</div>
-          <div>Próxima sesión</div>
-        </div>
+        <div class="card-title"><div class="card-title-icon">🎯</div><div>Próxima sesión</div></div>
         <h3 style="margin-bottom: 6px;">Día 3: Nacionalidades y profesiones</h3>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Practicaremos el verbo <code>kommen</code> a fondo y aprenderás a decir de dónde eres y qué trabajo tienes.</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Practicaremos <code>kommen</code> a fondo.</p>
         <button class="btn btn-primary btn-full" onclick="showView('sessions')">Ir a sesiones →</button>
       </div>
 
       <div class="card">
-        <div class="card-title">
-          <div class="card-title-icon">⚡</div>
-          <div>Acciones rápidas</div>
-        </div>
+        <div class="card-title"><div class="card-title-icon">⚡</div><div>Acciones rápidas</div></div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
           <button class="btn" onclick="showView('vocab')">📖 Vocabulario</button>
-          <button class="btn" onclick="showView('quiz')">🎯 Hacer quiz</button>
+          <button class="btn" onclick="showView('quiz')">🎯 Quiz</button>
           <button class="btn" onclick="openAddVocab()">➕ Añadir palabra</button>
-          <button class="btn" onclick="showView('practice')">✍️ Practicar</button>
+          <button class="btn" onclick="showView('practice')">✍️ Práctica</button>
         </div>
       </div>
     </div>
 
-    <!-- ============ SESSIONS ============ -->
     <div id="view-sessions" class="view">
       <h1>Sesiones</h1>
       <p class="view-subtitle">Tu progreso día a día</p>
-
-      <div class="session-generator">
-        <div class="generator-title">✨ Generar nueva sesión</div>
-        <div class="generator-desc">Claude genera la sesión completa. Tú das el tema, yo hago el trabajo.</div>
-        <button class="btn btn-primary btn-full" onclick="openSessionGenerator()">Crear sesión con Claude</button>
-      </div>
-
       <div id="sessionsList"></div>
     </div>
 
-    <!-- ============ SESSION DETAIL ============ -->
     <div id="view-session-detail" class="view">
-      <button class="back-btn" onclick="showView('sessions')">← Volver a sesiones</button>
+      <button class="back-btn" onclick="showView('sessions')">← Volver</button>
       <div id="sessionDetailContent"></div>
     </div>
 
-    <!-- ============ VOCAB ============ -->
     <div id="view-vocab" class="view">
       <h1>Vocabulario</h1>
       <p class="view-subtitle">Tu banco de palabras alemanas</p>
 
+      <div class="dict-search-hero">
+        <div class="dict-search-title">🔍 Buscar antes de agregar</div>
+        <input type="text" class="dict-search-input" id="vocabDictSearch" placeholder="Busca en el diccionario..." onkeypress="if(event.key==='Enter') openDictionaryFromVocab('leo')">
+        <div class="dict-buttons">
+          <button class="dict-btn" onclick="openDictionaryFromVocab('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Buscar</span></button>
+          <button class="dict-btn" onclick="openDictionaryFromVocab('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Buscar</span></button>
+          <button class="dict-btn" onclick="openAddVocab()"><span class="dict-btn-name">➕</span><span class="dict-btn-desc">Agregar</span></button>
+        </div>
+      </div>
+
       <div class="vocab-controls">
-        <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 Buscar palabra..." oninput="renderVocab()">
+        <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 Buscar en mi vocabulario..." oninput="renderVocab()">
         <button class="btn btn-primary" onclick="openAddVocab()">+ Añadir</button>
       </div>
 
@@ -981,17 +250,13 @@ h4 { font-size: 15px; margin-bottom: 8px; }
       <div id="vocabList"></div>
     </div>
 
-    <!-- ============ QUIZ ============ -->
     <div id="view-quiz" class="view">
       <h1>Quiz</h1>
       <p class="view-subtitle">Pon a prueba tu conocimiento</p>
 
       <div id="quizIntro">
         <div class="card">
-          <div class="card-title">
-            <div class="card-title-icon">🎯</div>
-            <div>Elige un modo</div>
-          </div>
+          <div class="card-title"><div class="card-title-icon">🎯</div><div>Elige un modo</div></div>
           <button class="btn btn-full" onclick="startQuiz('all')" style="margin-bottom: 8px;">📚 Todas las sesiones</button>
           <button class="btn btn-full" onclick="startQuiz('day1')" style="margin-bottom: 8px;">1️⃣ Solo Día 1</button>
           <button class="btn btn-full" onclick="startQuiz('day2')" style="margin-bottom: 8px;">2️⃣ Solo Día 2</button>
@@ -1026,171 +291,125 @@ h4 { font-size: 15px; margin-bottom: 8px; }
       </div>
     </div>
 
-    <!-- ============ PRACTICE ============ -->
     <div id="view-practice" class="view">
       <h1>Práctica</h1>
-      <p class="view-subtitle">Escribe en alemán y Claude te corrige</p>
+      <p class="view-subtitle">Herramientas para aprender</p>
 
       <div class="card">
-        <div class="card-title">
-          <div class="card-title-icon">✍️</div>
-          <div>Escribir oración</div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Escribe una oración en alemán</label>
-          <textarea class="form-textarea" id="practiceText" placeholder="Ej: Ich heiße Aki und komme aus..." rows="4"></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">¿Qué querías decir? (en español)</label>
-          <textarea class="form-textarea" id="practiceIntent" placeholder="Ej: Me llamo Aki y vengo de..." rows="2"></textarea>
-        </div>
-        <button class="btn btn-primary btn-full" onclick="generatePracticePrompt()">Generar para corrección</button>
-
-        <div id="practiceOutput" style="display: none; margin-top: 16px;">
-          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">📋 Copia y pega esto en el chat con Claude:</p>
-          <div class="copy-output" id="practiceOutputText"></div>
-          <button class="btn btn-success btn-full" onclick="copyPracticeOutput()" style="margin-top: 8px;">📋 Copiar</button>
+        <div class="card-title"><div class="card-title-icon">🔍</div><div>Verificar palabra en alemán</div></div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">¿No estás seguro si escribiste bien? Búscala en LEO o PONS.</p>
+        <input type="text" class="dict-search-input" id="verifyGerman" placeholder="ej: der Katze, laufe, schön..." style="margin-bottom: 12px;">
+        <div class="dict-buttons">
+          <button class="dict-btn" onclick="verifyWord('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Verificar</span></button>
+          <button class="dict-btn" onclick="verifyWord('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Verificar</span></button>
+          <button class="dict-btn" onclick="verifyWord('dictcc')"><span class="dict-btn-name">dict.cc</span><span class="dict-btn-desc">Verificar</span></button>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title">
-          <div class="card-title-icon">💡</div>
-          <div>Consejo</div>
+        <div class="card-title"><div class="card-title-icon">💬</div><div>Conjugador de verbos</div></div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Verifica la conjugación completa</p>
+        <input type="text" class="dict-search-input" id="verbSearch" placeholder="ej: gehen, sein, haben..." style="margin-bottom: 12px;">
+        <button class="btn btn-primary btn-full" onclick="conjugateVerb()">Ver conjugación en Verbformen</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">📺</div><div>Nicos Weg (DW)</div></div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Curso oficial gratis de Deutsche Welle.</p>
+        <button class="btn btn-primary btn-full" onclick="openLink('https://learngerman.dw.com/en/overview')">Ir a Nicos Weg →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="card-title-icon">💡</div><div>Recursos útiles</div></div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn" onclick="openLink('https://dict.leo.org/deutsch-spanisch/')">📖 LEO Deutsch-Spanisch</button>
+          <button class="btn" onclick="openLink('https://es.pons.com/traduccion/aleman-espanol')">📖 PONS Diccionario</button>
+          <button class="btn" onclick="openLink('https://www.dwds.de/')">📚 DWDS (diccionario alemán)</button>
+          <button class="btn" onclick="openLink('https://www.verbformen.com/')">🔤 Verbformen (conjugador)</button>
         </div>
-        <p style="font-size: 14px; color: var(--text-muted);">Escribe frases cortas primero. Recuerda: el verbo va en <strong style="color: var(--accent);">segunda posición</strong> en oraciones declarativas alemanas.</p>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <button class="nav-btn active" data-view="home" onclick="showView('home')">
-    <div class="nav-btn-icon">🏠</div>
-    <div class="nav-btn-label">Inicio</div>
-  </button>
-  <button class="nav-btn" data-view="sessions" onclick="showView('sessions')">
-    <div class="nav-btn-icon">📚</div>
-    <div class="nav-btn-label">Sesiones</div>
-  </button>
-  <button class="nav-btn" data-view="vocab" onclick="showView('vocab')">
-    <div class="nav-btn-icon">📖</div>
-    <div class="nav-btn-label">Vocab</div>
-  </button>
-  <button class="nav-btn" data-view="quiz" onclick="showView('quiz')">
-    <div class="nav-btn-icon">🎯</div>
-    <div class="nav-btn-label">Quiz</div>
-  </button>
-  <button class="nav-btn" data-view="practice" onclick="showView('practice')">
-    <div class="nav-btn-icon">✍️</div>
-    <div class="nav-btn-label">Práctica</div>
-  </button>
+  <button class="nav-btn active" data-view="home" onclick="showView('home')"><div class="nav-btn-icon">🏠</div><div>Inicio</div></button>
+  <button class="nav-btn" data-view="sessions" onclick="showView('sessions')"><div class="nav-btn-icon">📚</div><div>Sesiones</div></button>
+  <button class="nav-btn" data-view="vocab" onclick="showView('vocab')"><div class="nav-btn-icon">📖</div><div>Vocab</div></button>
+  <button class="nav-btn" data-view="quiz" onclick="showView('quiz')"><div class="nav-btn-icon">🎯</div><div>Quiz</div></button>
+  <button class="nav-btn" data-view="practice" onclick="showView('practice')"><div class="nav-btn-icon">✍️</div><div>Práctica</div></button>
 </div>
 
-<!-- MODALS -->
 <div class="modal-overlay" id="modalAddVocab">
   <div class="modal">
     <div class="modal-header">
       <div class="modal-title">➕ Añadir palabra</div>
       <button class="modal-close" onclick="closeModal('modalAddVocab')">×</button>
     </div>
-    <div class="form-group">
-      <label class="form-label">Palabra en español *</label>
-      <input type="text" class="form-input" id="addVocabSpanish" placeholder="ej: gato, correr, bonito">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Contexto (opcional)</label>
-      <textarea class="form-textarea" id="addVocabContext" placeholder="ej: 'Veo un gato negro'" rows="2"></textarea>
-    </div>
-    <div style="padding: 12px; background: var(--info-soft); border-radius: 8px; font-size: 13px; color: var(--info); margin-bottom: 16px;">
-      💡 Claude te dará: traducción, artículo (der/die/das), tipo de palabra y un ejemplo. Luego lo agregas manualmente.
-    </div>
-    <div id="addVocabOutput" style="display: none;">
-      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">📋 Copia esto y pégalo en el chat:</p>
-      <div class="copy-output" id="addVocabOutputText"></div>
-      <button class="btn btn-success btn-full" onclick="copyAddVocabOutput()" style="margin-top: 8px;">📋 Copiar</button>
-    </div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modalAddVocab')">Cancelar</button>
-      <button class="btn btn-primary" onclick="generateAddVocab()">Generar</button>
-    </div>
-  </div>
-</div>
 
-<div class="modal-overlay" id="modalManualVocab">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">Añadir directamente</div>
-      <button class="modal-close" onclick="closeModal('modalManualVocab')">×</button>
+    <div class="info-box">
+      💡 <strong>Tip:</strong> Busca primero en LEO o PONS para tener artículo, plural y ejemplos correctos.
     </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+      <button class="btn" onclick="quickSearch('leo')">🔍 Buscar en LEO</button>
+      <button class="btn" onclick="quickSearch('pons')">🔍 Buscar en PONS</button>
+    </div>
+
     <div class="form-group">
       <label class="form-label">Palabra en alemán *</label>
-      <input type="text" class="form-input" id="manualGerman" placeholder="ej: Katze">
+      <input type="text" class="form-input" id="addGerman" placeholder="ej: Katze">
     </div>
+
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Artículo</label>
-        <select class="form-select" id="manualArticle">
-          <option value="">Ninguno</option>
+        <select class="form-select" id="addArticle">
+          <option value="">- ninguno -</option>
           <option value="der">der (masculino)</option>
           <option value="die">die (femenino)</option>
           <option value="das">das (neutro)</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Tipo</label>
-        <select class="form-select" id="manualType">
+        <label class="form-label">Tipo *</label>
+        <select class="form-select" id="addType">
           <option value="sustantivo">Sustantivo</option>
           <option value="verbo">Verbo</option>
           <option value="adjetivo">Adjetivo</option>
+          <option value="adverbio">Adverbio</option>
           <option value="frase">Frase</option>
+          <option value="preposición">Preposición</option>
           <option value="otro">Otro</option>
         </select>
       </div>
     </div>
+
     <div class="form-group">
       <label class="form-label">Traducción en español *</label>
-      <input type="text" class="form-input" id="manualSpanish" placeholder="ej: gato">
+      <input type="text" class="form-input" id="addSpanish" placeholder="ej: gato/gata">
     </div>
+
+    <div class="form-group">
+      <label class="form-label">Plural (solo sustantivos)</label>
+      <input type="text" class="form-input" id="addPlural" placeholder="ej: die Katzen">
+      <div class="form-hint">Copia el plural desde LEO/PONS</div>
+    </div>
+
     <div class="form-group">
       <label class="form-label">Ejemplo (opcional)</label>
-      <input type="text" class="form-input" id="manualExample" placeholder="ej: Die Katze ist schwarz">
+      <input type="text" class="form-input" id="addExample" placeholder="ej: Die Katze schläft">
     </div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modalManualVocab')">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveManualVocab()">Guardar</button>
-    </div>
-  </div>
-</div>
 
-<div class="modal-overlay" id="modalGenerateSession">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">✨ Generar sesión</div>
-      <button class="modal-close" onclick="closeModal('modalGenerateSession')">×</button>
-    </div>
     <div class="form-group">
-      <label class="form-label">Número del día</label>
-      <input type="number" class="form-input" id="genDayNumber" value="3" min="1">
+      <label class="form-label">Notas (opcional)</label>
+      <textarea class="form-textarea" id="addNotes" placeholder="ej: se usa también para gato macho" rows="2"></textarea>
     </div>
-    <div class="form-group">
-      <label class="form-label">Tema principal *</label>
-      <input type="text" class="form-input" id="genTopic" placeholder="ej: Nacionalidades y profesiones">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Contenido a cubrir</label>
-      <textarea class="form-textarea" id="genContent" placeholder="ej: Verbo kommen más profundo, cómo decir de dónde eres, profesiones básicas" rows="3"></textarea>
-    </div>
-    <div id="genOutput" style="display: none;">
-      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">📋 Copia esto y pégalo en el chat:</p>
-      <div class="copy-output" id="genOutputText"></div>
-      <button class="btn btn-success btn-full" onclick="copyGenOutput()" style="margin-top: 8px;">📋 Copiar</button>
-    </div>
+
     <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modalGenerateSession')">Cancelar</button>
-      <button class="btn btn-primary" onclick="generateSession()">Generar prompt</button>
+      <button class="btn" onclick="closeModal('modalAddVocab')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveVocab()">Guardar</button>
     </div>
   </div>
 </div>
@@ -1198,176 +417,106 @@ h4 { font-size: 15px; margin-bottom: 8px; }
 <div class="toast" id="toast"></div>
 
 <script>
-// ============ DATA STORE ============
-const STORAGE_KEY = 'deutsch_hub_data';
+const STORAGE_KEY = 'deutsch_hub_v4';
+let state = { theme: 'dark', vocabPersonal: [], currentVocabFilter: 'all' };
 
-let state = {
-  theme: 'dark',
-  vocabPersonal: [],
-  sessionsCompleted: [1, 2],
-  currentVocabFilter: 'all'
-};
-
-// Core vocabulary (curated by Claude)
 const CORE_VOCAB = [
-  // Saludos
   { german: 'Guten Morgen', spanish: 'Buenos días', type: 'frase', day: 1 },
   { german: 'Guten Tag', spanish: 'Buen día', type: 'frase', day: 1 },
   { german: 'Guten Abend', spanish: 'Buenas noches', type: 'frase', day: 1 },
-  { german: 'Gute Nacht', spanish: 'Buenas noches (al dormir)', type: 'frase', day: 1 },
   { german: 'Auf Wiedersehen', spanish: 'Adiós', type: 'frase', day: 1 },
   { german: 'Tschüss', spanish: 'Chao', type: 'frase', day: 1 },
   { german: 'Hallo', spanish: 'Hola', type: 'frase', day: 1 },
   { german: 'Danke', spanish: 'Gracias', type: 'frase', day: 1 },
   { german: 'Bitte', spanish: 'Por favor / de nada', type: 'frase', day: 1 },
-  { german: 'Entschuldigung', spanish: 'Disculpa', type: 'frase', day: 1 },
-  // Verbos
   { german: 'sein', spanish: 'ser/estar', type: 'verbo', day: 1 },
   { german: 'heißen', spanish: 'llamarse', type: 'verbo', day: 1 },
   { german: 'kommen', spanish: 'venir', type: 'verbo', day: 2 },
   { german: 'wohnen', spanish: 'vivir/habitar', type: 'verbo', day: 2 },
   { german: 'sprechen', spanish: 'hablar', type: 'verbo', day: 2 },
-  // Pronombres
   { german: 'ich', spanish: 'yo', type: 'pronombre', day: 1 },
   { german: 'du', spanish: 'tú', type: 'pronombre', day: 1 },
   { german: 'er', spanish: 'él', type: 'pronombre', day: 1 },
   { german: 'sie', spanish: 'ella / ellos', type: 'pronombre', day: 1 },
-  { german: 'es', spanish: 'eso (neutro)', type: 'pronombre', day: 1 },
   { german: 'wir', spanish: 'nosotros', type: 'pronombre', day: 1 },
-  { german: 'ihr', spanish: 'vosotros', type: 'pronombre', day: 1 },
-  { german: 'Sie', spanish: 'usted (formal)', type: 'pronombre', day: 1 },
-  // Números
   { german: 'null', spanish: '0', type: 'número', day: 1 },
   { german: 'eins', spanish: '1', type: 'número', day: 1 },
   { german: 'zwei', spanish: '2', type: 'número', day: 1 },
   { german: 'drei', spanish: '3', type: 'número', day: 1 },
-  { german: 'vier', spanish: '4', type: 'número', day: 1 },
-  { german: 'fünf', spanish: '5', type: 'número', day: 1 },
-  { german: 'sechs', spanish: '6', type: 'número', day: 1 },
-  { german: 'sieben', spanish: '7', type: 'número', day: 1 },
-  { german: 'acht', spanish: '8', type: 'número', day: 1 },
-  { german: 'neun', spanish: '9', type: 'número', day: 1 },
   { german: 'zehn', spanish: '10', type: 'número', day: 1 },
-  { german: 'elf', spanish: '11', type: 'número', day: 1 },
   { german: 'zwölf', spanish: '12', type: 'número', day: 1 },
-  // W-Fragen
   { german: 'Wer?', spanish: '¿Quién?', type: 'W-frage', day: 1 },
   { german: 'Was?', spanish: '¿Qué?', type: 'W-frage', day: 1 },
-  { german: 'Wo?', spanish: '¿Dónde?', type: 'W-frage', day: 1 },
   { german: 'Woher?', spanish: '¿De dónde?', type: 'W-frage', day: 1 },
-  { german: 'Wohin?', spanish: '¿A dónde?', type: 'W-frage', day: 1 },
   { german: 'Wie?', spanish: '¿Cómo?', type: 'W-frage', day: 1 },
-  { german: 'Wann?', spanish: '¿Cuándo?', type: 'W-frage', day: 1 },
 ];
 
-// Sessions data
 const SESSIONS = [
   {
-    day: 1,
-    title: 'Saludos y verbo "sein"',
-    description: 'Introducción al alemán, saludos, pronombres personales, números 0-20',
-    duration: '2 horas',
-    completed: true,
+    day: 1, title: 'Saludos y verbo "sein"',
+    description: 'Introducción al alemán, saludos, pronombres, números 0-20',
+    duration: '2 horas', completed: true,
     blocks: [
-      {
-        icon: '📖',
-        title: 'Gramática — El verbo sein (ser/estar)',
-        subtitle: 'Verbo más importante del alemán',
-        content: `<p>El verbo <strong>sein</strong> significa "ser" o "estar". Es completamente irregular y debes memorizarlo.</p>
+      { icon: '📖', title: 'Verbo sein', subtitle: 'ser/estar (irregular)',
+        content: `<p>El verbo <strong>sein</strong> significa "ser" o "estar". Es totalmente irregular.</p>
           <table class="conjugation-table">
-            <tr><td>ich</td><td>bin</td></tr>
-            <tr><td>du</td><td>bist</td></tr>
-            <tr><td>er / sie / es</td><td>ist</td></tr>
-            <tr><td>wir</td><td>sind</td></tr>
-            <tr><td>ihr</td><td>seid</td></tr>
-            <tr><td>sie / Sie</td><td>sind</td></tr>
+            <tr><td>ich</td><td>bin</td></tr><tr><td>du</td><td>bist</td></tr>
+            <tr><td>er / sie / es</td><td>ist</td></tr><tr><td>wir</td><td>sind</td></tr>
+            <tr><td>ihr</td><td>seid</td></tr><tr><td>sie / Sie</td><td>sind</td></tr>
           </table>
           <p><strong>Ejemplos:</strong></p>
-          <p>• <code>Ich bin Aki</code> — Yo soy Aki<br>
-          • <code>Du bist müde</code> — Tú estás cansado<br>
-          • <code>Er ist Student</code> — Él es estudiante</p>`
-      },
-      {
-        icon: '💬',
-        title: 'Saludos y despedidas',
-        subtitle: 'Frases esenciales',
-        content: `<p><strong>Saludar:</strong></p>
-          <p>• <code>Guten Morgen</code> — Buenos días<br>
-          • <code>Guten Tag</code> — Buen día<br>
-          • <code>Guten Abend</code> — Buenas tardes/noches<br>
-          • <code>Hallo</code> — Hola (informal)</p>
-          <p><strong>Despedirse:</strong></p>
-          <p>• <code>Auf Wiedersehen</code> — Adiós (formal)<br>
-          • <code>Tschüss</code> — Chao (informal)<br>
-          • <code>Bis bald</code> — Hasta pronto</p>`
-      },
-      {
-        icon: '🔢',
-        title: 'Números 0-20',
-        subtitle: 'Los números básicos',
-        content: `<p>0 <code>null</code> · 1 <code>eins</code> · 2 <code>zwei</code> · 3 <code>drei</code> · 4 <code>vier</code> · 5 <code>fünf</code></p>
-          <p>6 <code>sechs</code> · 7 <code>sieben</code> · 8 <code>acht</code> · 9 <code>neun</code> · 10 <code>zehn</code></p>
-          <p>11 <code>elf</code> · 12 <code>zwölf</code> · 13 <code>dreizehn</code> · 14 <code>vierzehn</code> · 15 <code>fünfzehn</code></p>
-          <p>16 <code>sechzehn</code> · 17 <code>siebzehn</code> · 18 <code>achtzehn</code> · 19 <code>neunzehn</code> · 20 <code>zwanzig</code></p>`
-      }
+          <p>• <code>Ich bin Aki</code><br>• <code>Du bist müde</code><br>• <code>Er ist Student</code></p>` },
+      { icon: '💬', title: 'Saludos', subtitle: 'Frases esenciales',
+        content: `<p><strong>Saludar:</strong> <code>Guten Morgen</code>, <code>Guten Tag</code>, <code>Hallo</code></p>
+          <p><strong>Despedir:</strong> <code>Auf Wiedersehen</code>, <code>Tschüss</code></p>` },
+      { icon: '🔢', title: 'Números 0-20', subtitle: 'Los básicos',
+        content: `<p>0-5: <code>null</code>, <code>eins</code>, <code>zwei</code>, <code>drei</code>, <code>vier</code>, <code>fünf</code></p>
+          <p>6-10: <code>sechs</code>, <code>sieben</code>, <code>acht</code>, <code>neun</code>, <code>zehn</code></p>
+          <p>11-15: <code>elf</code>, <code>zwölf</code>, <code>dreizehn</code>, <code>vierzehn</code>, <code>fünfzehn</code></p>` }
     ]
   },
   {
-    day: 2,
-    title: 'Verbos "heißen" y "kommen"',
+    day: 2, title: 'Verbos heißen y kommen',
     description: 'Presentarse, decir de dónde vienes, orden de palabras',
-    duration: '2 horas',
-    completed: true,
+    duration: '2 horas', completed: true,
     blocks: [
-      {
-        icon: '📖',
-        title: 'Verbo heißen (llamarse)',
-        subtitle: 'Para decir tu nombre',
-        content: `<p>El verbo <strong>heißen</strong> es regular pero con un pequeño cambio en la 3ª persona.</p>
-          <table class="conjugation-table">
-            <tr><td>ich</td><td>heiße</td></tr>
-            <tr><td>du</td><td>heißt</td></tr>
-            <tr><td>er / sie / es</td><td>heißt</td></tr>
-            <tr><td>wir</td><td>heißen</td></tr>
-            <tr><td>ihr</td><td>heißt</td></tr>
-            <tr><td>sie / Sie</td><td>heißen</td></tr>
-          </table>
-          <p><strong>Ejemplos:</strong></p>
-          <p>• <code>Ich heiße Aki</code> — Me llamo Aki<br>
-          • <code>Wie heißt du?</code> — ¿Cómo te llamas?</p>`
-      },
-      {
-        icon: '📖',
-        title: 'Verbo kommen (venir)',
-        subtitle: 'Para decir de dónde vienes',
+      { icon: '📖', title: 'Verbo heißen', subtitle: 'llamarse',
         content: `<table class="conjugation-table">
-            <tr><td>ich</td><td>komme</td></tr>
-            <tr><td>du</td><td>kommst</td></tr>
-            <tr><td>er / sie / es</td><td>kommt</td></tr>
-            <tr><td>wir</td><td>kommen</td></tr>
-            <tr><td>ihr</td><td>kommt</td></tr>
-            <tr><td>sie / Sie</td><td>kommen</td></tr>
+            <tr><td>ich</td><td>heiße</td></tr><tr><td>du</td><td>heißt</td></tr>
+            <tr><td>er/sie/es</td><td>heißt</td></tr><tr><td>wir</td><td>heißen</td></tr>
+            <tr><td>ihr</td><td>heißt</td></tr><tr><td>sie/Sie</td><td>heißen</td></tr>
           </table>
-          <p><strong>Ejemplos:</strong></p>
-          <p>• <code>Ich komme aus Ecuador</code> — Vengo de Ecuador<br>
-          • <code>Woher kommst du?</code> — ¿De dónde vienes?</p>`
-      },
-      {
-        icon: '📐',
-        title: 'Orden de palabras',
-        subtitle: 'Regla del verbo en segundo lugar',
-        content: `<p>En alemán, en oraciones declarativas, el <strong>verbo siempre va en segunda posición</strong>.</p>
-          <p><strong>Estructura:</strong> [Sujeto] + [VERBO] + [Resto]</p>
-          <p>• <code>Ich bin Aki</code> ✓<br>
-          • <code>Heute bin ich müde</code> ✓ (hoy estoy cansado)<br>
-          • <code>Ich heute bin müde</code> ✗</p>
-          <p>Aunque cambies el orden, el verbo mantiene la <strong>2ª posición</strong>.</p>`
-      }
+          <p><code>Ich heiße Aki</code> — Me llamo Aki<br><code>Wie heißt du?</code> — ¿Cómo te llamas?</p>` },
+      { icon: '📖', title: 'Verbo kommen', subtitle: 'venir',
+        content: `<table class="conjugation-table">
+            <tr><td>ich</td><td>komme</td></tr><tr><td>du</td><td>kommst</td></tr>
+            <tr><td>er/sie/es</td><td>kommt</td></tr><tr><td>wir</td><td>kommen</td></tr>
+            <tr><td>ihr</td><td>kommt</td></tr><tr><td>sie/Sie</td><td>kommen</td></tr>
+          </table>
+          <p><code>Ich komme aus Ecuador</code><br><code>Woher kommst du?</code></p>` },
+      { icon: '📐', title: 'Orden de palabras', subtitle: 'Verbo en 2ª posición',
+        content: `<p>El <strong>verbo SIEMPRE va en 2ª posición</strong> en declarativas.</p>
+          <p>• <code>Ich bin Aki</code> ✓<br>• <code>Heute bin ich müde</code> ✓<br>• <code>Ich heute bin müde</code> ✗</p>` }
     ]
   }
 ];
 
-// ============ INIT ============
+const QUIZZES = {
+  day1: [
+    { q: '¿Cuál es la conjugación de "sein" para "du"?', opts: ['bin','bist','ist','seid'], correct: 1, exp: '"du bist"' },
+    { q: '¿Cómo se dice "Buenos días"?', opts: ['Guten Tag','Guten Morgen','Guten Abend','Gute Nacht'], correct: 1, exp: '"Guten Morgen"' },
+    { q: '¿Qué número es "zwölf"?', opts: ['2','10','12','20'], correct: 2, exp: '"zwölf" = 12' },
+    { q: '¿Cómo se dice "yo"?', opts: ['du','er','ich','wir'], correct: 2, exp: '"ich" = yo' },
+    { q: '"sein" para "wir"?', opts: ['bist','ist','sind','seid'], correct: 2, exp: '"wir sind"' },
+  ],
+  day2: [
+    { q: '¿"llamarse"?', opts: ['heißen','kommen','sein','wohnen'], correct: 0, exp: '"heißen"' },
+    { q: '¿Posición del verbo?', opts: ['Final','2ª','1ª','Varía'], correct: 1, exp: 'Siempre 2ª posición' },
+    { q: '¿"De dónde vienes"?', opts: ['Wer bist du?','Wie heißt du?','Woher kommst du?','Wo bist du?'], correct: 2, exp: '"Woher kommst du?"' },
+    { q: '"kommen" para "er"?', opts: ['komme','kommst','kommt','kommen'], correct: 2, exp: '"er kommt"' },
+  ]
+};
+
 function init() {
   loadState();
   applyTheme();
@@ -1377,21 +526,13 @@ function init() {
 }
 
 function loadState() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      state = { ...state, ...JSON.parse(saved) };
-    }
-  } catch(e) { console.error(e); }
+  try { const s = localStorage.getItem(STORAGE_KEY); if (s) state = { ...state, ...JSON.parse(s) }; } catch(e) {}
 }
 
 function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch(e) { console.error(e); }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
 }
 
-// ============ THEME ============
 function toggleTheme() {
   state.theme = state.theme === 'dark' ? 'light' : 'dark';
   applyTheme();
@@ -1403,35 +544,18 @@ function applyTheme() {
   document.getElementById('themeBtn').textContent = state.theme === 'dark' ? '☀️' : '🌙';
 }
 
-// ============ NAVIGATION ============
-function showView(viewName) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(`view-${viewName}`).classList.add('active');
-  
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const navBtn = document.querySelector(`.nav-btn[data-view="${viewName}"]`);
-  if (navBtn) navBtn.classList.add('active');
-  
-  window.scrollTo(0, 0);
+function showView(v) {
+  document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+  document.getElementById(`view-${v}`).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
+  const nb = document.querySelector(`.nav-btn[data-view="${v}"]`);
+  if (nb) nb.classList.add('active');
+  window.scrollTo(0,0);
 }
 
-// ============ MODALS ============
-function openModal(id) {
-  document.getElementById(id).classList.add('active');
-}
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove('active');
-}
-
-function openAddVocab() {
-  document.getElementById('addVocabSpanish').value = '';
-  document.getElementById('addVocabContext').value = '';
-  document.getElementById('addVocabOutput').style.display = 'none';
-  openModal('modalAddVocab');
-}
-
-// ============ TOAST ============
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1439,7 +563,44 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('active'), 2500);
 }
 
-// ============ VOCAB ============
+function openLink(url) { window.open(url, '_blank'); }
+
+function openDictionary(dict, wordOverride) {
+  const word = wordOverride || document.getElementById('heroSearch').value.trim();
+  if (!word) { toast('Escribe una palabra'); return; }
+  const urls = {
+    leo: `https://dict.leo.org/spanisch-deutsch/${encodeURIComponent(word)}`,
+    pons: `https://es.pons.com/traduccion/aleman-espanol/${encodeURIComponent(word)}`,
+    dictcc: `https://www.dict.cc/?s=${encodeURIComponent(word)}`
+  };
+  window.open(urls[dict], '_blank');
+  toast(`Buscando "${word}"`);
+}
+
+function openDictionaryFromVocab(dict) {
+  const word = document.getElementById('vocabDictSearch').value.trim();
+  if (!word) { toast('Escribe una palabra'); return; }
+  openDictionary(dict, word);
+}
+
+function quickSearch(dict) {
+  const word = document.getElementById('addGerman').value.trim() || document.getElementById('addSpanish').value.trim();
+  if (!word) { toast('Escribe primero'); return; }
+  openDictionary(dict, word);
+}
+
+function verifyWord(dict) {
+  const word = document.getElementById('verifyGerman').value.trim();
+  if (!word) { toast('Escribe una palabra'); return; }
+  openDictionary(dict, word);
+}
+
+function conjugateVerb() {
+  const verb = document.getElementById('verbSearch').value.trim();
+  if (!verb) { toast('Escribe un verbo'); return; }
+  window.open(`https://www.verbformen.com/?w=${encodeURIComponent(verb)}`, '_blank');
+}
+
 function getAllVocab() {
   return [
     ...CORE_VOCAB.map(v => ({ ...v, source: 'core' })),
@@ -1460,368 +621,159 @@ function renderVocab() {
   const container = document.getElementById('vocabList');
   
   let vocab = getAllVocab();
-  
-  if (filter === 'personal') {
-    vocab = vocab.filter(v => v.source === 'personal');
-  } else if (filter !== 'all') {
-    vocab = vocab.filter(v => v.type === filter);
-  }
-  
-  if (search) {
-    vocab = vocab.filter(v => 
-      v.german.toLowerCase().includes(search) || 
-      v.spanish.toLowerCase().includes(search)
-    );
-  }
+  if (filter === 'personal') vocab = vocab.filter(v => v.source === 'personal');
+  else if (filter !== 'all') vocab = vocab.filter(v => v.type === filter);
+  if (search) vocab = vocab.filter(v => v.german.toLowerCase().includes(search) || v.spanish.toLowerCase().includes(search));
   
   if (vocab.length === 0) {
-    container.innerHTML = `
-      <div class="empty">
-        <div class="empty-icon">📭</div>
-        <div class="empty-text">No hay palabras que mostrar</div>
-        <button class="btn btn-primary" onclick="openAddVocab()">Añadir tu primera palabra</button>
-      </div>
-    `;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><div class="empty-text">No hay palabras</div><button class="btn btn-primary" onclick="openAddVocab()">Añadir palabra</button></div>`;
     return;
   }
   
-  container.innerHTML = vocab.map((v, i) => {
+  container.innerHTML = vocab.map((v) => {
     const articleClass = v.article ? `article-${v.article}` : '';
     const articleHtml = v.article ? `<span class="article ${articleClass}">${v.article}</span>` : '';
-    const badgeHtml = v.source === 'personal' ? `<span class="vocab-badge">mío</span>` : `<span class="vocab-badge">día ${v.day || '?'}</span>`;
-    const deleteBtn = v.source === 'personal' ? `<button class="btn btn-sm" onclick="deleteVocab(${state.vocabPersonal.indexOf(v)}, event)" title="Eliminar">🗑️</button>` : '';
+    const badge = v.source === 'personal' ? `<span class="vocab-badge">mío</span>` : `<span class="vocab-badge">día ${v.day || '?'}</span>`;
     
-    return `
-      <div class="vocab-card">
-        <div class="vocab-info">
-          <div class="vocab-german">${articleHtml}${v.german}</div>
-          <div class="vocab-spanish">${v.spanish}</div>
-          ${v.example ? `<div class="vocab-spanish" style="margin-top: 4px; font-style: italic;">"${v.example}"</div>` : ''}
-        </div>
-        <div class="vocab-actions">
-          ${badgeHtml}
-          ${deleteBtn}
-        </div>
+    let details = '';
+    if (v.plural) details += `<span class="vocab-detail-item"><strong>plural:</strong> ${v.plural}</span>`;
+    if (v.type) details += `<span class="vocab-detail-item">${v.type}</span>`;
+    
+    const delIdx = state.vocabPersonal.findIndex(x => x === v || (x.german === v.german && x.spanish === v.spanish && x.addedAt === v.addedAt));
+    const deleteBtn = v.source === 'personal' && delIdx >= 0 ? `<button class="btn btn-sm" onclick="deleteVocab(${delIdx}, event)">🗑️</button>` : '';
+    const searchBtn = `<button class="btn btn-sm" onclick="openDictionary('leo', '${v.german.replace(/'/g, "\\'")}')">🔍</button>`;
+    
+    return `<div class="vocab-card">
+      <div class="vocab-main">
+        <div><div class="vocab-german">${articleHtml}${v.german}</div><div class="vocab-spanish">${v.spanish}</div></div>
+        ${badge}
       </div>
-    `;
+      ${details ? `<div class="vocab-details">${details}</div>` : ''}
+      ${v.example ? `<div class="vocab-example">${v.example}</div>` : ''}
+      ${v.notes ? `<div class="vocab-example" style="border-left-color: var(--warning);">📝 ${v.notes}</div>` : ''}
+      <div class="vocab-actions-row">${searchBtn}${deleteBtn}</div>
+    </div>`;
   }).join('');
 }
 
-function deleteVocab(index, event) {
-  event.stopPropagation();
-  if (confirm('¿Eliminar esta palabra?')) {
-    state.vocabPersonal.splice(index, 1);
-    saveState();
-    renderVocab();
-    updateStats();
-    toast('Palabra eliminada');
-  }
+function openAddVocab() {
+  ['addGerman','addSpanish','addPlural','addExample','addNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addArticle').value = '';
+  document.getElementById('addType').value = 'sustantivo';
+  openModal('modalAddVocab');
 }
 
-function generateAddVocab() {
-  const spanish = document.getElementById('addVocabSpanish').value.trim();
-  const context = document.getElementById('addVocabContext').value.trim();
+function saveVocab() {
+  const german = document.getElementById('addGerman').value.trim();
+  const article = document.getElementById('addArticle').value;
+  const type = document.getElementById('addType').value;
+  const spanish = document.getElementById('addSpanish').value.trim();
+  const plural = document.getElementById('addPlural').value.trim();
+  const example = document.getElementById('addExample').value.trim();
+  const notes = document.getElementById('addNotes').value.trim();
   
-  if (!spanish) {
-    toast('Escribe una palabra en español');
-    return;
-  }
-  
-  let output = `Por favor tradúceme al alemán la palabra "${spanish}".`;
-  if (context) output += `\nContexto: ${context}`;
-  output += `\n\nNecesito:\n• Palabra en alemán con artículo (der/die/das) si es sustantivo\n• Tipo (sustantivo, verbo, adjetivo, frase)\n• Un ejemplo de uso\n\nCuando me lo respondas, dime también: "Añádela manualmente con estos datos: [alemán] | [artículo] | [tipo] | [español] | [ejemplo]" para que la agregue a mi Hub.`;
-  
-  document.getElementById('addVocabOutputText').textContent = output;
-  document.getElementById('addVocabOutput').style.display = 'block';
-}
-
-function copyAddVocabOutput() {
-  const text = document.getElementById('addVocabOutputText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    toast('✓ Copiado al portapapeles');
-    setTimeout(() => {
-      closeModal('modalAddVocab');
-      openModal('modalManualVocab');
-    }, 800);
-  });
-}
-
-function saveManualVocab() {
-  const german = document.getElementById('manualGerman').value.trim();
-  const article = document.getElementById('manualArticle').value;
-  const type = document.getElementById('manualType').value;
-  const spanish = document.getElementById('manualSpanish').value.trim();
-  const example = document.getElementById('manualExample').value.trim();
-  
-  if (!german || !spanish) {
-    toast('Palabra en alemán y español son requeridas');
-    return;
-  }
+  if (!german || !spanish) { toast('Alemán y español requeridos'); return; }
   
   const word = { german, spanish, type, addedAt: Date.now() };
   if (article) word.article = article;
+  if (plural) word.plural = plural;
   if (example) word.example = example;
+  if (notes) word.notes = notes;
   
   state.vocabPersonal.push(word);
   saveState();
   renderVocab();
   updateStats();
-  closeModal('modalManualVocab');
-  toast('✓ Palabra guardada');
-  
-  // Clear form
-  document.getElementById('manualGerman').value = '';
-  document.getElementById('manualArticle').value = '';
-  document.getElementById('manualType').value = 'sustantivo';
-  document.getElementById('manualSpanish').value = '';
-  document.getElementById('manualExample').value = '';
+  closeModal('modalAddVocab');
+  toast('✓ Guardada');
 }
 
-// ============ SESSIONS ============
+function deleteVocab(index, event) {
+  event.stopPropagation();
+  if (confirm('¿Eliminar?')) {
+    state.vocabPersonal.splice(index, 1);
+    saveState();
+    renderVocab();
+    updateStats();
+    toast('Eliminada');
+  }
+}
+
 function renderSessions() {
   const container = document.getElementById('sessionsList');
   container.innerHTML = SESSIONS.map(s => {
-    const badge = s.completed 
-      ? `<span class="badge badge-success">✓ Completado</span>`
-      : `<span class="badge badge-warning">🔄 En progreso</span>`;
-    
-    return `
-      <div class="session-item" onclick="openSession(${s.day})">
-        <div class="session-header">
-          <div>
-            <div class="session-number">Día ${s.day}</div>
-            <div class="session-title">${s.title}</div>
-          </div>
-          ${badge}
-        </div>
-        <div class="session-desc">${s.description}</div>
-        <div class="session-meta">
-          <span>⏱ ${s.duration}</span>
-          <span>📚 ${s.blocks.length} bloques</span>
-        </div>
-      </div>
-    `;
-  }).join('');
-  
-  // Add "next session" placeholder
-  const nextDay = Math.max(...SESSIONS.map(s => s.day)) + 1;
-  container.innerHTML += `
-    <div class="session-item" onclick="openSessionGenerator()" style="border-style: dashed;">
+    const badge = s.completed ? `<span class="badge badge-success">✓ Completado</span>` : `<span class="badge badge-warning">🔄 En progreso</span>`;
+    return `<div class="session-item" onclick="openSession(${s.day})">
       <div class="session-header">
-        <div>
-          <div class="session-number">Día ${nextDay}</div>
-          <div class="session-title">✨ Generar próxima sesión</div>
-        </div>
+        <div><div class="session-number">Día ${s.day}</div><div class="session-title">${s.title}</div></div>
+        ${badge}
       </div>
-      <div class="session-desc">Click para generar el prompt y pedirle a Claude que cree esta sesión</div>
-    </div>
-  `;
+      <div class="session-desc">${s.description}</div>
+      <div class="session-meta"><span>⏱ ${s.duration}</span><span>📚 ${s.blocks.length} bloques</span></div>
+    </div>`;
+  }).join('');
 }
 
 function openSession(day) {
-  const session = SESSIONS.find(s => s.day === day);
-  if (!session) return;
-  
-  const container = document.getElementById('sessionDetailContent');
-  container.innerHTML = `
-    <div class="session-detail-header">
-      <div class="session-number" style="color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase;">Día ${session.day}</div>
-      <h1 style="margin-top: 4px;">${session.title}</h1>
-      <p class="view-subtitle">${session.description}</p>
+  const s = SESSIONS.find(x => x.day === day);
+  if (!s) return;
+  document.getElementById('sessionDetailContent').innerHTML = `
+    <div style="margin-bottom: 20px;">
+      <div style="color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase;">Día ${s.day}</div>
+      <h1 style="margin-top: 4px;">${s.title}</h1>
+      <p class="view-subtitle">${s.description}</p>
     </div>
-    ${session.blocks.map(b => `
+    ${s.blocks.map(b => `
       <div class="block">
         <div class="block-header">
           <div class="block-icon">${b.icon}</div>
-          <div>
-            <div class="block-title">${b.title}</div>
-            <div class="block-subtitle">${b.subtitle}</div>
-          </div>
+          <div><div class="block-title">${b.title}</div><div class="block-subtitle">${b.subtitle}</div></div>
         </div>
         <div class="block-content">${b.content}</div>
       </div>
     `).join('')}
     <div style="display: flex; gap: 8px; margin-top: 20px;">
       <button class="btn btn-full" onclick="showView('sessions')">← Volver</button>
-      <button class="btn btn-primary btn-full" onclick="startQuiz('day${session.day}')">🎯 Quiz de esta sesión</button>
+      <button class="btn btn-primary btn-full" onclick="startQuiz('day${s.day}'); showView('quiz');">🎯 Quiz</button>
     </div>
   `;
-  
   showView('session-detail');
 }
 
-function openSessionGenerator() {
-  const nextDay = Math.max(...SESSIONS.map(s => s.day)) + 1;
-  document.getElementById('genDayNumber').value = nextDay;
-  document.getElementById('genTopic').value = '';
-  document.getElementById('genContent').value = '';
-  document.getElementById('genOutput').style.display = 'none';
-  openModal('modalGenerateSession');
-}
-
-function generateSession() {
-  const day = document.getElementById('genDayNumber').value;
-  const topic = document.getElementById('genTopic').value.trim();
-  const content = document.getElementById('genContent').value.trim();
-  
-  if (!topic) {
-    toast('El tema es requerido');
-    return;
-  }
-  
-  const output = `Necesito que generes la sesión completa del Día ${day} de mi curso de alemán A1.
-
-📋 **Tema:** ${topic}
-${content ? `\n📚 **Contenido a cubrir:** ${content}` : ''}
-
-Por favor genera:
-
-1. **Gramática nueva** con explicación clara en español + tabla de conjugación si aplica
-2. **Vocabulario nuevo** (mínimo 10 palabras con artículo y ejemplos)
-3. **Ejercicios prácticos** con respuestas
-4. **Bloque de Nicos Weg** — recomiéndame qué episodios de Deutsche Welle ver para este tema
-5. **Ejemplos reales** de conversación
-6. **Preguntas de quiz** (5 preguntas de opción múltiple con explicación)
-
-Formatea la respuesta para que pueda copiarla fácilmente al Hub. Después del contenido, dame también:
-"AÑADIR AL HUB: Vocabulario: [lista]" para que pueda importarlo.`;
-  
-  document.getElementById('genOutputText').textContent = output;
-  document.getElementById('genOutput').style.display = 'block';
-}
-
-function copyGenOutput() {
-  const text = document.getElementById('genOutputText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    toast('✓ Copiado. Pégalo en el chat con Claude');
-  });
-}
-
-// ============ QUIZ ============
-const QUIZZES = {
-  day1: [
-    {
-      q: '¿Cuál es la conjugación de "sein" para "du"?',
-      opts: ['bin', 'bist', 'ist', 'seid'],
-      correct: 1,
-      exp: '"du bist" = tú eres/estás'
-    },
-    {
-      q: '¿Cómo se dice "Buenos días" en alemán?',
-      opts: ['Guten Tag', 'Guten Morgen', 'Guten Abend', 'Gute Nacht'],
-      correct: 1,
-      exp: '"Guten Morgen" se usa por la mañana. "Guten Tag" es más neutral.'
-    },
-    {
-      q: '¿Qué número es "zwölf"?',
-      opts: ['2', '10', '12', '20'],
-      correct: 2,
-      exp: '"zwölf" = 12. No confundir con "zwei" (2).'
-    },
-    {
-      q: '¿Cómo se dice "yo" en alemán?',
-      opts: ['du', 'er', 'ich', 'wir'],
-      correct: 2,
-      exp: '"ich" = yo. Siempre se escribe con minúscula (excepto al inicio).'
-    },
-    {
-      q: '¿Cuál es la conjugación de "sein" para "wir"?',
-      opts: ['bist', 'ist', 'sind', 'seid'],
-      correct: 2,
-      exp: '"wir sind" = nosotros somos/estamos'
-    }
-  ],
-  day2: [
-    {
-      q: '¿Cómo se dice "llamarse" en alemán?',
-      opts: ['heißen', 'kommen', 'sein', 'wohnen'],
-      correct: 0,
-      exp: '"heißen" = llamarse. "Ich heiße Aki"'
-    },
-    {
-      q: '¿En qué posición va el verbo en oración declarativa?',
-      opts: ['Al final', 'En 2ª posición', 'Al principio', 'Varía'],
-      correct: 1,
-      exp: 'Regla fundamental: el verbo SIEMPRE va en 2ª posición.'
-    },
-    {
-      q: '¿Cómo preguntas "¿De dónde vienes?"?',
-      opts: ['Wer bist du?', 'Wie heißt du?', 'Woher kommst du?', 'Wo bist du?'],
-      correct: 2,
-      exp: '"Woher kommst du?" = ¿De dónde vienes?'
-    },
-    {
-      q: '¿Cuál es la conjugación de "kommen" para "er"?',
-      opts: ['komme', 'kommst', 'kommt', 'kommen'],
-      correct: 2,
-      exp: '"er kommt" = él viene'
-    },
-    {
-      q: '¿Qué palabra significa "ella"?',
-      opts: ['er', 'sie', 'es', 'du'],
-      correct: 1,
-      exp: '"sie" = ella (o también "ellos" según contexto)'
-    }
-  ]
-};
-
-let currentQuiz = null;
-let currentQuizIndex = 0;
-let quizScore = 0;
-let quizAnswered = false;
+let currentQuiz = null, currentQuizIndex = 0, quizScore = 0, quizAnswered = false;
 
 function startQuiz(mode) {
-  let questions = [];
-  if (mode === 'all') {
-    questions = [...QUIZZES.day1, ...QUIZZES.day2];
-  } else if (mode === 'vocab') {
-    const vocab = getAllVocab().filter(v => v.type === 'sustantivo' || v.type === 'verbo').slice(0, 10);
-    if (vocab.length < 4) {
-      toast('Necesitas más vocabulario para este quiz');
-      return;
-    }
-    questions = vocab.slice(0, 5).map(v => {
-      const wrongs = vocab.filter(x => x.german !== v.german).sort(() => Math.random() - 0.5).slice(0, 3);
-      const opts = [v.german, ...wrongs.map(w => w.german)].sort(() => Math.random() - 0.5);
-      return {
-        q: `¿Cómo se dice "${v.spanish}" en alemán?`,
-        opts,
-        correct: opts.indexOf(v.german),
-        exp: `"${v.german}" = ${v.spanish}`
-      };
+  let qs = [];
+  if (mode === 'all') qs = [...QUIZZES.day1, ...QUIZZES.day2];
+  else if (mode === 'vocab') {
+    const v = getAllVocab().slice(0, 15);
+    if (v.length < 4) { toast('Necesitas más vocabulario'); return; }
+    qs = v.slice(0, 5).map(w => {
+      const wrongs = v.filter(x => x.german !== w.german).sort(() => Math.random() - 0.5).slice(0, 3);
+      const opts = [w.german, ...wrongs.map(x => x.german)].sort(() => Math.random() - 0.5);
+      return { q: `¿Cómo se dice "${w.spanish}" en alemán?`, opts, correct: opts.indexOf(w.german), exp: `"${w.german}"` };
     });
-  } else {
-    questions = QUIZZES[mode] || [];
-  }
+  } else qs = QUIZZES[mode] || [];
   
-  if (questions.length === 0) {
-    toast('No hay preguntas disponibles');
-    return;
-  }
-  
-  currentQuiz = questions.sort(() => Math.random() - 0.5);
+  if (qs.length === 0) { toast('Sin preguntas'); return; }
+  currentQuiz = qs.sort(() => Math.random() - 0.5);
   currentQuizIndex = 0;
   quizScore = 0;
-  
   document.getElementById('quizIntro').style.display = 'none';
   document.getElementById('quizResult').style.display = 'none';
   document.getElementById('quizActive').style.display = 'block';
-  
   loadQuizQuestion();
 }
 
 function loadQuizQuestion() {
   const q = currentQuiz[currentQuizIndex];
   quizAnswered = false;
-  
-  // Progress bars
   document.getElementById('quizProgress').innerHTML = currentQuiz.map((_, i) => 
     `<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width: ${i <= currentQuizIndex ? '100%' : '0'}"></div></div>`
   ).join('');
-  
   document.getElementById('quizQuestion').textContent = q.q;
-  document.getElementById('quizOptions').innerHTML = q.opts.map((opt, i) => 
-    `<button class="quiz-option" data-idx="${i}" onclick="answerQuiz(${i})">${opt}</button>`
+  document.getElementById('quizOptions').innerHTML = q.opts.map((o, i) => 
+    `<button class="quiz-option" onclick="answerQuiz(${i})">${o}</button>`
   ).join('');
   document.getElementById('quizFeedback').style.display = 'none';
   document.getElementById('quizFeedback').className = 'quiz-feedback';
@@ -1831,59 +783,36 @@ function loadQuizQuestion() {
 function answerQuiz(idx) {
   if (quizAnswered) return;
   quizAnswered = true;
-  
   const q = currentQuiz[currentQuizIndex];
-  const options = document.querySelectorAll('.quiz-option');
-  const feedback = document.getElementById('quizFeedback');
-  
-  options.forEach((opt, i) => {
-    if (i === q.correct) opt.classList.add('correct');
-    if (i === idx && i !== q.correct) opt.classList.add('wrong');
+  const opts = document.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('quizFeedback');
+  opts.forEach((o, i) => {
+    if (i === q.correct) o.classList.add('correct');
+    if (i === idx && i !== q.correct) o.classList.add('wrong');
   });
-  
-  if (idx === q.correct) {
-    quizScore++;
-    feedback.textContent = `✓ ¡Correcto! ${q.exp}`;
-    feedback.classList.add('correct');
-  } else {
-    feedback.textContent = `✗ Incorrecto. ${q.exp}`;
-    feedback.classList.add('wrong');
-  }
-  feedback.style.display = 'block';
+  if (idx === q.correct) { quizScore++; fb.textContent = `✓ ¡Correcto! ${q.exp}`; fb.classList.add('correct'); }
+  else { fb.textContent = `✗ ${q.exp}`; fb.classList.add('wrong'); }
+  fb.style.display = 'block';
   document.getElementById('quizNextBtn').style.display = 'block';
-  document.getElementById('quizNextBtn').textContent = currentQuizIndex === currentQuiz.length - 1 ? 'Ver resultados →' : 'Siguiente →';
+  document.getElementById('quizNextBtn').textContent = currentQuizIndex === currentQuiz.length - 1 ? 'Resultados →' : 'Siguiente →';
 }
 
 function nextQuizQuestion() {
   currentQuizIndex++;
-  if (currentQuizIndex >= currentQuiz.length) {
-    showQuizResult();
-  } else {
-    loadQuizQuestion();
-  }
+  if (currentQuizIndex >= currentQuiz.length) showQuizResult();
+  else loadQuizQuestion();
 }
 
 function showQuizResult() {
   document.getElementById('quizActive').style.display = 'none';
   document.getElementById('quizResult').style.display = 'block';
-  
-  const percentage = Math.round((quizScore / currentQuiz.length) * 100);
-  document.getElementById('quizScore').textContent = `${quizScore}/${currentQuiz.length} (${percentage}%)`;
-  
-  let msg = '';
-  if (percentage === 100) msg = '¡Perfecto! Dominas este tema 🎯';
-  else if (percentage >= 80) msg = '¡Excelente! Casi perfecto 👏';
-  else if (percentage >= 60) msg = 'Buen trabajo. Sigue practicando 💪';
-  else msg = 'Repasa el tema y vuelve a intentarlo 📚';
-  
+  const pct = Math.round((quizScore / currentQuiz.length) * 100);
+  document.getElementById('quizScore').textContent = `${quizScore}/${currentQuiz.length} (${pct}%)`;
+  let msg = pct === 100 ? '¡Perfecto! 🎯' : pct >= 80 ? '¡Excelente! 👏' : pct >= 60 ? 'Buen trabajo 💪' : 'Sigue practicando 📚';
   document.getElementById('quizResultText').textContent = msg;
 }
 
-function endQuiz() {
-  if (confirm('¿Salir del quiz? Perderás tu progreso.')) {
-    resetQuiz();
-  }
-}
+function endQuiz() { if (confirm('¿Salir?')) resetQuiz(); }
 
 function resetQuiz() {
   document.getElementById('quizActive').style.display = 'none';
@@ -1891,38 +820,11 @@ function resetQuiz() {
   document.getElementById('quizIntro').style.display = 'block';
 }
 
-// ============ PRACTICE ============
-function generatePracticePrompt() {
-  const german = document.getElementById('practiceText').value.trim();
-  const intent = document.getElementById('practiceIntent').value.trim();
-  
-  if (!german) {
-    toast('Escribe algo en alemán primero');
-    return;
-  }
-  
-  let output = `Estoy practicando mi alemán. Escribí esto:\n\n"${german}"\n`;
-  if (intent) output += `\nQuería decir: "${intent}"\n`;
-  output += `\nPor favor:\n1. Corrígeme si hay errores (gramática, artículos, orden de palabras)\n2. Explícame QUÉ estaba mal y POR QUÉ\n3. Dame la versión correcta\n4. Sugiere una forma más natural si aplica`;
-  
-  document.getElementById('practiceOutputText').textContent = output;
-  document.getElementById('practiceOutput').style.display = 'block';
-}
-
-function copyPracticeOutput() {
-  const text = document.getElementById('practiceOutputText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    toast('✓ Copiado. Pégalo en el chat con Claude');
-  });
-}
-
-// ============ STATS ============
 function updateStats() {
   document.getElementById('statVocab').textContent = getAllVocab().length;
   document.getElementById('statSessions').textContent = SESSIONS.filter(s => s.completed).length;
 }
 
-// ============ START ============
 init();
 </script>
 
