@@ -26,6 +26,7 @@
   --accent: #e0533d;          /* signal red-orange */
   --accent-hover: #ec6450;
   --accent-soft: rgba(224, 83, 61, 0.14);
+  --red: #e0533d; --red-soft: rgba(224, 83, 61, 0.14);
   --cobalt: #4b7bd4;
   --cobalt-soft: rgba(75, 123, 212, 0.16);
   --ochre: #d99a2b;
@@ -56,6 +57,7 @@
   --accent: #cf4326;
   --accent-hover: #b8371d;
   --accent-soft: rgba(207, 67, 38, 0.10);
+  --red: #cf4326; --red-soft: rgba(207, 67, 38, 0.10);
   --cobalt: #315fb0;
   --cobalt-soft: rgba(49, 95, 176, 0.10);
   --ochre: #b47c10;
@@ -429,6 +431,49 @@ h4 { font-size: 14px; font-weight: 600; margin-bottom: 7px; }
   h1 { font-size: 34px; }
   .hero-greeting { font-size: 38px; }
 }
+
+/* ============ SRS: STATUS DOTS + IPA ============ */
+.status-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:2px; flex-shrink:0; }
+.sd-new { background:var(--text-dim); }
+.sd-learning { background:var(--ochre); }
+.sd-mastered { background:var(--green); }
+.vocab-ipa { font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:1px; }
+
+/* ============ FLASHCARD ============ */
+.flashcard { position:relative; width:100%; min-height:280px; cursor:pointer; perspective:1400px; }
+.fc-face {
+  position:absolute; inset:0; border-radius:var(--radius-lg); border:1px solid var(--border);
+  background:var(--bg-card); display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:28px 24px; text-align:center; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  transition:transform 0.5s cubic-bezier(0.4,0.2,0.2,1); box-shadow:var(--shadow-sm);
+}
+.fc-front { transform:rotateY(0deg); }
+.fc-back { transform:rotateY(180deg); background:var(--bg-elevated); }
+.flashcard.flipped .fc-front { transform:rotateY(-180deg); }
+.flashcard.flipped .fc-back { transform:rotateY(0deg); }
+.fc-word { font-family:var(--serif); font-size:38px; font-weight:600; letter-spacing:-0.02em; line-height:1.15; }
+.fc-es-front { color:var(--text); }
+.fc-art { color:var(--red); font-size:0.7em; font-family:var(--sans); font-weight:600; }
+.fc-ipa { font-family:var(--mono); font-size:15px; color:var(--text-muted); margin-top:8px; }
+.fc-hint { font-size:13px; color:var(--text-dim); margin-top:10px; }
+.fc-answer { font-family:var(--serif); font-size:30px; font-weight:600; letter-spacing:-0.01em; line-height:1.2; }
+.fc-ex { font-size:13px; color:var(--text-muted); font-style:italic; margin-top:14px; padding:10px 14px; background:var(--bg); border-radius:10px; border-left:2px solid var(--red); max-width:90%; }
+.fc-ex span { display:block; font-style:normal; color:var(--text-dim); font-size:12px; margin-top:3px; }
+.fc-tap { position:absolute; bottom:16px; font-size:11px; color:var(--text-dim); letter-spacing:0.03em; }
+.fc-newbadge { position:absolute; top:14px; left:14px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--green); background:var(--green-soft); padding:3px 9px; border-radius:20px; }
+.fc-audio { position:absolute; top:12px; right:12px; width:40px; height:40px; border-radius:11px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:17px; cursor:pointer; display:grid; place-items:center; transition:all 0.15s; }
+.fc-audio:hover { background:var(--hover); border-color:var(--red); transform:scale(1.05); }
+
+/* grade buttons */
+.fc-grade { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:20px; }
+.grade-btn { display:flex; flex-direction:column; align-items:center; gap:3px; padding:13px 4px; border-radius:12px; border:1px solid var(--border-strong); background:var(--bg-card); color:var(--text); font-family:inherit; font-size:13.5px; font-weight:600; cursor:pointer; transition:all 0.14s; }
+.grade-btn small { font-size:10px; font-weight:400; color:var(--text-dim); }
+.grade-btn:active { transform:scale(0.96); }
+.g-again:hover { border-color:var(--danger); background:var(--danger-soft); color:var(--danger); }
+.g-hard:hover { border-color:var(--ochre); background:var(--ochre-soft); color:var(--ochre); }
+.g-good:hover { border-color:var(--cobalt); background:var(--cobalt-soft); color:var(--cobalt); }
+.g-easy:hover { border-color:var(--green); background:var(--green-soft); color:var(--green); }
+@media (max-width:420px){ .grade-btn { font-size:12.5px; padding:11px 2px; } .grade-btn small { font-size:9px; } }
 </style>
 </head>
 <body>
@@ -527,7 +572,7 @@ h4 { font-size: 14px; font-weight: 600; margin-bottom: 7px; }
    To add vocab: append to CORE_VOCAB (or use the in-app form).
    ============================================================ */
 
-const STORE = 'deutsch_hub_v6';
+const STORE = 'deutsch_hub_v7';
 
 let state = {
   theme: 'dark',
@@ -535,7 +580,18 @@ let state = {
   vocabFilter: 'all',
   completed: [1, 2, 3],
   streak: 5,
+  // ——— SRS (Fase 1) ———
+  srs: {},             // { wordId: {ef, interval, reps, due, dir} }
+  newToday: 0,         // palabras nuevas ya estudiadas hoy
+  newTodayDate: '',    // fecha (YYYY-MM-DD) del contador de nuevas
+  lastStudy: '',       // última fecha de estudio (para la racha)
+  settings: { newPerDay: 10, dir: 'mixed' },  // dir: 'de-es' | 'es-de' | 'mixed'
 };
+
+/* ID estable por palabra (para indexar su estado SRS) */
+function wordId(w){ return (w.de + '|' + w.es).toLowerCase().replace(/\s+/g,'_'); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function daysBetween(a, b){ return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
 /* ---------- CORE VOCABULARY (curated, grouped by category) ---------- */
 const CORE_VOCAB = [
@@ -668,6 +724,22 @@ const CORE_VOCAB = [
   { de:'gut', es:'bien / bueno', type:'adjetivo', day:1, cat:'útiles' },
   { de:'ein bisschen', es:'un poco', type:'frase', day:3, cat:'útiles', ex:'Ich spreche ein bisschen Deutsch.', exTr:'Hablo un poco de alemán.' },
 ];
+
+/* IPA (transcripción fonética) para las palabras clave. Se aplica al cargar. */
+const IPA_MAP = {
+  'Hallo':'haˈloː','Guten Morgen':'ˈɡuːtn̩ ˈmɔʁɡn̩','Guten Tag':'ˈɡuːtn̩ ˈtaːk','Guten Abend':'ˈɡuːtn̩ ˈaːbn̩t',
+  'Tschüss':'tʃʏs','Danke':'ˈdaŋkə','Bitte':'ˈbɪtə','Entschuldigung':'ɛntˈʃʊldɪɡʊŋ','Ja':'jaː','Nein':'naɪ̯n',
+  'sein':'zaɪ̯n','heißen':'ˈhaɪ̯sn̩','kommen':'ˈkɔmən','wohnen':'ˈvoːnən','sprechen':'ˈʃpʁɛçn̩',
+  'arbeiten':'ˈaʁbaɪ̯tn̩','lernen':'ˈlɛʁnən','machen':'ˈmaxn̩','haben':'ˈhaːbn̩','gehen':'ˈɡeːən',
+  'verstehen':'fɛɐ̯ˈʃteːən','ich':'ɪç','du':'duː','er':'eːɐ̯','sie':'ziː','wir':'viːɐ̯','ihr':'iːɐ̯',
+  'null':'nʊl','eins':'aɪ̯ns','zwei':'tsvaɪ̯','drei':'dʁaɪ̯','vier':'fiːɐ̯','fünf':'fʏnf','sechs':'zɛks',
+  'sieben':'ˈziːbn̩','acht':'axt','neun':'nɔʏ̯n','zehn':'tseːn','elf':'ɛlf','zwölf':'tsvœlf',
+  'Deutschland':'ˈdɔʏ̯tʃlant','Spanien':'ˈʃpaːni̯ən','die Schweiz':'diː ʃvaɪ̯ts','Frankreich':'ˈfʁaŋkʁaɪ̯ç',
+  'der Beruf':'deːɐ̯ bəˈʁuːf','Deutsch':'dɔʏ̯tʃ','Spanisch':'ˈʃpaːnɪʃ','Englisch':'ˈɛŋlɪʃ',
+  'aus':'aʊ̯s','in':'ɪn','als':'als','und':'ʊnt','aber':'ˈaːbɐ','oder':'ˈoːdɐ','auch':'aʊ̯x','sehr':'zeːɐ̯',
+  'nicht':'nɪçt','gut':'ɡuːt',
+};
+CORE_VOCAB.forEach(w => { if(IPA_MAP[w.de]) w.ipa = IPA_MAP[w.de]; });
 
 /* categories with labels & icons for chips */
 const VOCAB_CATS = [
@@ -917,10 +989,10 @@ function toast(msg){
 /* ---------- ROUTER / NAV ---------- */
 const NAV = [
   { id:'home', icon:'🏠', label:'Inicio' },
+  { id:'study', icon:'🎴', label:'Estudiar' },
   { id:'sessions', icon:'📚', label:'Sesiones' },
   { id:'vocab', icon:'📖', label:'Vocab' },
   { id:'quiz', icon:'🎯', label:'Quiz' },
-  { id:'tools', icon:'🔧', label:'Herram.' },
 ];
 let currentView = 'home';
 
@@ -936,6 +1008,7 @@ function go(view, arg){
   window.scrollTo({top:0, behavior:'instant'});
   const V = $('views');
   if(view==='home') V.innerHTML = viewHome();
+  else if(view==='study') V.innerHTML = viewStudyIntro();
   else if(view==='sessions') V.innerHTML = viewSessions();
   else if(view==='session-detail') V.innerHTML = viewSessionDetail(arg);
   else if(view==='vocab'){ V.innerHTML = viewVocab(); renderVocabList(); }
@@ -949,20 +1022,34 @@ function viewHome(){
   const total = getAllVocab().length;
   const done = SESSIONS.filter(s=>s.status==='done').length;
   const nextS = SESSIONS.find(s=>s.status==='now') || SESSIONS.find(s=>s.status==='soon');
+  const c = deckCounts();
   return `
     <div class="hero">
       <div class="hero-greeting">Hallo, Aki <span class="wave">👋</span></div>
       <div class="hero-sub">${greetingLine()}</div>
       <div class="stats-row">
-        <div class="stat"><div class="stat-value">${done}</div><div class="stat-label">Sesiones</div></div>
+        <div class="stat"><div class="stat-value">${c.mastered}</div><div class="stat-label">Dominadas</div></div>
         <div class="stat"><div class="stat-value">${total}</div><div class="stat-label">Palabras</div></div>
         <div class="stat"><div class="stat-value">${state.streak}🔥</div><div class="stat-label">Racha</div></div>
         <div class="stat"><div class="stat-value">A1</div><div class="stat-label">Nivel</div></div>
       </div>
     </div>
 
+    ${c.total>0 ? `<div class="card" style="border-color:var(--red); background:linear-gradient(135deg,var(--red-soft),transparent)">
+      <div class="eyebrow" style="color:var(--red)">Mazo de hoy</div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+        <div style="font-family:var(--serif);font-size:52px;font-weight:600;line-height:1">${c.total}</div>
+        <div style="font-size:13.5px;color:var(--text-muted);line-height:1.4">${c.total===1?'palabra te espera':'palabras te esperan'}<br><span style="color:var(--text-dim);font-size:12px">${c.due} de repaso · ${c.newAvail} nuevas</span></div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="go('study')">Empezar repaso →</button>
+    </div>` : `<div class="card" style="text-align:center">
+      <div style="font-size:38px;margin-bottom:8px">🎉</div>
+      <h3 style="margin-bottom:4px">Todo repasado por hoy</h3>
+      <p style="font-size:13px;color:var(--text-muted)">Vuelve mañana para tu siguiente mazo.</p>
+    </div>`}
+
     ${nextS ? `<div class="card" style="border-color:var(--ochre); background:linear-gradient(135deg,var(--ochre-soft),transparent);">
-      <div class="eyebrow" style="color:var(--ochre)">Continúa donde ibas</div>
+      <div class="eyebrow" style="color:var(--ochre)">Tu clase de hoy</div>
       <h3 style="margin-bottom:6px">Día ${nextS.day} · ${nextS.title}</h3>
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">${nextS.desc}</p>
       <button class="btn btn-primary btn-full" onclick="go('session-detail',${nextS.day})">Abrir la sesión →</button>
@@ -981,20 +1068,20 @@ function viewHome(){
 
     <div class="section-label">Accesos rápidos</div>
     <div class="quick-grid">
-      <button class="quick-tile" onclick="go('vocab')">
-        <div class="quick-tile-icon qt-red">📖</div>
-        <div class="quick-tile-title">Vocabulario</div>
-        <div class="quick-tile-desc">${total} palabras para repasar</div>
+      <button class="quick-tile" onclick="go('study')">
+        <div class="quick-tile-icon qt-red">🎴</div>
+        <div class="quick-tile-title">Estudiar</div>
+        <div class="quick-tile-desc">Mazo del día con audio</div>
       </button>
       <button class="quick-tile" onclick="go('quiz')">
         <div class="quick-tile-icon qt-blue">🎯</div>
         <div class="quick-tile-title">Quiz</div>
         <div class="quick-tile-desc">Ponte a prueba</div>
       </button>
-      <button class="quick-tile" onclick="openAddVocab()">
-        <div class="quick-tile-icon qt-green">➕</div>
-        <div class="quick-tile-title">Añadir palabra</div>
-        <div class="quick-tile-desc">Amplía tu banco</div>
+      <button class="quick-tile" onclick="go('vocab')">
+        <div class="quick-tile-icon qt-green">📖</div>
+        <div class="quick-tile-title">Vocabulario</div>
+        <div class="quick-tile-desc">${total} palabras</div>
       </button>
       <button class="quick-tile" onclick="go('tools')">
         <div class="quick-tile-icon qt-ochre">🔧</div>
@@ -1073,6 +1160,298 @@ function getAllVocab(){
     ...state.personalVocab.map(v=>({...v, source:'personal'})),
   ];
 }
+
+/* ============================================================
+   SRS ENGINE (SM-2) — Fase 1
+   ============================================================ */
+function srsOf(w){
+  const id = wordId(w);
+  return state.srs[id] || null;
+}
+function wordStatus(w){
+  const s = srsOf(w);
+  if(!s) return 'new';
+  if(s.interval >= 21) return 'mastered';
+  return 'learning';
+}
+function ensureNewCounter(){
+  const t = todayStr();
+  if(state.newTodayDate !== t){ state.newTodayDate = t; state.newToday = 0; }
+}
+/* El mazo del día: vencidas + nuevas hasta el tope diario */
+function todayDeck(){
+  ensureNewCounter();
+  const t = todayStr();
+  const all = getAllVocab();
+  const due = [];         // ya vistas y vencidas
+  const fresh = [];       // nunca estudiadas
+  all.forEach(w=>{
+    const s = srsOf(w);
+    if(!s){ fresh.push(w); }
+    else if(s.due <= t){ due.push(w); }
+  });
+  // ordena vencidas por fecha (más atrasadas primero)
+  due.sort((a,b)=> (srsOf(a).due < srsOf(b).due ? -1 : 1));
+  const room = Math.max(0, state.settings.newPerDay - state.newToday);
+  const newSlice = fresh.slice(0, room);
+  return { due, newCards: newSlice, all: [...due, ...newSlice] };
+}
+function deckCounts(){
+  const d = todayDeck();
+  const all = getAllVocab();
+  let mastered=0, learning=0, fresh=0;
+  all.forEach(w=>{ const st=wordStatus(w); if(st==='mastered')mastered++; else if(st==='learning')learning++; else fresh++; });
+  return { due:d.due.length, newAvail:d.newCards.length, total:d.all.length, mastered, learning, fresh };
+}
+/* SM-2: quality 0..5. Devuelve el nuevo estado y lo guarda. */
+function schedule(w, quality){
+  const id = wordId(w);
+  let s = state.srs[id] || { ef:2.5, interval:0, reps:0, due:todayStr(), dir:'de-es' };
+  if(quality < 3){
+    s.reps = 0; s.interval = 1;
+  } else {
+    if(s.reps === 0) s.interval = 1;
+    else if(s.reps === 1) s.interval = 6;
+    else s.interval = Math.round(s.interval * s.ef);
+    s.reps += 1;
+  }
+  s.ef = s.ef + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+  if(s.ef < 1.3) s.ef = 1.3;
+  const d = new Date(); d.setDate(d.getDate() + s.interval);
+  s.due = d.toISOString().slice(0,10);
+  state.srs[id] = s;
+  return s;
+}
+function pickDir(){
+  const setting = state.settings.dir;
+  if(setting === 'de-es') return 'de-es';
+  if(setting === 'es-de') return 'es-de';
+  return Math.random() < 0.5 ? 'de-es' : 'es-de';  // mixed
+}
+function humanInterval(days){
+  if(days <= 0) return 'hoy';
+  if(days === 1) return 'mañana';
+  if(days < 30) return `en ${days} días`;
+  if(days < 60) return 'en 1 mes';
+  return `en ${Math.round(days/30)} meses`;
+}
+
+/* ============================================================
+   AUDIO — Web Speech API (de-DE), gratis y offline
+   ============================================================ */
+let _deVoice = null;
+function initVoices(){
+  if(!('speechSynthesis' in window)) return;
+  const pick = ()=>{
+    const vs = speechSynthesis.getVoices();
+    _deVoice = vs.find(v=>v.lang==='de-DE') || vs.find(v=>v.lang && v.lang.startsWith('de')) || null;
+  };
+  pick();
+  speechSynthesis.onvoiceschanged = pick;
+}
+function speak(text){
+  if(!('speechSynthesis' in window)){ toast('Tu navegador no soporta audio'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'de-DE';
+  if(_deVoice) u.voice = _deVoice;
+  u.rate = 0.9;
+  speechSynthesis.speak(u);
+}
+/* limpia la palabra para pronunciar (quita artículos dobles, barras) */
+function sayable(w){
+  let t = w.de.split('/')[0].trim();     // "Lehrer / Lehrerin" → "Lehrer"
+  t = t.replace(/\?$/,'');
+  return (w.article ? w.article + ' ' : '') + t;
+}
+
+/* ============================================================
+   STUDY VIEW (flashcards SRS)
+   ============================================================ */
+let study = null;   // { cards:[], idx, flipped, dir, correct }
+
+function viewStudyIntro(){
+  const c = deckCounts();
+  const nothing = c.due===0 && c.newAvail===0;
+  return `
+    <div class="eyebrow">Repaso inteligente</div>
+    <h1>Estudiar</h1>
+    <p class="view-subtitle">El sistema elige qué repasar según cuándo estás a punto de olvidarlo. Tú solo estudia el mazo de hoy.</p>
+    ${nothing ? `
+      <div class="card" style="text-align:center;padding:34px 22px">
+        <div style="font-size:46px;margin-bottom:12px">🎉</div>
+        <h3 style="margin-bottom:6px">Todo repasado por hoy</h3>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:20px">Tu cerebro consolida mejor con descanso. Vuelve mañana — el sistema te tendrá listo el siguiente mazo.</p>
+        <button class="btn btn-full" onclick="go('vocab')">Ver mi vocabulario</button>
+      </div>` : `
+      <div class="card" style="border-color:var(--red); background:linear-gradient(135deg,var(--red-soft),transparent);text-align:center;padding:30px 22px">
+        <div class="eyebrow" style="color:var(--red)">Mazo de hoy</div>
+        <div style="font-family:var(--serif);font-size:58px;font-weight:600;line-height:1;margin:6px 0 4px">${c.total}</div>
+        <div style="color:var(--text-muted);font-size:14px;margin-bottom:20px">${c.total===1?'palabra te espera':'palabras te esperan'}</div>
+        <button class="btn btn-primary btn-full" onclick="startStudy()" style="font-size:15px;padding:14px">Empezar repaso →</button>
+        <div style="display:flex;justify-content:center;gap:18px;margin-top:18px;font-size:12px;color:var(--text-dim)">
+          <span>🔵 ${c.due} de repaso</span>
+          <span>🟢 ${c.newAvail} nuevas</span>
+        </div>
+      </div>`}
+    <div class="section-label">Tu progreso</div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value">${c.fresh}</div><div class="stat-label">Nuevas</div></div>
+      <div class="stat"><div class="stat-value">${c.learning}</div><div class="stat-label">Aprendiendo</div></div>
+      <div class="stat"><div class="stat-value" style="color:var(--green)">${c.mastered}</div><div class="stat-label">Dominadas</div></div>
+      <div class="stat"><div class="stat-value">${state.streak}🔥</div><div class="stat-label">Racha</div></div>
+    </div>
+    <div class="note" style="margin-top:16px;font-size:12.5px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--cobalt);padding:12px 14px;border-radius:0 10px 10px 0">
+      <strong style="color:var(--cobalt)">¿Cómo funciona?</strong> Al repasar, dices qué tan bien recordaste. Lo que sabes vuelve en días o semanas; lo que fallas, mañana. Así el sistema dedica tu tiempo a lo que te cuesta.
+    </div>`;
+}
+
+function startStudy(){
+  const deck = todayDeck();
+  if(deck.all.length===0){ toast('No hay nada que repasar'); return; }
+  // marca cuántas nuevas entran para el contador diario
+  study = {
+    cards: deck.all.map(w=>({ w, isNew: !srsOf(w), dir: pickDir() })),
+    idx: 0, flipped: false, correct: 0, reviewed: 0, newSeen: 0,
+  };
+  // barajar levemente manteniendo vencidas primero ya está ok
+  currentView = 'study'; renderNav();
+  renderStudyCard();
+}
+
+function renderStudyCard(){
+  const V = $('views');
+  if(study.idx >= study.cards.length){ return finishStudy(); }
+  const card = study.cards[study.idx];
+  const w = card.w;
+  const front = card.dir === 'de-es'
+    ? `<div class="fc-word">${w.article?`<span class="fc-art">${w.article}</span> `:''}${w.de.split('/')[0].trim()}</div>${w.ipa?`<div class="fc-ipa">/${w.ipa}/</div>`:''}`
+    : `<div class="fc-word fc-es-front">${w.es}</div><div class="fc-hint">¿en alemán?</div>`;
+  const back = card.dir === 'de-es'
+    ? `<div class="fc-answer">${w.es}</div>${w.ex?`<div class="fc-ex">„${w.ex}"${w.exTr?`<span>${w.exTr}</span>`:''}</div>`:''}`
+    : `<div class="fc-answer">${w.article?`<span class="fc-art">${w.article}</span> `:''}${w.de.split('/')[0].trim()}</div>${w.ipa?`<div class="fc-ipa">/${w.ipa}/</div>`:''}${w.ex?`<div class="fc-ex">„${w.ex}"${w.exTr?`<span>${w.exTr}</span>`:''}</div>`:''}`;
+
+  const pct = Math.round(study.idx / study.cards.length * 100);
+  const s = srsOf(w);
+  V.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <button class="back-btn" style="margin:0" onclick="quitStudy()">← Salir</button>
+      <div style="font-family:var(--mono);font-size:12px;color:var(--text-dim)">${study.idx+1} / ${study.cards.length}</div>
+    </div>
+    <div class="quiz-progress" style="margin-bottom:20px"><div class="qp-bar"><div class="qp-fill" style="width:${pct}%"></div></div></div>
+
+    <div class="flashcard ${study.flipped?'flipped':''}" onclick="flipCard()">
+      <div class="fc-face fc-front">
+        ${card.isNew?'<div class="fc-newbadge">nueva</div>':''}
+        ${front}
+        <button class="fc-audio" onclick="event.stopPropagation();speak(sayableById(${study.idx}))" title="Escuchar">🔊</button>
+        <div class="fc-tap">toca para girar</div>
+      </div>
+      <div class="fc-face fc-back">
+        ${back}
+        <button class="fc-audio" onclick="event.stopPropagation();speak(sayableById(${study.idx}))" title="Escuchar">🔊</button>
+      </div>
+    </div>
+
+    ${study.flipped ? `
+      <div class="fc-grade">
+        <button class="grade-btn g-again" onclick="gradeCard(0)"><span>Otra vez</span><small>${gradePreview(w,0)}</small></button>
+        <button class="grade-btn g-hard" onclick="gradeCard(3)"><span>Difícil</span><small>${gradePreview(w,3)}</small></button>
+        <button class="grade-btn g-good" onclick="gradeCard(4)"><span>Bien</span><small>${gradePreview(w,4)}</small></button>
+        <button class="grade-btn g-easy" onclick="gradeCard(5)"><span>Fácil</span><small>${gradePreview(w,5)}</small></button>
+      </div>` : `
+      <button class="btn btn-primary btn-full" style="margin-top:20px;padding:14px" onclick="flipCard()">Mostrar respuesta</button>`}
+  `;
+  // auto-play audio for German-first cards on reveal handled by user
+}
+/* helper para el audio inline */
+function sayableById(i){ return sayable(study.cards[i].w); }
+
+/* muestra cuándo volverá la palabra según la nota */
+function gradePreview(w, q){
+  const id = wordId(w);
+  const s = state.srs[id] || { ef:2.5, interval:0, reps:0 };
+  let interval;
+  if(q < 3) interval = 1;
+  else {
+    if(s.reps === 0) interval = 1;
+    else if(s.reps === 1) interval = 6;
+    else interval = Math.round(s.interval * s.ef);
+  }
+  return humanInterval(interval);
+}
+
+function flipCard(){
+  study.flipped = !study.flipped;
+  renderStudyCard();
+  // al girar a la respuesta, pronuncia si es alemán
+  const card = study.cards[study.idx];
+  if(study.flipped){
+    setTimeout(()=>{ try{ speak(sayable(card.w)); }catch(e){} }, 180);
+  }
+}
+
+function gradeCard(q){
+  const card = study.cards[study.idx];
+  schedule(card.w, q);
+  study.reviewed++;
+  if(q >= 3) study.correct++;
+  if(card.isNew){ study.newSeen++; }
+  study.idx++;
+  study.flipped = false;
+  saveState();
+  renderStudyCard();
+}
+
+function quitStudy(){
+  if(confirm('¿Salir del repaso? Se guarda lo que ya calificaste.')){
+    commitStudySession();
+    go('study');
+  }
+}
+
+function commitStudySession(){
+  // actualiza contador de nuevas y racha
+  ensureNewCounter();
+  state.newToday += (study?.newSeen || 0);
+  const t = todayStr();
+  if(state.lastStudy !== t){
+    if(state.lastStudy){
+      const gap = daysBetween(state.lastStudy, t);
+      if(gap === 1) state.streak = (state.streak||0) + 1;
+      else if(gap > 1) state.streak = 1;
+    } else {
+      state.streak = (state.streak||0) + 1;
+    }
+    state.lastStudy = t;
+  }
+  saveState();
+}
+
+function finishStudy(){
+  commitStudySession();
+  const acc = study.reviewed ? Math.round(study.correct/study.reviewed*100) : 0;
+  const V = $('views');
+  V.innerHTML = `
+    <div class="card" style="text-align:center;padding:34px 22px">
+      <div style="font-size:52px;margin-bottom:12px">${acc>=80?'🏆':acc>=60?'🎉':'💪'}</div>
+      <h2 style="margin-bottom:4px">¡Sesión completa!</h2>
+      <div style="font-family:var(--serif);font-size:34px;font-weight:600;color:var(--red);margin:12px 0">${study.reviewed} ${study.reviewed===1?'palabra':'palabras'}</div>
+      <p style="color:var(--text-muted);margin-bottom:6px">${study.correct} bien de ${study.reviewed} · racha ${state.streak}🔥</p>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:24px">${nextDueLine()}</p>
+      <div style="display:flex;gap:9px">
+        <button class="btn btn-full" onclick="go('study')">Ver mazo</button>
+        <button class="btn btn-primary btn-full" onclick="go('home')">Inicio</button>
+      </div>
+    </div>`;
+  study = null;
+}
+function nextDueLine(){
+  const c = deckCounts();
+  if(c.due===0 && c.newAvail===0) return 'Nada más pendiente hoy. ¡Vuelve mañana!';
+  return `Aún quedan ${c.due + c.newAvail} en el mazo de hoy.`;
+}
+
 function viewVocab(){
   return `
     <div class="eyebrow">Tu banco de palabras</div>
@@ -1127,16 +1506,20 @@ function renderVocabList(){
   c.innerHTML = list.map(v=>{
     const art = v.article ? `<span class="art art-${v.article}">${v.article}</span>` : '';
     const badge = v.source==='personal' ? '<span class="vocab-badge">mía</span>' : `<span class="vocab-badge">día ${v.day||'?'}</span>`;
+    const st = wordStatus(v);
+    const statusDot = `<span class="status-dot sd-${st}" title="${st==='mastered'?'Dominada':st==='learning'?'Aprendiendo':'Nueva'}"></span>`;
     let tags = '';
     if(v.plural) tags += `<span class="vtag"><strong>pl:</strong> ${v.plural}</span>`;
     if(v.type) tags += `<span class="vtag">${v.type}</span>`;
     const delBtn = v.source==='personal'
       ? `<button class="btn btn-sm" onclick="delVocab(${state.personalVocab.indexOf(state.personalVocab.find(x=>x.de===v.de&&x.es===v.es&&x.addedAt===v.addedAt))})">🗑️</button>` : '';
     const dictBtn = `<button class="btn btn-sm" onclick="dictWord('leo','${v.de.replace(/'/g,"\\'")}')">🔍</button>`;
+    const audioBtn = `<button class="btn btn-sm" onclick='speakWord(${JSON.stringify({de:v.de,article:v.article||""}).replace(/'/g,"&#39;")})' title="Escuchar">🔊</button>`;
     return `<div class="vocab-card">
       <div class="vocab-top">
         <div>
-          <div class="vocab-de">${art}${v.de}</div>
+          <div class="vocab-de">${statusDot}${art}${v.de}</div>
+          ${v.ipa?`<div class="vocab-ipa">/${v.ipa}/</div>`:''}
           <div class="vocab-es">${v.es}</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
@@ -1145,10 +1528,11 @@ function renderVocabList(){
       </div>
       ${tags?`<div class="vocab-tags">${tags}</div>`:''}
       ${v.ex?`<div class="vocab-ex">„${v.ex}"${v.exTr?`<span class="ex-tr">${v.exTr}</span>`:''}</div>`:''}
-      <div class="vocab-tags" style="justify-content:flex-end;margin-top:10px">${dictBtn}${delBtn}</div>
+      <div class="vocab-tags" style="justify-content:flex-end;margin-top:10px">${audioBtn}${dictBtn}${delBtn}</div>
     </div>`;
   }).join('');
 }
+function speakWord(obj){ speak((obj.article?obj.article+' ':'') + obj.de.split('/')[0].trim().replace(/\?$/,'')); }
 
 /* ---------- ADD VOCAB MODAL ---------- */
 function openModal(id){ $(id).classList.add('active'); }
@@ -1405,6 +1789,7 @@ function importData(){
 function init(){
   loadState();
   applyTheme();
+  initVoices();
   go('home');
 }
 init();
