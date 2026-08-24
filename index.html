@@ -2,414 +2,517 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#0f0f14">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#12100e">
 <title>Deutsch Hub · Aki</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   DEUTSCH HUB — Design tokens
+   Palette: "Bauhaus warm" — ink, bone, signal-red, cobalt, ochre
+   ============================================================ */
 :root {
-  --bg: #0f0f14; --bg-elevated: #1a1a24; --bg-card: #22222e; --bg-hover: #2a2a38;
-  --border: #2d2d3a; --border-strong: #3a3a4a;
-  --text: #e8e8f0; --text-muted: #9999a8; --text-dim: #6b6b7a;
-  --accent: #7f77dd; --accent-hover: #8f87ed; --accent-soft: rgba(127, 119, 221, 0.15);
-  --success: #5dcaa5; --success-soft: rgba(93, 202, 165, 0.15);
-  --warning: #ef9f27; --warning-soft: rgba(239, 159, 39, 0.15);
-  --danger: #e24b4a; --danger-soft: rgba(226, 75, 74, 0.15);
-  --info: #378add; --info-soft: rgba(55, 138, 221, 0.15);
-  --radius: 12px; --radius-lg: 16px; --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --bg: #14110f;
+  --bg-elevated: #1d1916;
+  --bg-card: #221d19;
+  --bg-hover: #2b2521;
+  --border: #342d27;
+  --border-strong: #443b33;
+  --text: #f2ece3;
+  --text-muted: #a99e90;
+  --text-dim: #776d61;
+  --accent: #e0533d;          /* signal red-orange */
+  --accent-hover: #ec6450;
+  --accent-soft: rgba(224, 83, 61, 0.14);
+  --cobalt: #4b7bd4;
+  --cobalt-soft: rgba(75, 123, 212, 0.16);
+  --ochre: #d99a2b;
+  --ochre-soft: rgba(217, 154, 43, 0.16);
+  --green: #6fae6a;
+  --green-soft: rgba(111, 174, 106, 0.16);
+  --danger: #d0453f;
+  --danger-soft: rgba(208, 69, 63, 0.16);
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-sm: 9px;
+  --shadow: 0 8px 30px rgba(0,0,0,0.35);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.2);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
 }
 [data-theme="light"] {
-  --bg: #f5f5f0; --bg-elevated: #ffffff; --bg-card: #ffffff; --bg-hover: #f0f0e8;
-  --border: #e0e0d8; --border-strong: #c8c8c0;
-  --text: #1a1a24; --text-muted: #5f5e5a; --text-dim: #888780;
-  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --bg: #f4efe6;
+  --bg-elevated: #fdfbf6;
+  --bg-card: #ffffff;
+  --bg-hover: #f0e9db;
+  --border: #e3daca;
+  --border-strong: #cbbfa9;
+  --text: #211c17;
+  --text-muted: #6a6154;
+  --text-dim: #94897a;
+  --accent: #cf4326;
+  --accent-hover: #b8371d;
+  --accent-soft: rgba(207, 67, 38, 0.10);
+  --cobalt: #315fb0;
+  --cobalt-soft: rgba(49, 95, 176, 0.10);
+  --ochre: #b47c10;
+  --ochre-soft: rgba(180, 124, 16, 0.12);
+  --green: #4f8a4a;
+  --green-soft: rgba(79, 138, 74, 0.12);
+  --shadow: 0 8px 30px rgba(80,60,30,0.10);
+  --shadow-sm: 0 2px 10px rgba(80,60,30,0.06);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; transition: background 0.3s, color 0.3s; }
-.top-bar { position: sticky; top: 0; z-index: 100; background: var(--bg-elevated); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(10px); }
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
-.logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #d4537e); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-.icon-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+/* ============ TOP BAR ============ */
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  border-bottom: 1px solid var(--border);
+  padding: 13px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.logo { display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--accent); color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--serif); font-weight: 600; font-size: 19px;
+  position: relative; overflow: hidden;
+}
+.logo-mark::after {
+  content: ''; position: absolute; right: -6px; bottom: -6px;
+  width: 16px; height: 16px; background: var(--cobalt); border-radius: 3px;
+}
+.logo-text small { display: block; font-size: 10px; color: var(--text-dim); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-top: -2px; }
+.top-actions { display: flex; gap: 8px; }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+  cursor: pointer; display: grid; place-items: center; font-size: 16px;
+  transition: all 0.15s;
+}
 .icon-btn:hover { background: var(--bg-hover); border-color: var(--border-strong); }
-.app { max-width: 1000px; margin: 0 auto; padding-bottom: 90px; }
-.container { padding: 20px; }
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-elevated); border-top: 1px solid var(--border); display: flex; padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); z-index: 100; backdrop-filter: blur(10px); }
-.nav-btn { flex: 1; background: transparent; border: none; padding: 8px 4px; color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-family: inherit; transition: color 0.15s; }
+
+/* ============ LAYOUT ============ */
+.app { max-width: 940px; margin: 0 auto; padding-bottom: 92px; }
+.container { padding: 22px 18px; }
+
+/* ============ BOTTOM NAV ============ */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  border-top: 1px solid var(--border);
+  display: flex; padding: 7px 6px calc(7px + env(safe-area-inset-bottom));
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  max-width: 940px; margin: 0 auto;
+}
+.nav-btn {
+  flex: 1; background: transparent; border: none; padding: 7px 4px 6px;
+  color: var(--text-dim); cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 10.5px; font-family: inherit; font-weight: 500;
+  transition: color 0.15s; position: relative; border-radius: 10px;
+}
+.nav-btn-icon { font-size: 19px; line-height: 1; transition: transform 0.2s; }
 .nav-btn.active { color: var(--accent); }
-.nav-btn-icon { font-size: 20px; }
-.view { display: none; animation: fadeIn 0.25s ease-out; }
+.nav-btn.active .nav-btn-icon { transform: translateY(-1px) scale(1.08); }
+.nav-btn.active::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 22px; height: 3px; background: var(--accent); border-radius: 3px;
+}
+
+/* ============ VIEWS ============ */
+.view { display: none; animation: viewIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .view.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-h1, h2, h3, h4 { font-weight: 600; }
-h1 { font-size: 28px; margin-bottom: 6px; }
-h2 { font-size: 22px; margin-bottom: 20px; }
-h3 { font-size: 17px; margin-bottom: 12px; }
-.view-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
-.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
-.card-title { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; margin-bottom: 12px; }
-.card-title-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
-.stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-.stat-value { font-size: 26px; font-weight: 700; }
-.stat-subtext { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
-.btn { padding: 10px 18px; border-radius: 8px; border: 1px solid var(--border-strong); background: transparent; color: var(--text); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+@keyframes viewIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============ TYPOGRAPHY ============ */
+h1 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px; }
+h2 { font-family: var(--serif); font-size: 23px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 18px; }
+h3 { font-size: 17px; font-weight: 600; margin-bottom: 11px; letter-spacing: -0.01em; }
+h4 { font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.view-subtitle { color: var(--text-muted); font-size: 14.5px; margin-bottom: 26px; max-width: 60ch; }
+
+/* ============ CARDS ============ */
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 15px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.card-title { display: flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+.card-title-icon { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 15px; flex-shrink: 0; }
+
+/* ============ HERO (home) ============ */
+.hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 26px 24px; margin-bottom: 20px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 180px; height: 180px;
+  background: radial-gradient(circle at top right, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+}
+.hero-greeting { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+.hero-greeting .wave { display: inline-block; animation: wave 2.5s ease-in-out infinite; transform-origin: 70% 70%; }
+@keyframes wave { 0%,60%,100% { transform: rotate(0); } 10% { transform: rotate(14deg); } 20% { transform: rotate(-8deg); } 30% { transform: rotate(14deg); } 40% { transform: rotate(-4deg); } 50% { transform: rotate(10deg); } }
+.hero-sub { color: var(--text-muted); font-size: 14.5px; position: relative; }
+
+/* ============ STATS ============ */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin-top: 20px; position: relative; }
+.stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 13px 12px; text-align: left; }
+.stat-value { font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
+.stat-label { font-size: 10.5px; color: var(--text-dim); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+@media (max-width: 520px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+/* ============ BUTTONS ============ */
+.btn {
+  padding: 11px 18px; border-radius: 10px; border: 1px solid var(--border-strong);
+  background: transparent; color: var(--text); font-family: inherit;
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+}
 .btn:hover { background: var(--bg-hover); border-color: var(--accent); }
-.btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
-.btn-primary:hover { background: var(--accent-hover); }
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .btn-full { width: 100%; }
-.btn-sm { padding: 6px 12px; font-size: 12px; }
-.dict-search-hero { background: linear-gradient(135deg, var(--accent-soft), rgba(212, 83, 126, 0.1)); border: 1px solid var(--accent); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
-.dict-search-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.dict-search-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
-.dict-search-input { width: 100%; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border-strong); background: var(--bg); color: var(--text); font-family: inherit; font-size: 16px; margin-bottom: 12px; }
-.dict-search-input:focus { outline: none; border-color: var(--accent); }
-.dict-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.dict-btn { padding: 12px 8px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--bg-card); color: var(--text); cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.btn-sm { padding: 7px 12px; font-size: 12.5px; border-radius: 8px; }
+.btn-ghost { border-color: transparent; }
+.btn-ghost:hover { border-color: var(--border-strong); }
+
+/* ============ QUICK ACTIONS ============ */
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.quick-tile {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; cursor: pointer; transition: all 0.15s; text-align: left;
+  display: flex; flex-direction: column; gap: 8px; font-family: inherit; color: var(--text);
+}
+.quick-tile:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.quick-tile-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; }
+.qt-red { background: var(--accent-soft); color: var(--accent); }
+.qt-blue { background: var(--cobalt-soft); color: var(--cobalt); }
+.qt-ochre { background: var(--ochre-soft); color: var(--ochre); }
+.qt-green { background: var(--green-soft); color: var(--green); }
+.quick-tile-title { font-weight: 600; font-size: 14px; }
+.quick-tile-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+/* ============ DICTIONARY SEARCH ============ */
+.dict-hero {
+  background: linear-gradient(135deg, var(--accent-soft), var(--cobalt-soft));
+  border: 1px solid var(--border-strong); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 18px;
+}
+.dict-hero-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.dict-hero-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px; }
+.dict-input {
+  width: 100%; padding: 13px 16px; border-radius: 11px;
+  border: 1px solid var(--border-strong); background: var(--bg);
+  color: var(--text); font-family: inherit; font-size: 15px; margin-bottom: 10px;
+}
+.dict-input:focus { outline: none; border-color: var(--accent); }
+.dict-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.dict-btn {
+  padding: 11px 8px; border-radius: 9px; border: 1px solid var(--border-strong);
+  background: var(--bg-card); color: var(--text); cursor: pointer;
+  font-family: inherit; font-size: 12.5px; font-weight: 600; transition: all 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
 .dict-btn:hover { border-color: var(--accent); background: var(--bg-hover); }
-.dict-btn-name { font-weight: 600; }
-.dict-btn-desc { font-size: 10px; color: var(--text-dim); }
-.session-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; cursor: pointer; transition: all 0.15s; }
-.session-item:hover { border-color: var(--accent); transform: translateY(-1px); }
-.session-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-.session-number { font-size: 11px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.session-title { font-size: 16px; font-weight: 600; margin: 2px 0 6px; }
-.session-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.session-meta { display: flex; gap: 12px; font-size: 12px; color: var(--text-dim); }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-.badge-success { background: var(--success-soft); color: var(--success); }
-.badge-warning { background: var(--warning-soft); color: var(--warning); }
-.back-btn { background: transparent; border: none; color: var(--accent); cursor: pointer; padding: 4px 0; font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; font-family: inherit; }
-.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
-.block-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-.block-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.block-title { font-size: 16px; font-weight: 600; }
-.block-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.block-content { font-size: 14px; line-height: 1.7; }
-.block-content p { margin-bottom: 12px; }
-.block-content strong { color: var(--accent); font-weight: 600; }
-.block-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--bg); padding: 2px 6px; border-radius: 4px; color: var(--accent); }
-.conjugation-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
-.conjugation-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
-.conjugation-table td:first-child { color: var(--text-muted); width: 40%; }
-.conjugation-table td:last-child { font-weight: 600; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
-.vocab-controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-.search-input { flex: 1; min-width: 180px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; }
+.dict-btn small { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+.dict-tip { background: var(--bg); border: 1px dashed var(--border-strong); border-radius: 9px; padding: 10px 12px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+.dict-tip strong { color: var(--text); }
+
+/* ============ SESSION CARDS ============ */
+.roadmap-line { position: relative; padding-left: 4px; }
+.session-item {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 17px 18px; margin-bottom: 12px; cursor: pointer; transition: all 0.18s;
+  position: relative; overflow: hidden;
+}
+.session-item::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--accent); opacity: 0; transition: opacity 0.18s;
+}
+.session-item:hover { border-color: var(--border-strong); transform: translateX(3px); }
+.session-item:hover::before { opacity: 1; }
+.session-item.locked { opacity: 0.6; cursor: default; }
+.session-item.locked:hover { transform: none; border-color: var(--border); }
+.session-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 7px; }
+.session-daynum {
+  font-family: var(--serif); font-size: 13px; font-weight: 600; color: var(--accent);
+  display: flex; align-items: center; gap: 7px;
+}
+.session-daynum .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.session-title { font-size: 16.5px; font-weight: 600; margin: 3px 0 6px; letter-spacing: -0.01em; }
+.session-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 11px; line-height: 1.5; }
+.session-meta { display: flex; gap: 14px; font-size: 11.5px; color: var(--text-dim); flex-wrap: wrap; }
+.session-meta span { display: flex; align-items: center; gap: 4px; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; }
+.badge-done { background: var(--green-soft); color: var(--green); }
+.badge-now { background: var(--ochre-soft); color: var(--ochre); }
+.badge-soon { background: var(--bg-hover); color: var(--text-dim); }
+
+/* ============ SESSION DETAIL ============ */
+.back-btn { background: transparent; border: none; color: var(--accent); cursor: pointer; padding: 6px 0; font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; font-family: inherit; font-weight: 500; }
+.detail-hero { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; }
+.block-head { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+.block-icon { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; flex-shrink: 0; background: var(--accent-soft); color: var(--accent); }
+.block-icon.b-blue { background: var(--cobalt-soft); color: var(--cobalt); }
+.block-icon.b-ochre { background: var(--ochre-soft); color: var(--ochre); }
+.block-icon.b-green { background: var(--green-soft); color: var(--green); }
+.block-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.block-sub { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+.block-body { font-size: 14px; line-height: 1.75; }
+.block-body p { margin-bottom: 12px; }
+.block-body ul { margin: 10px 0 12px 2px; list-style: none; }
+.block-body li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+.block-body li::before { content: '·'; position: absolute; left: 6px; color: var(--accent); font-weight: 700; font-size: 18px; line-height: 1.2; }
+.block-body strong { color: var(--text); font-weight: 600; }
+.block-body em { color: var(--accent); font-style: normal; font-weight: 500; }
+.block-body code, .k {
+  font-family: var(--mono); font-size: 13px; background: var(--bg);
+  padding: 2px 7px; border-radius: 6px; color: var(--accent);
+  border: 1px solid var(--border); white-space: nowrap;
+}
+.conj-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.conj-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+.conj-table tr:last-child td { border-bottom: none; }
+.conj-table td:first-child { color: var(--text-muted); width: 42%; }
+.conj-table td:last-child { font-weight: 600; color: var(--accent); font-family: var(--mono); font-size: 13px; }
+.conj-table tr:nth-child(even) { background: color-mix(in srgb, var(--bg-elevated) 50%, transparent); }
+.callout { border-left: 3px solid var(--cobalt); background: var(--cobalt-soft); padding: 12px 14px; border-radius: 0 9px 9px 0; margin: 14px 0; font-size: 13.5px; }
+.callout.warn { border-left-color: var(--ochre); background: var(--ochre-soft); }
+.callout .callout-label { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; color: var(--cobalt); }
+.callout.warn .callout-label { color: var(--ochre); }
+.ex-pair { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 11px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+.ex-de { font-family: var(--mono); font-size: 13.5px; color: var(--text); }
+.ex-es { font-size: 12.5px; color: var(--text-muted); }
+.mini-drill { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 11px; padding: 15px; margin-top: 12px; }
+.drill-q { font-size: 14px; margin-bottom: 10px; }
+.drill-q .k { cursor: default; }
+.reveal-btn { font-size: 12px; color: var(--cobalt); background: none; border: none; cursor: pointer; font-family: inherit; padding: 2px 0; font-weight: 500; }
+.reveal-ans { display: none; margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--green); }
+.reveal-ans.show { display: block; }
+.ep-card { display: flex; gap: 12px; align-items: center; padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 11px; margin-bottom: 9px; text-decoration: none; color: var(--text); transition: all 0.15s; }
+.ep-card:hover { border-color: var(--cobalt); background: var(--bg-hover); }
+.ep-num { width: 32px; height: 32px; border-radius: 8px; background: var(--cobalt-soft); color: var(--cobalt); display: grid; place-items: center; font-weight: 600; font-size: 13px; font-family: var(--mono); flex-shrink: 0; }
+.ep-info { flex: 1; min-width: 0; }
+.ep-title { font-size: 13.5px; font-weight: 600; }
+.ep-desc { font-size: 11.5px; color: var(--text-muted); }
+.ep-arrow { color: var(--text-dim); font-size: 15px; }
+
+/* ============ VOCAB ============ */
+.vocab-controls { display: flex; gap: 8px; margin-bottom: 14px; }
+.search-input { flex: 1; min-width: 0; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; }
 .search-input:focus { outline: none; border-color: var(--accent); }
-.filter-chips { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-.filter-chips::-webkit-scrollbar { display: none; }
-.chip { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; font-size: 13px; white-space: nowrap; transition: all 0.15s; font-family: inherit; }
-.chip.active { background: var(--accent); color: white; border-color: var(--accent); }
-.vocab-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; transition: border-color 0.15s; }
+.chips { display: flex; gap: 7px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; font-size: 12.5px; white-space: nowrap; transition: all 0.15s; font-family: inherit; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+.chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.chip .chip-count { font-size: 10.5px; opacity: 0.7; }
+.vocab-count { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
+.vocab-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; margin-bottom: 9px; transition: border-color 0.15s; }
 .vocab-card:hover { border-color: var(--border-strong); }
-.vocab-main { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 4px; }
-.vocab-german { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.article { font-size: 12px; padding: 2px 8px; border-radius: 6px; font-weight: 500; }
-.article-der { background: rgba(55, 138, 221, 0.2); color: #85B7EB; }
-.article-die { background: rgba(212, 83, 126, 0.2); color: #ED93B1; }
-.article-das { background: rgba(93, 202, 165, 0.2); color: #97C459; }
-.vocab-spanish { font-size: 13px; color: var(--text-muted); }
-.vocab-details { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 12px; color: var(--text-dim); }
-.vocab-detail-item { background: var(--bg); padding: 3px 8px; border-radius: 6px; }
-.vocab-detail-item strong { color: var(--accent); font-weight: 500; }
-.vocab-example { font-size: 12px; color: var(--text-muted); font-style: italic; margin-top: 6px; padding: 6px 10px; background: var(--bg); border-radius: 6px; border-left: 2px solid var(--accent); }
-.vocab-actions-row { display: flex; gap: 6px; margin-top: 10px; justify-content: flex-end; }
-.vocab-badge { font-size: 10px; padding: 2px 8px; border-radius: 8px; background: var(--bg-hover); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
-.form-group { margin-bottom: 16px; }
+.vocab-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.vocab-de { font-size: 17px; font-weight: 600; display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; letter-spacing: -0.01em; }
+.art { font-size: 12px; padding: 2px 8px; border-radius: 6px; font-weight: 600; font-family: var(--mono); }
+.art-der { background: var(--cobalt-soft); color: var(--cobalt); }
+.art-die { background: var(--accent-soft); color: var(--accent); }
+.art-das { background: var(--green-soft); color: var(--green); }
+.vocab-es { font-size: 13.5px; color: var(--text-muted); margin-top: 2px; }
+.vocab-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
+.vtag { font-size: 11px; padding: 3px 9px; border-radius: 7px; background: var(--bg); border: 1px solid var(--border); color: var(--text-dim); }
+.vtag strong { color: var(--text-muted); font-weight: 600; }
+.vocab-ex { font-size: 12.5px; color: var(--text-muted); font-style: italic; margin-top: 9px; padding: 8px 12px; background: var(--bg); border-radius: 9px; border-left: 2px solid var(--accent); }
+.vocab-ex .ex-tr { display: block; font-style: normal; color: var(--text-dim); font-size: 11.5px; margin-top: 2px; }
+.vocab-actions { display: flex; gap: 6px; }
+.vocab-badge { font-size: 9.5px; padding: 3px 8px; border-radius: 7px; background: var(--bg-hover); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; white-space: nowrap; height: fit-content; }
+
+/* ============ FORMS ============ */
+.form-group { margin-bottom: 15px; }
 .form-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-.form-input, .form-textarea, .form-select { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; transition: border-color 0.15s; }
-.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
-.form-textarea { resize: vertical; min-height: 80px; }
-.form-hint { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--text); font-family: inherit; font-size: 14px; transition: border-color 0.15s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent); }
+.form-textarea { resize: vertical; min-height: 70px; }
+.form-hint { font-size: 11.5px; color: var(--text-dim); margin-top: 5px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
 @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-.quiz-progress { display: flex; gap: 4px; margin-bottom: 20px; }
-.quiz-progress-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.quiz-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
-.quiz-question-text { font-size: 18px; font-weight: 500; margin-bottom: 20px; line-height: 1.5; }
-.quiz-option { display: block; width: 100%; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer; text-align: left; font-family: inherit; font-size: 14px; margin-bottom: 8px; transition: all 0.15s; }
-.quiz-option:hover { border-color: var(--accent); background: var(--bg-hover); }
-.quiz-option.correct { border-color: var(--success); background: var(--success-soft); color: var(--success); }
-.quiz-option.wrong { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
-.quiz-feedback { padding: 14px; border-radius: 10px; margin-top: 12px; font-size: 14px; display: none; }
-.quiz-feedback.correct { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
-.quiz-feedback.wrong { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
+
+/* ============ QUIZ ============ */
+.quiz-mode-grid { display: grid; gap: 10px; }
+.quiz-mode {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 17px; cursor: pointer; transition: all 0.15s; text-align: left;
+  display: flex; align-items: center; gap: 14px; font-family: inherit; color: var(--text);
+}
+.quiz-mode:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.quiz-mode-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 21px; flex-shrink: 0; }
+.quiz-mode-title { font-weight: 600; font-size: 15px; }
+.quiz-mode-desc { font-size: 12.5px; color: var(--text-muted); }
+.quiz-progress { display: flex; gap: 5px; margin-bottom: 22px; }
+.qp-bar { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.qp-fill { height: 100%; width: 0; background: var(--accent); transition: width 0.35s cubic-bezier(0.2,0.8,0.2,1); }
+.quiz-counter { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; font-family: var(--mono); }
+.quiz-q { font-size: 20px; font-weight: 600; margin-bottom: 22px; line-height: 1.4; font-family: var(--serif); letter-spacing: -0.01em; }
+.quiz-q .k { font-size: 17px; }
+.quiz-opt {
+  display: block; width: 100%; padding: 15px 18px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text);
+  cursor: pointer; text-align: left; font-family: inherit; font-size: 14.5px;
+  margin-bottom: 9px; transition: all 0.14s; position: relative;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--bg-hover); }
+.quiz-opt:disabled { cursor: default; }
+.quiz-opt.correct { border-color: var(--green); background: var(--green-soft); color: var(--green); font-weight: 500; }
+.quiz-opt.wrong { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+.quiz-opt .mark { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; }
+.quiz-fb { padding: 14px 16px; border-radius: 11px; margin-top: 14px; font-size: 13.5px; display: none; line-height: 1.6; }
+.quiz-fb.show { display: block; animation: viewIn 0.25s; }
+.quiz-fb.correct { background: var(--green-soft); color: var(--green); border: 1px solid var(--green); }
+.quiz-fb.wrong { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
+.quiz-fb strong { display: block; margin-bottom: 3px; }
+.result-ring { width: 120px; height: 120px; margin: 0 auto 18px; position: relative; }
+.result-emoji { font-size: 54px; margin-bottom: 14px; }
+.result-score { font-family: var(--serif); font-size: 38px; font-weight: 600; color: var(--accent); margin: 12px 0; }
+
+/* ============ MODAL ============ */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: flex-end; justify-content: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
 .modal-overlay.active { display: flex; }
-.modal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; animation: modalIn 0.2s ease-out; }
-@keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.modal-title { font-size: 18px; font-weight: 600; }
-.modal-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px; width: 32px; height: 32px; border-radius: 6px; }
+.modal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 22px 22px 0 0; padding: 24px 22px calc(24px + env(safe-area-inset-bottom)); max-width: 520px; width: 100%; max-height: 92vh; overflow-y: auto; animation: sheetUp 0.3s cubic-bezier(0.2,0.9,0.3,1); }
+@media (min-width: 560px) { .modal-overlay { align-items: center; } .modal { border-radius: 22px; } }
+@keyframes sheetUp { from { transform: translateY(40px); opacity: 0.6; } to { transform: translateY(0); opacity: 1; } }
+.modal-grip { width: 40px; height: 4px; background: var(--border-strong); border-radius: 3px; margin: -8px auto 16px; }
+@media (min-width: 560px) { .modal-grip { display: none; } }
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.modal-title { font-family: var(--serif); font-size: 20px; font-weight: 600; }
+.modal-close { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 24px; width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; }
 .modal-close:hover { background: var(--bg-hover); }
-.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
-.empty { text-align: center; padding: 40px 20px; color: var(--text-muted); }
-.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
-.empty-text { font-size: 14px; margin-bottom: 16px; }
-.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--bg-elevated); border: 1px solid var(--border-strong); padding: 12px 20px; border-radius: 10px; z-index: 2000; box-shadow: var(--shadow); font-size: 14px; display: none; animation: toastIn 0.3s ease-out; }
-.toast.active { display: block; }
-@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
-.info-box { background: var(--info-soft); border-left: 3px solid var(--info); padding: 12px 14px; border-radius: 8px; font-size: 13px; color: var(--info); margin: 12px 0; }
-.dict-quick-tips { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
-.dict-quick-tips strong { color: var(--text); font-weight: 600; }
-@media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } .container { padding: 32px; } h1 { font-size: 32px; } }
+.modal-actions { display: flex; gap: 9px; margin-top: 20px; }
+
+/* ============ MISC ============ */
+.info-box { background: var(--cobalt-soft); border-left: 3px solid var(--cobalt); padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 12.5px; color: var(--text); margin-bottom: 16px; line-height: 1.55; }
+.info-box strong { color: var(--cobalt); }
+.empty { text-align: center; padding: 46px 20px; color: var(--text-muted); }
+.empty-icon { font-size: 46px; margin-bottom: 12px; opacity: 0.4; }
+.empty-text { font-size: 14px; margin-bottom: 18px; }
+.toast { position: fixed; bottom: 104px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text); color: var(--bg); padding: 12px 20px; border-radius: 12px; z-index: 2000; box-shadow: var(--shadow); font-size: 13.5px; font-weight: 500; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.2,0.9,0.3,1); }
+.toast.active { opacity: 1; transform: translateX(-50%) translateY(0); }
+.resource-btn { display: flex; align-items: center; gap: 11px; padding: 13px 15px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 11px; cursor: pointer; transition: all 0.15s; font-family: inherit; color: var(--text); width: 100%; text-align: left; font-size: 13.5px; font-weight: 500; }
+.resource-btn:hover { border-color: var(--accent); background: var(--bg-hover); }
+.resource-btn .r-icon { font-size: 18px; }
+.resource-btn .r-arrow { margin-left: auto; color: var(--text-dim); }
+.section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin: 22px 0 12px; }
+
+@media (min-width: 640px) {
+  .container { padding: 30px 24px; }
+  h1 { font-size: 34px; }
+  .hero-greeting { font-size: 38px; }
+}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <div class="logo"><div class="logo-icon">🇩🇪</div><div>Deutsch Hub</div></div>
-  <div><button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button></div>
+  <div class="logo">
+    <div class="logo-mark">D</div>
+    <div class="logo-text">Deutsch Hub<small>Aki · A1</small></div>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" onclick="exportData()" title="Respaldar datos" id="exportBtn">💾</button>
+    <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Tema">🌙</button>
+  </div>
 </div>
 
 <div class="app">
   <div class="container">
-
-    <div id="view-home" class="view active">
-      <h1>Hallo, Aki 👋</h1>
-      <p class="view-subtitle">Guten Tag! Continuemos con tu alemán.</p>
-
-      <div class="stats-grid">
-        <div class="stat"><div class="stat-label">Sesiones</div><div class="stat-value" id="statSessions">2</div><div class="stat-subtext">completadas</div></div>
-        <div class="stat"><div class="stat-label">Vocabulario</div><div class="stat-value" id="statVocab">0</div><div class="stat-subtext">palabras</div></div>
-        <div class="stat"><div class="stat-label">Racha</div><div class="stat-value">5 🔥</div><div class="stat-subtext">días</div></div>
-        <div class="stat"><div class="stat-label">Nivel</div><div class="stat-value">A1</div><div class="stat-subtext">en progreso</div></div>
-      </div>
-
-      <div class="dict-search-hero">
-        <div class="dict-search-title">🔍 Buscar palabra</div>
-        <div class="dict-search-desc">Diccionarios profesionales de alemán (gratis)</div>
-        <input type="text" class="dict-search-input" id="heroSearch" placeholder="Escribe: gato, correr, bonito..." onkeypress="if(event.key==='Enter') openDictionary('leo')">
-        <div class="dict-buttons">
-          <button class="dict-btn" onclick="openDictionary('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Más completo</span></button>
-          <button class="dict-btn" onclick="openDictionary('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Con audio</span></button>
-          <button class="dict-btn" onclick="openDictionary('dictcc')"><span class="dict-btn-name">dict.cc</span><span class="dict-btn-desc">Ejemplos</span></button>
-        </div>
-        <div class="dict-quick-tips"><strong>💡 Tip:</strong> Busca la palabra → copia artículo y plural → agrégalo abajo</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">🎯</div><div>Próxima sesión</div></div>
-        <h3 style="margin-bottom: 6px;">Día 3: Nacionalidades y profesiones</h3>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Practicaremos <code>kommen</code> a fondo.</p>
-        <button class="btn btn-primary btn-full" onclick="showView('sessions')">Ir a sesiones →</button>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">⚡</div><div>Acciones rápidas</div></div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-          <button class="btn" onclick="showView('vocab')">📖 Vocabulario</button>
-          <button class="btn" onclick="showView('quiz')">🎯 Quiz</button>
-          <button class="btn" onclick="openAddVocab()">➕ Añadir palabra</button>
-          <button class="btn" onclick="showView('practice')">✍️ Práctica</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="view-sessions" class="view">
-      <h1>Sesiones</h1>
-      <p class="view-subtitle">Tu progreso día a día</p>
-      <div id="sessionsList"></div>
-    </div>
-
-    <div id="view-session-detail" class="view">
-      <button class="back-btn" onclick="showView('sessions')">← Volver</button>
-      <div id="sessionDetailContent"></div>
-    </div>
-
-    <div id="view-vocab" class="view">
-      <h1>Vocabulario</h1>
-      <p class="view-subtitle">Tu banco de palabras alemanas</p>
-
-      <div class="dict-search-hero">
-        <div class="dict-search-title">🔍 Buscar antes de agregar</div>
-        <input type="text" class="dict-search-input" id="vocabDictSearch" placeholder="Busca en el diccionario..." onkeypress="if(event.key==='Enter') openDictionaryFromVocab('leo')">
-        <div class="dict-buttons">
-          <button class="dict-btn" onclick="openDictionaryFromVocab('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Buscar</span></button>
-          <button class="dict-btn" onclick="openDictionaryFromVocab('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Buscar</span></button>
-          <button class="dict-btn" onclick="openAddVocab()"><span class="dict-btn-name">➕</span><span class="dict-btn-desc">Agregar</span></button>
-        </div>
-      </div>
-
-      <div class="vocab-controls">
-        <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 Buscar en mi vocabulario..." oninput="renderVocab()">
-        <button class="btn btn-primary" onclick="openAddVocab()">+ Añadir</button>
-      </div>
-
-      <div class="filter-chips" id="vocabFilters">
-        <button class="chip active" onclick="setVocabFilter('all', this)">Todas</button>
-        <button class="chip" onclick="setVocabFilter('sustantivo', this)">Sustantivos</button>
-        <button class="chip" onclick="setVocabFilter('verbo', this)">Verbos</button>
-        <button class="chip" onclick="setVocabFilter('adjetivo', this)">Adjetivos</button>
-        <button class="chip" onclick="setVocabFilter('frase', this)">Frases</button>
-        <button class="chip" onclick="setVocabFilter('personal', this)">Mis palabras</button>
-      </div>
-
-      <div id="vocabList"></div>
-    </div>
-
-    <div id="view-quiz" class="view">
-      <h1>Quiz</h1>
-      <p class="view-subtitle">Pon a prueba tu conocimiento</p>
-
-      <div id="quizIntro">
-        <div class="card">
-          <div class="card-title"><div class="card-title-icon">🎯</div><div>Elige un modo</div></div>
-          <button class="btn btn-full" onclick="startQuiz('all')" style="margin-bottom: 8px;">📚 Todas las sesiones</button>
-          <button class="btn btn-full" onclick="startQuiz('day1')" style="margin-bottom: 8px;">1️⃣ Solo Día 1</button>
-          <button class="btn btn-full" onclick="startQuiz('day2')" style="margin-bottom: 8px;">2️⃣ Solo Día 2</button>
-          <button class="btn btn-full" onclick="startQuiz('vocab')">📖 Vocabulario</button>
-        </div>
-      </div>
-
-      <div id="quizActive" style="display: none;">
-        <div class="quiz-progress" id="quizProgress"></div>
-        <div class="card">
-          <div class="quiz-question-text" id="quizQuestion"></div>
-          <div id="quizOptions"></div>
-          <div class="quiz-feedback" id="quizFeedback"></div>
-          <div style="display: flex; gap: 8px; margin-top: 16px;">
-            <button class="btn" onclick="endQuiz()">Salir</button>
-            <button class="btn btn-primary" onclick="nextQuizQuestion()" id="quizNextBtn" style="display: none; margin-left: auto;">Siguiente →</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="quizResult" style="display: none;">
-        <div class="card" style="text-align: center;">
-          <div style="font-size: 48px; margin-bottom: 12px;">🎉</div>
-          <h2>¡Terminaste!</h2>
-          <div style="font-size: 32px; font-weight: 700; color: var(--accent); margin: 16px 0;" id="quizScore"></div>
-          <p id="quizResultText" style="color: var(--text-muted); margin-bottom: 20px;"></p>
-          <div style="display: flex; gap: 8px;">
-            <button class="btn btn-full" onclick="resetQuiz()">Otro quiz</button>
-            <button class="btn btn-primary btn-full" onclick="showView('home')">Inicio</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="view-practice" class="view">
-      <h1>Práctica</h1>
-      <p class="view-subtitle">Herramientas para aprender</p>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">🔍</div><div>Verificar palabra en alemán</div></div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">¿No estás seguro si escribiste bien? Búscala en LEO o PONS.</p>
-        <input type="text" class="dict-search-input" id="verifyGerman" placeholder="ej: der Katze, laufe, schön..." style="margin-bottom: 12px;">
-        <div class="dict-buttons">
-          <button class="dict-btn" onclick="verifyWord('leo')"><span class="dict-btn-name">LEO</span><span class="dict-btn-desc">Verificar</span></button>
-          <button class="dict-btn" onclick="verifyWord('pons')"><span class="dict-btn-name">PONS</span><span class="dict-btn-desc">Verificar</span></button>
-          <button class="dict-btn" onclick="verifyWord('dictcc')"><span class="dict-btn-name">dict.cc</span><span class="dict-btn-desc">Verificar</span></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">💬</div><div>Conjugador de verbos</div></div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Verifica la conjugación completa</p>
-        <input type="text" class="dict-search-input" id="verbSearch" placeholder="ej: gehen, sein, haben..." style="margin-bottom: 12px;">
-        <button class="btn btn-primary btn-full" onclick="conjugateVerb()">Ver conjugación en Verbformen</button>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">📺</div><div>Nicos Weg (DW)</div></div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Curso oficial gratis de Deutsche Welle.</p>
-        <button class="btn btn-primary btn-full" onclick="openLink('https://learngerman.dw.com/en/overview')">Ir a Nicos Weg →</button>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><div class="card-title-icon">💡</div><div>Recursos útiles</div></div>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <button class="btn" onclick="openLink('https://dict.leo.org/deutsch-spanisch/')">📖 LEO Deutsch-Spanisch</button>
-          <button class="btn" onclick="openLink('https://es.pons.com/traduccion/aleman-espanol')">📖 PONS Diccionario</button>
-          <button class="btn" onclick="openLink('https://www.dwds.de/')">📚 DWDS (diccionario alemán)</button>
-          <button class="btn" onclick="openLink('https://www.verbformen.com/')">🔤 Verbformen (conjugador)</button>
-        </div>
-      </div>
-    </div>
-
+    <div id="views"></div>
   </div>
 </div>
 
-<div class="bottom-nav">
-  <button class="nav-btn active" data-view="home" onclick="showView('home')"><div class="nav-btn-icon">🏠</div><div>Inicio</div></button>
-  <button class="nav-btn" data-view="sessions" onclick="showView('sessions')"><div class="nav-btn-icon">📚</div><div>Sesiones</div></button>
-  <button class="nav-btn" data-view="vocab" onclick="showView('vocab')"><div class="nav-btn-icon">📖</div><div>Vocab</div></button>
-  <button class="nav-btn" data-view="quiz" onclick="showView('quiz')"><div class="nav-btn-icon">🎯</div><div>Quiz</div></button>
-  <button class="nav-btn" data-view="practice" onclick="showView('practice')"><div class="nav-btn-icon">✍️</div><div>Práctica</div></button>
-</div>
+<div class="bottom-nav" id="bottomNav"></div>
 
 <div class="modal-overlay" id="modalAddVocab">
   <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">➕ Añadir palabra</div>
+    <div class="modal-grip"></div>
+    <div class="modal-head">
+      <div class="modal-title">Añadir palabra</div>
       <button class="modal-close" onclick="closeModal('modalAddVocab')">×</button>
     </div>
-
-    <div class="info-box">
-      💡 <strong>Tip:</strong> Busca primero en LEO o PONS para tener artículo, plural y ejemplos correctos.
+    <div class="info-box">💡 <strong>Consejo:</strong> busca la palabra en LEO o PONS primero para copiar el artículo, el plural y un buen ejemplo.</div>
+    <div class="form-row" style="margin-bottom:15px;">
+      <button class="btn btn-sm" onclick="quickDictFromForm('leo')">🔍 LEO</button>
+      <button class="btn btn-sm" onclick="quickDictFromForm('pons')">🔍 PONS</button>
     </div>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
-      <button class="btn" onclick="quickSearch('leo')">🔍 Buscar en LEO</button>
-      <button class="btn" onclick="quickSearch('pons')">🔍 Buscar en PONS</button>
-    </div>
-
     <div class="form-group">
       <label class="form-label">Palabra en alemán *</label>
-      <input type="text" class="form-input" id="addGerman" placeholder="ej: Katze">
+      <input type="text" class="form-input" id="fGerman" placeholder="ej: Katze" autocomplete="off">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Artículo</label>
-        <select class="form-select" id="addArticle">
-          <option value="">- ninguno -</option>
-          <option value="der">der (masculino)</option>
-          <option value="die">die (femenino)</option>
-          <option value="das">das (neutro)</option>
+        <select class="form-select" id="fArticle">
+          <option value="">— ninguno —</option>
+          <option value="der">der · masculino</option>
+          <option value="die">die · femenino</option>
+          <option value="das">das · neutro</option>
         </select>
       </div>
       <div class="form-group">
         <label class="form-label">Tipo *</label>
-        <select class="form-select" id="addType">
+        <select class="form-select" id="fType">
           <option value="sustantivo">Sustantivo</option>
           <option value="verbo">Verbo</option>
           <option value="adjetivo">Adjetivo</option>
           <option value="adverbio">Adverbio</option>
+          <option value="nacionalidad">Nacionalidad</option>
+          <option value="profesión">Profesión</option>
+          <option value="país">País</option>
+          <option value="número">Número</option>
           <option value="frase">Frase</option>
-          <option value="preposición">Preposición</option>
           <option value="otro">Otro</option>
         </select>
       </div>
     </div>
-
     <div class="form-group">
       <label class="form-label">Traducción en español *</label>
-      <input type="text" class="form-input" id="addSpanish" placeholder="ej: gato/gata">
+      <input type="text" class="form-input" id="fSpanish" placeholder="ej: gato/gata" autocomplete="off">
     </div>
-
     <div class="form-group">
-      <label class="form-label">Plural (solo sustantivos)</label>
-      <input type="text" class="form-input" id="addPlural" placeholder="ej: die Katzen">
-      <div class="form-hint">Copia el plural desde LEO/PONS</div>
+      <label class="form-label">Plural <span style="color:var(--text-dim)">(sustantivos)</span></label>
+      <input type="text" class="form-input" id="fPlural" placeholder="ej: die Katzen" autocomplete="off">
     </div>
-
     <div class="form-group">
-      <label class="form-label">Ejemplo (opcional)</label>
-      <input type="text" class="form-input" id="addExample" placeholder="ej: Die Katze schläft">
+      <label class="form-label">Ejemplo <span style="color:var(--text-dim)">(opcional)</span></label>
+      <input type="text" class="form-input" id="fExample" placeholder="ej: Die Katze schläft." autocomplete="off">
     </div>
-
     <div class="form-group">
-      <label class="form-label">Notas (opcional)</label>
-      <textarea class="form-textarea" id="addNotes" placeholder="ej: se usa también para gato macho" rows="2"></textarea>
+      <label class="form-label">Traducción del ejemplo <span style="color:var(--text-dim)">(opcional)</span></label>
+      <input type="text" class="form-input" id="fExampleTr" placeholder="ej: El gato duerme." autocomplete="off">
     </div>
-
     <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modalAddVocab')">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveVocab()">Guardar</button>
+      <button class="btn btn-full" onclick="closeModal('modalAddVocab')">Cancelar</button>
+      <button class="btn btn-primary btn-full" onclick="saveVocab()">Guardar palabra</button>
     </div>
   </div>
 </div>
@@ -417,416 +520,895 @@ h3 { font-size: 17px; margin-bottom: 12px; }
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY = 'deutsch_hub_v4';
-let state = { theme: 'dark', vocabPersonal: [], currentVocabFilter: 'all' };
+/* ============================================================
+   DEUTSCH HUB — Content + Logic
+   Everything is embedded so it works on any static host (Netlify).
+   To add a new session: append an object to SESSIONS.
+   To add vocab: append to CORE_VOCAB (or use the in-app form).
+   ============================================================ */
 
+const STORE = 'deutsch_hub_v6';
+
+let state = {
+  theme: 'dark',
+  personalVocab: [],
+  vocabFilter: 'all',
+  completed: [1, 2, 3],
+  streak: 5,
+};
+
+/* ---------- CORE VOCABULARY (curated, grouped by category) ---------- */
 const CORE_VOCAB = [
-  { german: 'Guten Morgen', spanish: 'Buenos días', type: 'frase', day: 1 },
-  { german: 'Guten Tag', spanish: 'Buen día', type: 'frase', day: 1 },
-  { german: 'Guten Abend', spanish: 'Buenas noches', type: 'frase', day: 1 },
-  { german: 'Auf Wiedersehen', spanish: 'Adiós', type: 'frase', day: 1 },
-  { german: 'Tschüss', spanish: 'Chao', type: 'frase', day: 1 },
-  { german: 'Hallo', spanish: 'Hola', type: 'frase', day: 1 },
-  { german: 'Danke', spanish: 'Gracias', type: 'frase', day: 1 },
-  { german: 'Bitte', spanish: 'Por favor / de nada', type: 'frase', day: 1 },
-  { german: 'sein', spanish: 'ser/estar', type: 'verbo', day: 1 },
-  { german: 'heißen', spanish: 'llamarse', type: 'verbo', day: 1 },
-  { german: 'kommen', spanish: 'venir', type: 'verbo', day: 2 },
-  { german: 'wohnen', spanish: 'vivir/habitar', type: 'verbo', day: 2 },
-  { german: 'sprechen', spanish: 'hablar', type: 'verbo', day: 2 },
-  { german: 'ich', spanish: 'yo', type: 'pronombre', day: 1 },
-  { german: 'du', spanish: 'tú', type: 'pronombre', day: 1 },
-  { german: 'er', spanish: 'él', type: 'pronombre', day: 1 },
-  { german: 'sie', spanish: 'ella / ellos', type: 'pronombre', day: 1 },
-  { german: 'wir', spanish: 'nosotros', type: 'pronombre', day: 1 },
-  { german: 'null', spanish: '0', type: 'número', day: 1 },
-  { german: 'eins', spanish: '1', type: 'número', day: 1 },
-  { german: 'zwei', spanish: '2', type: 'número', day: 1 },
-  { german: 'drei', spanish: '3', type: 'número', day: 1 },
-  { german: 'zehn', spanish: '10', type: 'número', day: 1 },
-  { german: 'zwölf', spanish: '12', type: 'número', day: 1 },
-  { german: 'Wer?', spanish: '¿Quién?', type: 'W-frage', day: 1 },
-  { german: 'Was?', spanish: '¿Qué?', type: 'W-frage', day: 1 },
-  { german: 'Woher?', spanish: '¿De dónde?', type: 'W-frage', day: 1 },
-  { german: 'Wie?', spanish: '¿Cómo?', type: 'W-frage', day: 1 },
+  // ——— Saludos y cortesía ———
+  { de:'Hallo', es:'hola', type:'frase', day:1, cat:'saludos' },
+  { de:'Guten Morgen', es:'buenos días (mañana)', type:'frase', day:1, cat:'saludos' },
+  { de:'Guten Tag', es:'buenos días / buen día', type:'frase', day:1, cat:'saludos' },
+  { de:'Guten Abend', es:'buenas tardes/noches', type:'frase', day:1, cat:'saludos' },
+  { de:'Gute Nacht', es:'buenas noches (al dormir)', type:'frase', day:1, cat:'saludos' },
+  { de:'Auf Wiedersehen', es:'adiós (formal)', type:'frase', day:1, cat:'saludos' },
+  { de:'Tschüss', es:'chao (informal)', type:'frase', day:1, cat:'saludos' },
+  { de:'Bis bald', es:'hasta pronto', type:'frase', day:1, cat:'saludos' },
+  { de:'Bis morgen', es:'hasta mañana', type:'frase', day:1, cat:'saludos' },
+  { de:'Wie geht’s?', es:'¿qué tal?', type:'frase', day:1, cat:'saludos' },
+  { de:'Danke', es:'gracias', type:'frase', day:1, cat:'saludos' },
+  { de:'Danke schön', es:'muchas gracias', type:'frase', day:1, cat:'saludos' },
+  { de:'Bitte', es:'por favor / de nada', type:'frase', day:1, cat:'saludos' },
+  { de:'Entschuldigung', es:'disculpe / perdón', type:'frase', day:1, cat:'saludos' },
+  { de:'Ja', es:'sí', type:'otro', day:1, cat:'saludos' },
+  { de:'Nein', es:'no', type:'otro', day:1, cat:'saludos' },
+
+  // ——— Verbos ———
+  { de:'sein', es:'ser / estar', type:'verbo', day:1, cat:'verbos', ex:'Ich bin müde.', exTr:'Estoy cansado.' },
+  { de:'heißen', es:'llamarse', type:'verbo', day:1, cat:'verbos', ex:'Ich heiße Aki.', exTr:'Me llamo Aki.' },
+  { de:'kommen', es:'venir', type:'verbo', day:2, cat:'verbos', ex:'Ich komme aus Ecuador.', exTr:'Vengo de Ecuador.' },
+  { de:'wohnen', es:'vivir / habitar', type:'verbo', day:2, cat:'verbos', ex:'Ich wohne in Madrid.', exTr:'Vivo en Madrid.' },
+  { de:'sprechen', es:'hablar', type:'verbo', day:2, cat:'verbos', ex:'Sprichst du Deutsch?', exTr:'¿Hablas alemán?' },
+  { de:'arbeiten', es:'trabajar', type:'verbo', day:3, cat:'verbos', ex:'Ich arbeite als Lehrer.', exTr:'Trabajo como profesor.' },
+  { de:'lernen', es:'aprender / estudiar', type:'verbo', day:3, cat:'verbos', ex:'Ich lerne Deutsch.', exTr:'Aprendo alemán.' },
+  { de:'machen', es:'hacer', type:'verbo', day:3, cat:'verbos', ex:'Ich mache einen Kurs.', exTr:'Hago un curso.' },
+  { de:'haben', es:'tener', type:'verbo', day:3, cat:'verbos', ex:'Ich habe eine Frage.', exTr:'Tengo una pregunta.' },
+  { de:'gehen', es:'ir / caminar', type:'verbo', day:3, cat:'verbos', ex:'Wie geht es dir?', exTr:'¿Cómo estás?' },
+  { de:'verstehen', es:'entender', type:'verbo', day:3, cat:'verbos', ex:'Ich verstehe nicht.', exTr:'No entiendo.' },
+  { de:'buchstabieren', es:'deletrear', type:'verbo', day:3, cat:'verbos' },
+
+  // ——— Pronombres ———
+  { de:'ich', es:'yo', type:'otro', day:1, cat:'pronombres' },
+  { de:'du', es:'tú', type:'otro', day:1, cat:'pronombres' },
+  { de:'er', es:'él', type:'otro', day:1, cat:'pronombres' },
+  { de:'sie', es:'ella / ellos', type:'otro', day:1, cat:'pronombres' },
+  { de:'es', es:'ello (neutro)', type:'otro', day:1, cat:'pronombres' },
+  { de:'wir', es:'nosotros', type:'otro', day:1, cat:'pronombres' },
+  { de:'ihr', es:'vosotros', type:'otro', day:1, cat:'pronombres' },
+  { de:'Sie', es:'usted (formal)', type:'otro', day:1, cat:'pronombres' },
+
+  // ——— Números ———
+  { de:'null', es:'0', type:'número', day:1, cat:'números' },
+  { de:'eins', es:'1', type:'número', day:1, cat:'números' },
+  { de:'zwei', es:'2', type:'número', day:1, cat:'números' },
+  { de:'drei', es:'3', type:'número', day:1, cat:'números' },
+  { de:'vier', es:'4', type:'número', day:1, cat:'números' },
+  { de:'fünf', es:'5', type:'número', day:1, cat:'números' },
+  { de:'sechs', es:'6', type:'número', day:1, cat:'números' },
+  { de:'sieben', es:'7', type:'número', day:1, cat:'números' },
+  { de:'acht', es:'8', type:'número', day:1, cat:'números' },
+  { de:'neun', es:'9', type:'número', day:1, cat:'números' },
+  { de:'zehn', es:'10', type:'número', day:1, cat:'números' },
+  { de:'elf', es:'11', type:'número', day:1, cat:'números' },
+  { de:'zwölf', es:'12', type:'número', day:1, cat:'números' },
+  { de:'dreizehn', es:'13', type:'número', day:1, cat:'números' },
+  { de:'zwanzig', es:'20', type:'número', day:1, cat:'números' },
+  { de:'dreißig', es:'30', type:'número', day:3, cat:'números' },
+  { de:'vierzig', es:'40', type:'número', day:3, cat:'números' },
+  { de:'fünfzig', es:'50', type:'número', day:3, cat:'números' },
+  { de:'hundert', es:'100', type:'número', day:3, cat:'números' },
+
+  // ——— W-Fragen ———
+  { de:'Wer?', es:'¿quién?', type:'otro', day:1, cat:'preguntas' },
+  { de:'Was?', es:'¿qué?', type:'otro', day:1, cat:'preguntas' },
+  { de:'Wo?', es:'¿dónde?', type:'otro', day:1, cat:'preguntas' },
+  { de:'Woher?', es:'¿de dónde?', type:'otro', day:2, cat:'preguntas' },
+  { de:'Wohin?', es:'¿a dónde?', type:'otro', day:2, cat:'preguntas' },
+  { de:'Wie?', es:'¿cómo?', type:'otro', day:1, cat:'preguntas' },
+  { de:'Wann?', es:'¿cuándo?', type:'otro', day:1, cat:'preguntas' },
+  { de:'Warum?', es:'¿por qué?', type:'otro', day:3, cat:'preguntas' },
+  { de:'Was für?', es:'¿qué tipo de?', type:'otro', day:3, cat:'preguntas' },
+
+  // ——— Países ———
+  { de:'Deutschland', es:'Alemania', type:'país', day:3, cat:'países' },
+  { de:'Spanien', es:'España', type:'país', day:3, cat:'países' },
+  { de:'Ecuador', es:'Ecuador', type:'país', day:3, cat:'países' },
+  { de:'Österreich', es:'Austria', type:'país', day:3, cat:'países' },
+  { de:'die Schweiz', es:'Suiza', type:'país', day:3, cat:'países', article:'die' },
+  { de:'Frankreich', es:'Francia', type:'país', day:3, cat:'países' },
+  { de:'Italien', es:'Italia', type:'país', day:3, cat:'países' },
+  { de:'die Türkei', es:'Turquía', type:'país', day:3, cat:'países', article:'die' },
+  { de:'die USA', es:'Estados Unidos', type:'país', day:3, cat:'países', article:'die' },
+  { de:'England', es:'Inglaterra', type:'país', day:3, cat:'países' },
+  { de:'Mexiko', es:'México', type:'país', day:3, cat:'países' },
+  { de:'Kolumbien', es:'Colombia', type:'país', day:3, cat:'países' },
+
+  // ——— Nacionalidades ———
+  { de:'Deutscher / Deutsche', es:'alemán / alemana', type:'nacionalidad', day:3, cat:'nacionalidades', ex:'Er ist Deutscher.', exTr:'Él es alemán.' },
+  { de:'Spanier / Spanierin', es:'español / española', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Ecuadorianer / -in', es:'ecuatoriano / -a', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Österreicher / -in', es:'austríaco / -a', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Franzose / Französin', es:'francés / francesa', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Italiener / -in', es:'italiano / -a', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Türke / Türkin', es:'turco / turca', type:'nacionalidad', day:3, cat:'nacionalidades' },
+  { de:'Amerikaner / -in', es:'estadounidense', type:'nacionalidad', day:3, cat:'nacionalidades' },
+
+  // ——— Idiomas ———
+  { de:'Deutsch', es:'alemán (idioma)', type:'otro', day:3, cat:'idiomas' },
+  { de:'Spanisch', es:'español (idioma)', type:'otro', day:3, cat:'idiomas' },
+  { de:'Englisch', es:'inglés (idioma)', type:'otro', day:3, cat:'idiomas' },
+  { de:'Französisch', es:'francés (idioma)', type:'otro', day:3, cat:'idiomas' },
+
+  // ——— Profesiones ———
+  { de:'Lehrer / Lehrerin', es:'profesor / profesora', type:'profesión', day:3, cat:'profesiones', ex:'Ich bin Lehrer.', exTr:'Soy profesor.' },
+  { de:'Student / Studentin', es:'estudiante (universidad)', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Arzt / Ärztin', es:'médico / médica', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Ingenieur / -in', es:'ingeniero / -a', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Koch / Köchin', es:'cocinero / cocinera', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Kellner / Kellnerin', es:'camarero / camarera', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Verkäufer / -in', es:'vendedor / -a', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Programmierer / -in', es:'programador / -a', type:'profesión', day:3, cat:'profesiones' },
+  { de:'Journalist / -in', es:'periodista', type:'profesión', day:3, cat:'profesiones' },
+  { de:'der Beruf', es:'la profesión / el oficio', type:'sustantivo', day:3, cat:'profesiones', article:'der', plural:'die Berufe' },
+
+  // ——— Palabras útiles ———
+  { de:'aus', es:'de (procedencia)', type:'otro', day:2, cat:'útiles', ex:'Ich komme aus Spanien.', exTr:'Vengo de España.' },
+  { de:'in', es:'en', type:'otro', day:2, cat:'útiles', ex:'Ich wohne in Berlin.', exTr:'Vivo en Berlín.' },
+  { de:'als', es:'como (función)', type:'otro', day:3, cat:'útiles', ex:'Ich arbeite als Arzt.', exTr:'Trabajo como médico.' },
+  { de:'und', es:'y', type:'otro', day:1, cat:'útiles' },
+  { de:'aber', es:'pero', type:'otro', day:3, cat:'útiles' },
+  { de:'oder', es:'o', type:'otro', day:3, cat:'útiles' },
+  { de:'auch', es:'también', type:'adverbio', day:3, cat:'útiles' },
+  { de:'sehr', es:'muy', type:'adverbio', day:3, cat:'útiles' },
+  { de:'nicht', es:'no (negación)', type:'adverbio', day:3, cat:'útiles', ex:'Ich verstehe nicht.', exTr:'No entiendo.' },
+  { de:'gut', es:'bien / bueno', type:'adjetivo', day:1, cat:'útiles' },
+  { de:'ein bisschen', es:'un poco', type:'frase', day:3, cat:'útiles', ex:'Ich spreche ein bisschen Deutsch.', exTr:'Hablo un poco de alemán.' },
 ];
 
+/* categories with labels & icons for chips */
+const VOCAB_CATS = [
+  { id:'all', label:'Todas' },
+  { id:'saludos', label:'Saludos' },
+  { id:'verbos', label:'Verbos' },
+  { id:'pronombres', label:'Pronombres' },
+  { id:'números', label:'Números' },
+  { id:'preguntas', label:'Preguntas' },
+  { id:'países', label:'Países' },
+  { id:'nacionalidades', label:'Nacionalidades' },
+  { id:'idiomas', label:'Idiomas' },
+  { id:'profesiones', label:'Profesiones' },
+  { id:'útiles', label:'Útiles' },
+  { id:'personal', label:'⭐ Mías' },
+];
+
+/* ---------- SESSIONS (full content) ---------- */
 const SESSIONS = [
   {
-    day: 1, title: 'Saludos y verbo "sein"',
-    description: 'Introducción al alemán, saludos, pronombres, números 0-20',
-    duration: '2 horas', completed: true,
+    day: 1,
+    title: 'Saludos y el verbo sein',
+    desc: 'Tus primeras palabras en alemán: saludar, presentarte, pronombres y números.',
+    duration: '2 h',
+    status: 'done',
+    goals: ['Saludar y despedirte', 'Conjugar sein', 'Pronombres personales', 'Números 0–20'],
     blocks: [
-      { icon: '📖', title: 'Verbo sein', subtitle: 'ser/estar (irregular)',
-        content: `<p>El verbo <strong>sein</strong> significa "ser" o "estar". Es totalmente irregular.</p>
-          <table class="conjugation-table">
-            <tr><td>ich</td><td>bin</td></tr><tr><td>du</td><td>bist</td></tr>
-            <tr><td>er / sie / es</td><td>ist</td></tr><tr><td>wir</td><td>sind</td></tr>
-            <tr><td>ihr</td><td>seid</td></tr><tr><td>sie / Sie</td><td>sind</td></tr>
-          </table>
-          <p><strong>Ejemplos:</strong></p>
-          <p>• <code>Ich bin Aki</code><br>• <code>Du bist müde</code><br>• <code>Er ist Student</code></p>` },
-      { icon: '💬', title: 'Saludos', subtitle: 'Frases esenciales',
-        content: `<p><strong>Saludar:</strong> <code>Guten Morgen</code>, <code>Guten Tag</code>, <code>Hallo</code></p>
-          <p><strong>Despedir:</strong> <code>Auf Wiedersehen</code>, <code>Tschüss</code></p>` },
-      { icon: '🔢', title: 'Números 0-20', subtitle: 'Los básicos',
-        content: `<p>0-5: <code>null</code>, <code>eins</code>, <code>zwei</code>, <code>drei</code>, <code>vier</code>, <code>fünf</code></p>
-          <p>6-10: <code>sechs</code>, <code>sieben</code>, <code>acht</code>, <code>neun</code>, <code>zehn</code></p>
-          <p>11-15: <code>elf</code>, <code>zwölf</code>, <code>dreizehn</code>, <code>vierzehn</code>, <code>fünfzehn</code></p>` }
+      { icon:'💬', color:'', title:'Saludos y despedidas', sub:'Lo primero que dirás',
+        body:`<p>El saludo cambia según la hora del día:</p>
+        <ul>
+          <li><span class="k">Guten Morgen</span> — por la mañana</li>
+          <li><span class="k">Guten Tag</span> — durante el día (el más neutro)</li>
+          <li><span class="k">Guten Abend</span> — por la tarde/noche</li>
+          <li><span class="k">Hallo</span> — informal, a cualquier hora</li>
+        </ul>
+        <p>Para despedirte:</p>
+        <ul>
+          <li><span class="k">Auf Wiedersehen</span> — adiós (formal)</li>
+          <li><span class="k">Tschüss</span> — chao (informal)</li>
+          <li><span class="k">Bis bald</span> — hasta pronto</li>
+        </ul>` },
+      { icon:'📖', color:'b-blue', title:'El verbo sein (ser/estar)', sub:'El verbo más importante — es irregular',
+        body:`<p><em>sein</em> significa a la vez "ser" y "estar". Es totalmente irregular, así que se memoriza:</p>
+        <table class="conj-table">
+          <tr><td>ich <span style="color:var(--text-dim)">(yo)</span></td><td>bin</td></tr>
+          <tr><td>du <span style="color:var(--text-dim)">(tú)</span></td><td>bist</td></tr>
+          <tr><td>er / sie / es</td><td>ist</td></tr>
+          <tr><td>wir <span style="color:var(--text-dim)">(nosotros)</span></td><td>sind</td></tr>
+          <tr><td>ihr <span style="color:var(--text-dim)">(vosotros)</span></td><td>seid</td></tr>
+          <tr><td>sie / Sie</td><td>sind</td></tr>
+        </table>
+        <div class="ex-pair"><span class="ex-de">Ich bin Aki.</span><span class="ex-es">Soy Aki.</span></div>
+        <div class="ex-pair"><span class="ex-de">Du bist müde.</span><span class="ex-es">Estás cansado.</span></div>
+        <div class="ex-pair"><span class="ex-de">Wir sind hier.</span><span class="ex-es">Estamos aquí.</span></div>` },
+      { icon:'🔢', color:'b-ochre', title:'Números 0–20', sub:'La base para todo',
+        body:`<ul>
+          <li>0–5: <span class="k">null</span> · <span class="k">eins</span> · <span class="k">zwei</span> · <span class="k">drei</span> · <span class="k">vier</span> · <span class="k">fünf</span></li>
+          <li>6–10: <span class="k">sechs</span> · <span class="k">sieben</span> · <span class="k">acht</span> · <span class="k">neun</span> · <span class="k">zehn</span></li>
+          <li>11–15: <span class="k">elf</span> · <span class="k">zwölf</span> · <span class="k">dreizehn</span> · <span class="k">vierzehn</span> · <span class="k">fünfzehn</span></li>
+          <li>16–20: <span class="k">sechzehn</span> · <span class="k">siebzehn</span> · <span class="k">achtzehn</span> · <span class="k">neunzehn</span> · <span class="k">zwanzig</span></li>
+        </ul>
+        <div class="callout warn"><div class="callout-label">Ojo</div><span class="k">sieben</span> pierde la <strong>-en</strong> en 17: <span class="k">siebzehn</span> (no "siebenzehn").</div>` },
+      { icon:'📺', color:'b-green', title:'Nicos Weg — episodios', sub:'Input real de Deutsche Welle',
+        body:`<a class="ep-card" href="https://learngerman.dw.com/en/overview" target="_blank" rel="noopener">
+          <div class="ep-num">1</div><div class="ep-info"><div class="ep-title">Hallo!</div><div class="ep-desc">Cómo saludar en alemán</div></div><div class="ep-arrow">↗</div></a>
+        <a class="ep-card" href="https://learngerman.dw.com/en/overview" target="_blank" rel="noopener">
+          <div class="ep-num">2</div><div class="ep-info"><div class="ep-title">Das ist Nico</div><div class="ep-desc">Presentarse con nombre</div></div><div class="ep-arrow">↗</div></a>` },
     ]
   },
   {
-    day: 2, title: 'Verbos heißen y kommen',
-    description: 'Presentarse, decir de dónde vienes, orden de palabras',
-    duration: '2 horas', completed: true,
+    day: 2,
+    title: 'heißen, kommen y el orden de palabras',
+    desc: 'Presentarte con tu nombre, decir de dónde vienes y la regla de oro del alemán.',
+    duration: '2 h',
+    status: 'done',
+    goals: ['Conjugar heißen y kommen', 'Decir de dónde vienes', 'Verbo en 2ª posición'],
     blocks: [
-      { icon: '📖', title: 'Verbo heißen', subtitle: 'llamarse',
-        content: `<table class="conjugation-table">
-            <tr><td>ich</td><td>heiße</td></tr><tr><td>du</td><td>heißt</td></tr>
-            <tr><td>er/sie/es</td><td>heißt</td></tr><tr><td>wir</td><td>heißen</td></tr>
-            <tr><td>ihr</td><td>heißt</td></tr><tr><td>sie/Sie</td><td>heißen</td></tr>
-          </table>
-          <p><code>Ich heiße Aki</code> — Me llamo Aki<br><code>Wie heißt du?</code> — ¿Cómo te llamas?</p>` },
-      { icon: '📖', title: 'Verbo kommen', subtitle: 'venir',
-        content: `<table class="conjugation-table">
-            <tr><td>ich</td><td>komme</td></tr><tr><td>du</td><td>kommst</td></tr>
-            <tr><td>er/sie/es</td><td>kommt</td></tr><tr><td>wir</td><td>kommen</td></tr>
-            <tr><td>ihr</td><td>kommt</td></tr><tr><td>sie/Sie</td><td>kommen</td></tr>
-          </table>
-          <p><code>Ich komme aus Ecuador</code><br><code>Woher kommst du?</code></p>` },
-      { icon: '📐', title: 'Orden de palabras', subtitle: 'Verbo en 2ª posición',
-        content: `<p>El <strong>verbo SIEMPRE va en 2ª posición</strong> en declarativas.</p>
-          <p>• <code>Ich bin Aki</code> ✓<br>• <code>Heute bin ich müde</code> ✓<br>• <code>Ich heute bin müde</code> ✗</p>` }
+      { icon:'📖', color:'', title:'El verbo heißen (llamarse)', sub:'Para decir tu nombre',
+        body:`<table class="conj-table">
+          <tr><td>ich</td><td>heiße</td></tr>
+          <tr><td>du</td><td>heißt</td></tr>
+          <tr><td>er / sie / es</td><td>heißt</td></tr>
+          <tr><td>wir</td><td>heißen</td></tr>
+          <tr><td>ihr</td><td>heißt</td></tr>
+          <tr><td>sie / Sie</td><td>heißen</td></tr>
+        </table>
+        <div class="ex-pair"><span class="ex-de">Ich heiße Aki.</span><span class="ex-es">Me llamo Aki.</span></div>
+        <div class="ex-pair"><span class="ex-de">Wie heißt du?</span><span class="ex-es">¿Cómo te llamas?</span></div>` },
+      { icon:'📖', color:'b-blue', title:'El verbo kommen (venir)', sub:'De dónde vienes: kommen + aus',
+        body:`<table class="conj-table">
+          <tr><td>ich</td><td>komme</td></tr>
+          <tr><td>du</td><td>kommst</td></tr>
+          <tr><td>er / sie / es</td><td>kommt</td></tr>
+          <tr><td>wir</td><td>kommen</td></tr>
+          <tr><td>ihr</td><td>kommt</td></tr>
+          <tr><td>sie / Sie</td><td>kommen</td></tr>
+        </table>
+        <div class="ex-pair"><span class="ex-de">Ich komme aus Ecuador.</span><span class="ex-es">Vengo de Ecuador.</span></div>
+        <div class="ex-pair"><span class="ex-de">Woher kommst du?</span><span class="ex-es">¿De dónde vienes?</span></div>
+        <div class="callout"><div class="callout-label">Patrón clave</div><span class="k">kommen aus</span> + país = "venir de". Lo usarás muchísimo.</div>` },
+      { icon:'📐', color:'b-ochre', title:'El verbo en 2ª posición', sub:'La regla de oro del alemán',
+        body:`<p>En una oración normal (afirmación), el <strong>verbo conjugado siempre ocupa el segundo lugar</strong>. No importa qué vaya primero.</p>
+        <div class="ex-pair"><span class="ex-de">Ich bin heute müde.</span><span class="ex-es">Hoy estoy cansado.</span></div>
+        <div class="ex-pair"><span class="ex-de">Heute bin ich müde.</span><span class="ex-es">Hoy estoy cansado. (mismo sentido)</span></div>
+        <p>Fíjate: aunque <span class="k">heute</span> pase al frente, el verbo <span class="k">bin</span> sigue en 2ª posición y el sujeto salta detrás.</p>
+        <div class="callout warn"><div class="callout-label">Error típico</div><span class="k">Heute ich bin müde</span> ✗ — el verbo quedó tercero. Mal.</div>` },
+      { icon:'📺', color:'b-green', title:'Nicos Weg — episodios', sub:'Practica escuchando',
+        body:`<a class="ep-card" href="https://learngerman.dw.com/en/overview" target="_blank" rel="noopener">
+          <div class="ep-num">7</div><div class="ep-info"><div class="ep-title">Woher kommst du?</div><div class="ep-desc">De dónde vienes, dónde vives</div></div><div class="ep-arrow">↗</div></a>` },
     ]
-  }
+  },
+  {
+    day: 3,
+    title: 'Nacionalidades y profesiones',
+    desc: 'Di de qué país eres, tu nacionalidad, qué idiomas hablas y a qué te dedicas.',
+    duration: '2 h',
+    status: 'now',
+    goals: ['kommen + aus a fondo', 'Nacionalidades (m/f)', 'arbeiten als + profesión', 'Números hasta 100'],
+    blocks: [
+      { icon:'🌍', color:'', title:'De qué país vienes', sub:'kommen aus + país',
+        body:`<p>Ya conoces <span class="k">kommen aus</span>. Ahora amplía tu mapa. La mayoría de los países no llevan artículo:</p>
+        <div class="ex-pair"><span class="ex-de">Ich komme aus Deutschland.</span><span class="ex-es">Vengo de Alemania.</span></div>
+        <div class="ex-pair"><span class="ex-de">Sie kommt aus Spanien.</span><span class="ex-es">Ella viene de España.</span></div>
+        <div class="callout warn"><div class="callout-label">Excepciones con artículo</div>
+        Algunos países llevan artículo y cambian a la forma <em>dativa</em> tras <span class="k">aus</span>:
+        <br>• <span class="k">die Schweiz</span> → <span class="k">aus der Schweiz</span> (de Suiza)
+        <br>• <span class="k">die Türkei</span> → <span class="k">aus der Türkei</span> (de Turquía)
+        <br>• <span class="k">die USA</span> → <span class="k">aus den USA</span> (de EE. UU.)</div>` },
+      { icon:'🧑', color:'b-blue', title:'Nacionalidades (masculino / femenino)', sub:'Cambian según la persona',
+        body:`<p>A diferencia del español, en alemán la nacionalidad es un <strong>sustantivo</strong> (con mayúscula) y suele tener forma masculina y femenina. La femenina normalmente añade <span class="k">-in</span>:</p>
+        <table class="conj-table">
+          <tr><td>Alemania</td><td>Deutscher / Deutsche</td></tr>
+          <tr><td>España</td><td>Spanier / Spanierin</td></tr>
+          <tr><td>Ecuador</td><td>Ecuadorianer / -in</td></tr>
+          <tr><td>Francia</td><td>Franzose / Französin</td></tr>
+          <tr><td>Italia</td><td>Italiener / -in</td></tr>
+        </table>
+        <div class="ex-pair"><span class="ex-de">Er ist Spanier.</span><span class="ex-es">Él es español.</span></div>
+        <div class="ex-pair"><span class="ex-de">Sie ist Spanierin.</span><span class="ex-es">Ella es española.</span></div>
+        <div class="callout"><div class="callout-label">Sin artículo</div>Al decir profesión o nacionalidad con <span class="k">sein</span>, <strong>no</strong> se usa artículo: <span class="k">Ich bin Ecuadorianer</span> (no "ein Ecuadorianer").</div>` },
+      { icon:'🗣️', color:'b-ochre', title:'Qué idiomas hablas', sub:'sprechen + idioma',
+        body:`<p>El idioma se escribe con mayúscula, igual que la nacionalidad:</p>
+        <div class="ex-pair"><span class="ex-de">Ich spreche Spanisch und Englisch.</span><span class="ex-es">Hablo español e inglés.</span></div>
+        <div class="ex-pair"><span class="ex-de">Ich spreche ein bisschen Deutsch.</span><span class="ex-es">Hablo un poco de alemán.</span></div>
+        <div class="ex-pair"><span class="ex-de">Sprichst du Englisch?</span><span class="ex-es">¿Hablas inglés?</span></div>
+        <div class="callout warn"><div class="callout-label">Ojo con sprechen</div>La <span class="k">du</span> y <span class="k">er/sie/es</span> cambian la vocal: <span class="k">du sprichst</span>, <span class="k">er spricht</span> (e → i).</div>` },
+      { icon:'💼', color:'b-green', title:'A qué te dedicas', sub:'sein + profesión · arbeiten als',
+        body:`<p>Hay dos formas de hablar de tu trabajo:</p>
+        <p><strong>1. Con <span class="k">sein</span> (sin artículo):</strong></p>
+        <div class="ex-pair"><span class="ex-de">Ich bin Lehrer.</span><span class="ex-es">Soy profesor.</span></div>
+        <div class="ex-pair"><span class="ex-de">Sie ist Ärztin.</span><span class="ex-es">Ella es médica.</span></div>
+        <p><strong>2. Con <span class="k">arbeiten als</span> (trabajar como):</strong></p>
+        <div class="ex-pair"><span class="ex-de">Ich arbeite als Ingenieur.</span><span class="ex-es">Trabajo como ingeniero.</span></div>
+        <p>El verbo <span class="k">arbeiten</span> añade una <strong>-e-</strong> extra en du/er/ihr para poder pronunciarse:</p>
+        <table class="conj-table">
+          <tr><td>ich</td><td>arbeite</td></tr>
+          <tr><td>du</td><td>arbeitest</td></tr>
+          <tr><td>er / sie / es</td><td>arbeitet</td></tr>
+          <tr><td>wir</td><td>arbeiten</td></tr>
+          <tr><td>ihr</td><td>arbeitet</td></tr>
+          <tr><td>sie / Sie</td><td>arbeiten</td></tr>
+        </table>` },
+      { icon:'🔢', color:'b-ochre', title:'Números 20–100', sub:'Se leen "al revés"',
+        body:`<p>Las decenas: <span class="k">zwanzig</span> (20) · <span class="k">dreißig</span> (30) · <span class="k">vierzig</span> (40) · <span class="k">fünfzig</span> (50) · <span class="k">sechzig</span> (60) · <span class="k">siebzig</span> (70) · <span class="k">achtzig</span> (80) · <span class="k">neunzig</span> (90) · <span class="k">hundert</span> (100).</p>
+        <div class="callout warn"><div class="callout-label">Regla curiosa</div>Del 21 al 99 se dice la unidad <strong>primero</strong>, unida por <span class="k">und</span>:
+        <br>• 21 = <span class="k">einundzwanzig</span> (uno-y-veinte)
+        <br>• 45 = <span class="k">fünfundvierzig</span> (cinco-y-cuarenta)
+        <br>• 67 = <span class="k">siebenundsechzig</span></div>
+        <div class="mini-drill">
+          <div class="drill-q">¿Cómo se dice <strong>34</strong>?</div>
+          <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Ver respuesta</button>
+          <div class="reveal-ans">vierunddreißig (cuatro-y-treinta)</div>
+        </div>` },
+      { icon:'💬', color:'b-blue', title:'Diálogo modelo', sub:'Junta todo lo del día',
+        body:`<div class="ex-pair"><span class="ex-de">— Woher kommst du?</span><span class="ex-es">¿De dónde vienes?</span></div>
+        <div class="ex-pair"><span class="ex-de">— Ich komme aus Ecuador. Ich bin Ecuadorianer.</span><span class="ex-es">Vengo de Ecuador. Soy ecuatoriano.</span></div>
+        <div class="ex-pair"><span class="ex-de">— Was bist du von Beruf?</span><span class="ex-es">¿A qué te dedicas?</span></div>
+        <div class="ex-pair"><span class="ex-de">— Ich arbeite als Programmierer. Und du?</span><span class="ex-es">Trabajo como programador. ¿Y tú?</span></div>
+        <div class="ex-pair"><span class="ex-de">— Ich bin Studentin und spreche ein bisschen Deutsch.</span><span class="ex-es">Soy estudiante y hablo un poco de alemán.</span></div>` },
+      { icon:'📺', color:'b-green', title:'Nicos Weg — episodios', sub:'Escucha y repite',
+        body:`<a class="ep-card" href="https://learngerman.dw.com/en/overview" target="_blank" rel="noopener">
+          <div class="ep-num">7</div><div class="ep-info"><div class="ep-title">Woher kommst du?</div><div class="ep-desc">Repaso: origen y residencia</div></div><div class="ep-arrow">↗</div></a>
+        <a class="ep-card" href="https://learngerman.dw.com/en/overview" target="_blank" rel="noopener">
+          <div class="ep-num">#</div><div class="ep-info"><div class="ep-title">Zahlen von 1 bis 100</div><div class="ep-desc">Los números hasta cien</div></div><div class="ep-arrow">↗</div></a>
+        <div class="callout"><div class="callout-label">Método</div>1) Míralo con subtítulos en alemán. 2) Vuelve a verlo sin subtítulos. 3) Repite las frases en voz alta.</div>` },
+    ]
+  },
+  // ——— Upcoming (locked previews) ———
+  { day:4, title:'Artículos y sustantivos', desc:'der / die / das, el gran reto del alemán: género y plurales.', duration:'2 h', status:'soon', locked:true },
+  { day:5, title:'La familia y los posesivos', desc:'mein/dein, hablar de tu familia y describir personas.', duration:'2 h', status:'soon', locked:true },
 ];
 
+/* ---------- QUIZZES ---------- */
 const QUIZZES = {
   day1: [
-    { q: '¿Cuál es la conjugación de "sein" para "du"?', opts: ['bin','bist','ist','seid'], correct: 1, exp: '"du bist"' },
-    { q: '¿Cómo se dice "Buenos días"?', opts: ['Guten Tag','Guten Morgen','Guten Abend','Gute Nacht'], correct: 1, exp: '"Guten Morgen"' },
-    { q: '¿Qué número es "zwölf"?', opts: ['2','10','12','20'], correct: 2, exp: '"zwölf" = 12' },
-    { q: '¿Cómo se dice "yo"?', opts: ['du','er','ich','wir'], correct: 2, exp: '"ich" = yo' },
-    { q: '"sein" para "wir"?', opts: ['bist','ist','sind','seid'], correct: 2, exp: '"wir sind"' },
+    { q:'¿Conjugación de <span class="k">sein</span> para <span class="k">du</span>?', opts:['bin','bist','ist','seid'], correct:1, exp:'"du bist" = tú eres/estás.' },
+    { q:'¿Cómo saludas por la mañana?', opts:['Guten Abend','Guten Morgen','Gute Nacht','Tschüss'], correct:1, exp:'"Guten Morgen" es el saludo de la mañana.' },
+    { q:'¿Qué número es <span class="k">zwölf</span>?', opts:['2','10','12','20'], correct:2, exp:'zwölf = 12. No lo confundas con zwei (2).' },
+    { q:'¿Cómo se dice "nosotros somos"?', opts:['wir seid','wir sind','wir bin','wir ist'], correct:1, exp:'"wir sind" — misma forma que sie/Sie.' },
+    { q:'¿Cuál es un saludo informal?', opts:['Auf Wiedersehen','Guten Tag','Hallo','Guten Abend'], correct:2, exp:'"Hallo" es informal y sirve a cualquier hora.' },
   ],
   day2: [
-    { q: '¿"llamarse"?', opts: ['heißen','kommen','sein','wohnen'], correct: 0, exp: '"heißen"' },
-    { q: '¿Posición del verbo?', opts: ['Final','2ª','1ª','Varía'], correct: 1, exp: 'Siempre 2ª posición' },
-    { q: '¿"De dónde vienes"?', opts: ['Wer bist du?','Wie heißt du?','Woher kommst du?','Wo bist du?'], correct: 2, exp: '"Woher kommst du?"' },
-    { q: '"kommen" para "er"?', opts: ['komme','kommst','kommt','kommen'], correct: 2, exp: '"er kommt"' },
-  ]
+    { q:'¿Cómo se dice "llamarse"?', opts:['kommen','heißen','wohnen','sein'], correct:1, exp:'"heißen" = llamarse. Ich heiße…' },
+    { q:'¿En qué posición va el verbo en una afirmación?', opts:['Primera','Segunda','Última','Da igual'], correct:1, exp:'Regla de oro: verbo siempre en 2ª posición.' },
+    { q:'¿"¿De dónde vienes?"?', opts:['Wer bist du?','Wo wohnst du?','Woher kommst du?','Wie heißt du?'], correct:2, exp:'"Woher kommst du?" — woher = de dónde.' },
+    { q:'<span class="k">kommen</span> para <span class="k">er</span>:', opts:['komme','kommst','kommt','kommen'], correct:2, exp:'"er kommt" = él viene.' },
+    { q:'¿Cuál es correcta?', opts:['Heute ich bin müde','Ich heute bin müde','Heute bin ich müde','Bin heute ich müde'], correct:2, exp:'El verbo bin va segundo, el sujeto salta detrás.' },
+  ],
+  day3: [
+    { q:'"Vengo de España":', opts:['Ich komme aus Spanien','Ich komme in Spanien','Ich bin aus Spanisch','Ich wohne Spanien'], correct:0, exp:'kommen + aus + país. "aus Spanien".' },
+    { q:'Ella es española:', opts:['Sie ist Spanier','Sie ist Spanierin','Sie ist eine Spanien','Sie kommt Spanierin'], correct:1, exp:'Femenino añade -in: Spanierin. Y sin artículo.' },
+    { q:'"Trabajo como médico":', opts:['Ich bin als Arzt','Ich arbeite wie Arzt','Ich arbeite als Arzt','Ich Arzt arbeite'], correct:2, exp:'arbeiten als + profesión.' },
+    { q:'¿Cómo se dice "un poco" (hablo un poco de alemán)?', opts:['ein wenig zu','ein bisschen','ein klein','sehr wenig'], correct:1, exp:'"ein bisschen Deutsch" = un poco de alemán.' },
+    { q:'¿Qué país lleva artículo?', opts:['Deutschland','Spanien','die Schweiz','Italien'], correct:2, exp:'die Schweiz (Suiza). → aus der Schweiz.' },
+    { q:'¿Cómo se dice <strong>25</strong>?', opts:['zwanzigfünf','fünfundzwanzig','zwanzigundfünf','fünfzwanzig'], correct:1, exp:'Unidad primero: fünf-und-zwanzig.' },
+    { q:'Al decir tu profesión con <span class="k">sein</span>, usas artículo…', opts:['siempre ein/eine','nunca','solo en femenino','solo con der'], correct:1, exp:'Nunca: "Ich bin Lehrer", no "ein Lehrer".' },
+    { q:'<span class="k">sprechen</span> para <span class="k">du</span>:', opts:['sprechst','sprichst','sprechst','spricht'], correct:1, exp:'Cambio e→i: du sprichst.' },
+  ],
 };
 
-function init() {
-  loadState();
-  applyTheme();
-  renderVocab();
-  renderSessions();
-  updateStats();
+/* ============================================================
+   LOGIC
+   ============================================================ */
+function $(id){ return document.getElementById(id); }
+
+function loadState(){
+  try { const s = localStorage.getItem(STORE); if(s) state = {...state, ...JSON.parse(s)}; } catch(e){}
+}
+function saveState(){
+  try { localStorage.setItem(STORE, JSON.stringify(state)); } catch(e){}
 }
 
-function loadState() {
-  try { const s = localStorage.getItem(STORAGE_KEY); if (s) state = { ...state, ...JSON.parse(s) }; } catch(e) {}
-}
-
-function saveState() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
-}
-
-function toggleTheme() {
+function toggleTheme(){
   state.theme = state.theme === 'dark' ? 'light' : 'dark';
-  applyTheme();
-  saveState();
+  applyTheme(); saveState();
 }
-
-function applyTheme() {
+function applyTheme(){
   document.documentElement.setAttribute('data-theme', state.theme);
-  document.getElementById('themeBtn').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+  $('themeBtn').textContent = state.theme === 'dark' ? '☀️' : '🌙';
 }
 
-function showView(v) {
-  document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
-  document.getElementById(`view-${v}`).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
-  const nb = document.querySelector(`.nav-btn[data-view="${v}"]`);
-  if (nb) nb.classList.add('active');
-  window.scrollTo(0,0);
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('active');
+  clearTimeout(window._tt); window._tt = setTimeout(()=>t.classList.remove('active'), 2400);
 }
 
-function openModal(id) { document.getElementById(id).classList.add('active'); }
-function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+/* ---------- ROUTER / NAV ---------- */
+const NAV = [
+  { id:'home', icon:'🏠', label:'Inicio' },
+  { id:'sessions', icon:'📚', label:'Sesiones' },
+  { id:'vocab', icon:'📖', label:'Vocab' },
+  { id:'quiz', icon:'🎯', label:'Quiz' },
+  { id:'tools', icon:'🔧', label:'Herram.' },
+];
+let currentView = 'home';
 
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('active');
-  setTimeout(() => t.classList.remove('active'), 2500);
+function renderNav(){
+  $('bottomNav').innerHTML = NAV.map(n =>
+    `<button class="nav-btn ${n.id===currentView?'active':''}" onclick="go('${n.id}')">
+      <span class="nav-btn-icon">${n.icon}</span><span>${n.label}</span>
+    </button>`).join('');
 }
 
-function openLink(url) { window.open(url, '_blank'); }
-
-function openDictionary(dict, wordOverride) {
-  const word = wordOverride || document.getElementById('heroSearch').value.trim();
-  if (!word) { toast('Escribe una palabra'); return; }
-  const urls = {
-    leo: `https://dict.leo.org/spanisch-deutsch/${encodeURIComponent(word)}`,
-    pons: `https://es.pons.com/traduccion/aleman-espanol/${encodeURIComponent(word)}`,
-    dictcc: `https://www.dict.cc/?s=${encodeURIComponent(word)}`
-  };
-  window.open(urls[dict], '_blank');
-  toast(`Buscando "${word}"`);
+function go(view, arg){
+  currentView = ['session-detail'].includes(view) ? 'sessions' : view;
+  window.scrollTo({top:0, behavior:'instant'});
+  const V = $('views');
+  if(view==='home') V.innerHTML = viewHome();
+  else if(view==='sessions') V.innerHTML = viewSessions();
+  else if(view==='session-detail') V.innerHTML = viewSessionDetail(arg);
+  else if(view==='vocab'){ V.innerHTML = viewVocab(); renderVocabList(); }
+  else if(view==='quiz') V.innerHTML = viewQuiz();
+  else if(view==='tools') V.innerHTML = viewTools();
+  renderNav();
 }
 
-function openDictionaryFromVocab(dict) {
-  const word = document.getElementById('vocabDictSearch').value.trim();
-  if (!word) { toast('Escribe una palabra'); return; }
-  openDictionary(dict, word);
+/* ---------- HOME ---------- */
+function viewHome(){
+  const total = getAllVocab().length;
+  const done = SESSIONS.filter(s=>s.status==='done').length;
+  const nextS = SESSIONS.find(s=>s.status==='now') || SESSIONS.find(s=>s.status==='soon');
+  return `
+    <div class="hero">
+      <div class="hero-greeting">Hallo, Aki <span class="wave">👋</span></div>
+      <div class="hero-sub">${greetingLine()}</div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">${done}</div><div class="stat-label">Sesiones</div></div>
+        <div class="stat"><div class="stat-value">${total}</div><div class="stat-label">Palabras</div></div>
+        <div class="stat"><div class="stat-value">${state.streak}🔥</div><div class="stat-label">Racha</div></div>
+        <div class="stat"><div class="stat-value">A1</div><div class="stat-label">Nivel</div></div>
+      </div>
+    </div>
+
+    ${nextS ? `<div class="card" style="border-color:var(--ochre); background:linear-gradient(135deg,var(--ochre-soft),transparent);">
+      <div class="eyebrow" style="color:var(--ochre)">Continúa donde ibas</div>
+      <h3 style="margin-bottom:6px">Día ${nextS.day} · ${nextS.title}</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">${nextS.desc}</p>
+      <button class="btn btn-primary btn-full" onclick="go('session-detail',${nextS.day})">Abrir la sesión →</button>
+    </div>`:''}
+
+    <div class="dict-hero">
+      <div class="dict-hero-title">🔍 Buscar una palabra</div>
+      <div class="dict-hero-desc">Diccionarios profesionales de alemán, gratis y con audio.</div>
+      <input type="text" class="dict-input" id="homeDict" placeholder="gato, correr, bonito…" onkeydown="if(event.key==='Enter')dictGo('leo','homeDict')">
+      <div class="dict-btns">
+        <button class="dict-btn" onclick="dictGo('leo','homeDict')">LEO<small>completo</small></button>
+        <button class="dict-btn" onclick="dictGo('pons','homeDict')">PONS<small>con audio</small></button>
+        <button class="dict-btn" onclick="dictGo('dictcc','homeDict')">dict.cc<small>ejemplos</small></button>
+      </div>
+    </div>
+
+    <div class="section-label">Accesos rápidos</div>
+    <div class="quick-grid">
+      <button class="quick-tile" onclick="go('vocab')">
+        <div class="quick-tile-icon qt-red">📖</div>
+        <div class="quick-tile-title">Vocabulario</div>
+        <div class="quick-tile-desc">${total} palabras para repasar</div>
+      </button>
+      <button class="quick-tile" onclick="go('quiz')">
+        <div class="quick-tile-icon qt-blue">🎯</div>
+        <div class="quick-tile-title">Quiz</div>
+        <div class="quick-tile-desc">Ponte a prueba</div>
+      </button>
+      <button class="quick-tile" onclick="openAddVocab()">
+        <div class="quick-tile-icon qt-green">➕</div>
+        <div class="quick-tile-title">Añadir palabra</div>
+        <div class="quick-tile-desc">Amplía tu banco</div>
+      </button>
+      <button class="quick-tile" onclick="go('tools')">
+        <div class="quick-tile-icon qt-ochre">🔧</div>
+        <div class="quick-tile-title">Herramientas</div>
+        <div class="quick-tile-desc">Diccionarios y DW</div>
+      </button>
+    </div>`;
 }
 
-function quickSearch(dict) {
-  const word = document.getElementById('addGerman').value.trim() || document.getElementById('addSpanish').value.trim();
-  if (!word) { toast('Escribe primero'); return; }
-  openDictionary(dict, word);
+function greetingLine(){
+  const h = new Date().getHours();
+  if(h<12) return 'Guten Morgen. ¿List@ para tu sesión de hoy?';
+  if(h<19) return 'Guten Tag. Un poco de alemán cada día suma muchísimo.';
+  return 'Guten Abend. Buen momento para repasar vocabulario.';
 }
 
-function verifyWord(dict) {
-  const word = document.getElementById('verifyGerman').value.trim();
-  if (!word) { toast('Escribe una palabra'); return; }
-  openDictionary(dict, word);
+/* ---------- SESSIONS ---------- */
+function viewSessions(){
+  return `
+    <div class="eyebrow">Tu ruta A1</div>
+    <h1>Sesiones</h1>
+    <p class="view-subtitle">Un plan de 5 días. Toca una sesión para ver toda la gramática, ejemplos y episodios de Nicos Weg.</p>
+    <div class="roadmap-line">
+      ${SESSIONS.map(s=>sessionCard(s)).join('')}
+    </div>`;
+}
+function sessionCard(s){
+  const badge = s.status==='done' ? '<span class="badge badge-done">✓ Hecho</span>'
+    : s.status==='now' ? '<span class="badge badge-now">● Ahora</span>'
+    : '<span class="badge badge-soon">Próximo</span>';
+  const click = s.locked ? '' : `onclick="go('session-detail',${s.day})"`;
+  return `<div class="session-item ${s.locked?'locked':''}" ${click}>
+    <div class="session-head">
+      <div class="session-daynum"><span class="dot"></span>Día ${s.day}</div>
+      ${badge}
+    </div>
+    <div class="session-title">${s.title}</div>
+    <div class="session-desc">${s.desc}</div>
+    <div class="session-meta">
+      <span>⏱ ${s.duration}</span>
+      ${s.blocks?`<span>📚 ${s.blocks.length} bloques</span>`:''}
+      ${s.locked?'<span>🔒 Por venir</span>':'<span>→ Abrir</span>'}
+    </div>
+  </div>`;
 }
 
-function conjugateVerb() {
-  const verb = document.getElementById('verbSearch').value.trim();
-  if (!verb) { toast('Escribe un verbo'); return; }
-  window.open(`https://www.verbformen.com/?w=${encodeURIComponent(verb)}`, '_blank');
+function viewSessionDetail(day){
+  const s = SESSIONS.find(x=>x.day===day);
+  if(!s) return viewSessions();
+  return `
+    <button class="back-btn" onclick="go('sessions')">← Todas las sesiones</button>
+    <div class="detail-hero">
+      <div class="eyebrow">Día ${s.day} · ${s.duration}</div>
+      <h1>${s.title}</h1>
+      <p class="view-subtitle" style="margin-bottom:14px">${s.desc}</p>
+      ${s.goals?`<div style="display:flex;flex-wrap:wrap;gap:7px">${s.goals.map(g=>`<span class="vtag">✓ ${g}</span>`).join('')}</div>`:''}
+    </div>
+    ${s.blocks.map(b=>`
+      <div class="block">
+        <div class="block-head">
+          <div class="block-icon ${b.color||''}">${b.icon}</div>
+          <div><div class="block-title">${b.title}</div><div class="block-sub">${b.sub}</div></div>
+        </div>
+        <div class="block-body">${b.body}</div>
+      </div>`).join('')}
+    <div style="display:flex;gap:9px;margin-top:8px">
+      <button class="btn btn-full" onclick="go('sessions')">← Volver</button>
+      ${QUIZZES['day'+s.day]?`<button class="btn btn-primary btn-full" onclick="startQuiz('day${s.day}')">🎯 Quiz del Día ${s.day}</button>`:''}
+    </div>`;
 }
 
-function getAllVocab() {
+/* ---------- VOCAB ---------- */
+function getAllVocab(){
   return [
-    ...CORE_VOCAB.map(v => ({ ...v, source: 'core' })),
-    ...state.vocabPersonal.map(v => ({ ...v, source: 'personal' }))
+    ...CORE_VOCAB.map(v=>({...v, source:'core'})),
+    ...state.personalVocab.map(v=>({...v, source:'personal'})),
   ];
 }
-
-function setVocabFilter(filter, btn) {
-  state.currentVocabFilter = filter;
-  document.querySelectorAll('#vocabFilters .chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  renderVocab();
+function viewVocab(){
+  return `
+    <div class="eyebrow">Tu banco de palabras</div>
+    <h1>Vocabulario</h1>
+    <p class="view-subtitle">Todo lo aprendido, organizado. Busca antes de añadir para tener artículo y plural correctos.</p>
+    <div class="dict-hero">
+      <div class="dict-hero-title">🔍 Buscar en el diccionario</div>
+      <input type="text" class="dict-input" id="vocabDict" placeholder="Escribe cualquier palabra…" onkeydown="if(event.key==='Enter')dictGo('leo','vocabDict')">
+      <div class="dict-btns">
+        <button class="dict-btn" onclick="dictGo('leo','vocabDict')">LEO<small>buscar</small></button>
+        <button class="dict-btn" onclick="dictGo('pons','vocabDict')">PONS<small>buscar</small></button>
+        <button class="dict-btn" onclick="openAddVocab()">➕<small>añadir</small></button>
+      </div>
+    </div>
+    <div class="vocab-controls">
+      <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 Filtrar mi vocabulario…" oninput="renderVocabList()">
+      <button class="btn btn-primary btn-sm" onclick="openAddVocab()">+ Añadir</button>
+    </div>
+    <div class="chips" id="vocabChips">
+      ${VOCAB_CATS.map(c=>{
+        const count = c.id==='all' ? getAllVocab().length
+          : c.id==='personal' ? state.personalVocab.length
+          : getAllVocab().filter(v=>v.cat===c.id).length;
+        return `<button class="chip ${state.vocabFilter===c.id?'active':''}" onclick="setVFilter('${c.id}')">${c.label}<span class="chip-count">${count}</span></button>`;
+      }).join('')}
+    </div>
+    <div class="vocab-count" id="vocabCount"></div>
+    <div id="vocabList"></div>`;
 }
+function setVFilter(f){
+  state.vocabFilter = f; saveState();
+  document.querySelectorAll('#vocabChips .chip').forEach(c=>c.classList.remove('active'));
+  event.target.closest('.chip').classList.add('active');
+  renderVocabList();
+}
+function renderVocabList(){
+  const search = ($('vocabSearch')?.value||'').toLowerCase().trim();
+  const f = state.vocabFilter;
+  let list = getAllVocab();
+  if(f==='personal') list = list.filter(v=>v.source==='personal');
+  else if(f!=='all') list = list.filter(v=>v.cat===f);
+  if(search) list = list.filter(v=> v.de.toLowerCase().includes(search) || v.es.toLowerCase().includes(search));
 
-function renderVocab() {
-  const search = (document.getElementById('vocabSearch')?.value || '').toLowerCase();
-  const filter = state.currentVocabFilter;
-  const container = document.getElementById('vocabList');
-  
-  let vocab = getAllVocab();
-  if (filter === 'personal') vocab = vocab.filter(v => v.source === 'personal');
-  else if (filter !== 'all') vocab = vocab.filter(v => v.type === filter);
-  if (search) vocab = vocab.filter(v => v.german.toLowerCase().includes(search) || v.spanish.toLowerCase().includes(search));
-  
-  if (vocab.length === 0) {
-    container.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><div class="empty-text">No hay palabras</div><button class="btn btn-primary" onclick="openAddVocab()">Añadir palabra</button></div>`;
+  const countEl = $('vocabCount');
+  if(countEl) countEl.textContent = `${list.length} ${list.length===1?'palabra':'palabras'}`;
+
+  const c = $('vocabList');
+  if(list.length===0){
+    c.innerHTML = `<div class="empty"><div class="empty-icon">🗂️</div><div class="empty-text">${f==='personal'?'Aún no has añadido palabras propias.':'No hay coincidencias.'}</div><button class="btn btn-primary" onclick="openAddVocab()">➕ Añadir palabra</button></div>`;
     return;
   }
-  
-  container.innerHTML = vocab.map((v) => {
-    const articleClass = v.article ? `article-${v.article}` : '';
-    const articleHtml = v.article ? `<span class="article ${articleClass}">${v.article}</span>` : '';
-    const badge = v.source === 'personal' ? `<span class="vocab-badge">mío</span>` : `<span class="vocab-badge">día ${v.day || '?'}</span>`;
-    
-    let details = '';
-    if (v.plural) details += `<span class="vocab-detail-item"><strong>plural:</strong> ${v.plural}</span>`;
-    if (v.type) details += `<span class="vocab-detail-item">${v.type}</span>`;
-    
-    const delIdx = state.vocabPersonal.findIndex(x => x === v || (x.german === v.german && x.spanish === v.spanish && x.addedAt === v.addedAt));
-    const deleteBtn = v.source === 'personal' && delIdx >= 0 ? `<button class="btn btn-sm" onclick="deleteVocab(${delIdx}, event)">🗑️</button>` : '';
-    const searchBtn = `<button class="btn btn-sm" onclick="openDictionary('leo', '${v.german.replace(/'/g, "\\'")}')">🔍</button>`;
-    
+  c.innerHTML = list.map(v=>{
+    const art = v.article ? `<span class="art art-${v.article}">${v.article}</span>` : '';
+    const badge = v.source==='personal' ? '<span class="vocab-badge">mía</span>' : `<span class="vocab-badge">día ${v.day||'?'}</span>`;
+    let tags = '';
+    if(v.plural) tags += `<span class="vtag"><strong>pl:</strong> ${v.plural}</span>`;
+    if(v.type) tags += `<span class="vtag">${v.type}</span>`;
+    const delBtn = v.source==='personal'
+      ? `<button class="btn btn-sm" onclick="delVocab(${state.personalVocab.indexOf(state.personalVocab.find(x=>x.de===v.de&&x.es===v.es&&x.addedAt===v.addedAt))})">🗑️</button>` : '';
+    const dictBtn = `<button class="btn btn-sm" onclick="dictWord('leo','${v.de.replace(/'/g,"\\'")}')">🔍</button>`;
     return `<div class="vocab-card">
-      <div class="vocab-main">
-        <div><div class="vocab-german">${articleHtml}${v.german}</div><div class="vocab-spanish">${v.spanish}</div></div>
-        ${badge}
+      <div class="vocab-top">
+        <div>
+          <div class="vocab-de">${art}${v.de}</div>
+          <div class="vocab-es">${v.es}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          ${badge}
+        </div>
       </div>
-      ${details ? `<div class="vocab-details">${details}</div>` : ''}
-      ${v.example ? `<div class="vocab-example">${v.example}</div>` : ''}
-      ${v.notes ? `<div class="vocab-example" style="border-left-color: var(--warning);">📝 ${v.notes}</div>` : ''}
-      <div class="vocab-actions-row">${searchBtn}${deleteBtn}</div>
+      ${tags?`<div class="vocab-tags">${tags}</div>`:''}
+      ${v.ex?`<div class="vocab-ex">„${v.ex}"${v.exTr?`<span class="ex-tr">${v.exTr}</span>`:''}</div>`:''}
+      <div class="vocab-tags" style="justify-content:flex-end;margin-top:10px">${dictBtn}${delBtn}</div>
     </div>`;
   }).join('');
 }
 
-function openAddVocab() {
-  ['addGerman','addSpanish','addPlural','addExample','addNotes'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('addArticle').value = '';
-  document.getElementById('addType').value = 'sustantivo';
+/* ---------- ADD VOCAB MODAL ---------- */
+function openModal(id){ $(id).classList.add('active'); }
+function closeModal(id){ $(id).classList.remove('active'); }
+function openAddVocab(){
+  ['fGerman','fSpanish','fPlural','fExample','fExampleTr'].forEach(i=>$(i).value='');
+  $('fArticle').value=''; $('fType').value='sustantivo';
   openModal('modalAddVocab');
 }
-
-function saveVocab() {
-  const german = document.getElementById('addGerman').value.trim();
-  const article = document.getElementById('addArticle').value;
-  const type = document.getElementById('addType').value;
-  const spanish = document.getElementById('addSpanish').value.trim();
-  const plural = document.getElementById('addPlural').value.trim();
-  const example = document.getElementById('addExample').value.trim();
-  const notes = document.getElementById('addNotes').value.trim();
-  
-  if (!german || !spanish) { toast('Alemán y español requeridos'); return; }
-  
-  const word = { german, spanish, type, addedAt: Date.now() };
-  if (article) word.article = article;
-  if (plural) word.plural = plural;
-  if (example) word.example = example;
-  if (notes) word.notes = notes;
-  
-  state.vocabPersonal.push(word);
-  saveState();
-  renderVocab();
-  updateStats();
-  closeModal('modalAddVocab');
-  toast('✓ Guardada');
+function quickDictFromForm(dict){
+  const w = $('fGerman').value.trim() || $('fSpanish').value.trim();
+  if(!w){ toast('Escribe primero la palabra'); return; }
+  dictWord(dict, w);
 }
-
-function deleteVocab(index, event) {
-  event.stopPropagation();
-  if (confirm('¿Eliminar?')) {
-    state.vocabPersonal.splice(index, 1);
-    saveState();
-    renderVocab();
-    updateStats();
-    toast('Eliminada');
+function saveVocab(){
+  const de = $('fGerman').value.trim();
+  const es = $('fSpanish').value.trim();
+  if(!de || !es){ toast('Alemán y español son obligatorios'); return; }
+  const w = { de, es, type:$('fType').value, cat:'personal', addedAt:Date.now() };
+  const art = $('fArticle').value; if(art) w.article = art;
+  const pl = $('fPlural').value.trim(); if(pl) w.plural = pl;
+  const ex = $('fExample').value.trim(); if(ex) w.ex = ex;
+  const exTr = $('fExampleTr').value.trim(); if(exTr) w.exTr = exTr;
+  state.personalVocab.push(w); saveState();
+  closeModal('modalAddVocab');
+  toast('✓ Palabra guardada');
+  if(currentView==='vocab'){ go('vocab'); }
+}
+function delVocab(i){
+  if(i<0) return;
+  if(confirm('¿Eliminar esta palabra?')){
+    state.personalVocab.splice(i,1); saveState(); renderVocabList();
+    toast('Palabra eliminada');
   }
 }
 
-function renderSessions() {
-  const container = document.getElementById('sessionsList');
-  container.innerHTML = SESSIONS.map(s => {
-    const badge = s.completed ? `<span class="badge badge-success">✓ Completado</span>` : `<span class="badge badge-warning">🔄 En progreso</span>`;
-    return `<div class="session-item" onclick="openSession(${s.day})">
-      <div class="session-header">
-        <div><div class="session-number">Día ${s.day}</div><div class="session-title">${s.title}</div></div>
-        ${badge}
+/* ---------- DICTIONARIES ---------- */
+function dictWord(dict, word){
+  const urls = {
+    leo:`https://dict.leo.org/spanisch-deutsch/${encodeURIComponent(word)}`,
+    pons:`https://es.pons.com/traduccion/aleman-espanol/${encodeURIComponent(word)}`,
+    dictcc:`https://www.dict.cc/?s=${encodeURIComponent(word)}`,
+  };
+  window.open(urls[dict], '_blank', 'noopener');
+  toast(`Buscando „${word}"…`);
+}
+function dictGo(dict, inputId){
+  const w = $(inputId).value.trim();
+  if(!w){ toast('Escribe una palabra'); return; }
+  dictWord(dict, w);
+}
+
+/* ---------- QUIZ ---------- */
+let quiz = null, qIdx = 0, qScore = 0, qAnswered = false;
+
+function viewQuiz(){
+  return `
+    <div class="eyebrow">Ponte a prueba</div>
+    <h1>Quiz</h1>
+    <p class="view-subtitle">Elige qué practicar. Cada pregunta te explica la respuesta.</p>
+    <div id="quizArea">
+      <div class="quiz-mode-grid">
+        <button class="quiz-mode" onclick="startQuiz('all')">
+          <div class="quiz-mode-icon qt-red">📚</div>
+          <div><div class="quiz-mode-title">Repaso completo</div><div class="quiz-mode-desc">Preguntas de todas las sesiones</div></div>
+        </button>
+        <button class="quiz-mode" onclick="startQuiz('day1')">
+          <div class="quiz-mode-icon qt-blue">1️⃣</div>
+          <div><div class="quiz-mode-title">Día 1</div><div class="quiz-mode-desc">Saludos, sein, números</div></div>
+        </button>
+        <button class="quiz-mode" onclick="startQuiz('day2')">
+          <div class="quiz-mode-icon qt-ochre">2️⃣</div>
+          <div><div class="quiz-mode-title">Día 2</div><div class="quiz-mode-desc">heißen, kommen, orden</div></div>
+        </button>
+        <button class="quiz-mode" onclick="startQuiz('day3')">
+          <div class="quiz-mode-icon qt-green">3️⃣</div>
+          <div><div class="quiz-mode-title">Día 3</div><div class="quiz-mode-desc">Nacionalidades, profesiones</div></div>
+        </button>
+        <button class="quiz-mode" onclick="startQuiz('vocab')">
+          <div class="quiz-mode-icon qt-red">🔤</div>
+          <div><div class="quiz-mode-title">Vocabulario</div><div class="quiz-mode-desc">¿Cómo se dice…?</div></div>
+        </button>
       </div>
-      <div class="session-desc">${s.description}</div>
-      <div class="session-meta"><span>⏱ ${s.duration}</span><span>📚 ${s.blocks.length} bloques</span></div>
     </div>`;
-  }).join('');
 }
 
-function openSession(day) {
-  const s = SESSIONS.find(x => x.day === day);
-  if (!s) return;
-  document.getElementById('sessionDetailContent').innerHTML = `
-    <div style="margin-bottom: 20px;">
-      <div style="color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase;">Día ${s.day}</div>
-      <h1 style="margin-top: 4px;">${s.title}</h1>
-      <p class="view-subtitle">${s.description}</p>
-    </div>
-    ${s.blocks.map(b => `
-      <div class="block">
-        <div class="block-header">
-          <div class="block-icon">${b.icon}</div>
-          <div><div class="block-title">${b.title}</div><div class="block-subtitle">${b.subtitle}</div></div>
-        </div>
-        <div class="block-content">${b.content}</div>
-      </div>
-    `).join('')}
-    <div style="display: flex; gap: 8px; margin-top: 20px;">
-      <button class="btn btn-full" onclick="showView('sessions')">← Volver</button>
-      <button class="btn btn-primary btn-full" onclick="startQuiz('day${s.day}'); showView('quiz');">🎯 Quiz</button>
-    </div>
-  `;
-  showView('session-detail');
-}
-
-let currentQuiz = null, currentQuizIndex = 0, quizScore = 0, quizAnswered = false;
-
-function startQuiz(mode) {
+function startQuiz(mode){
   let qs = [];
-  if (mode === 'all') qs = [...QUIZZES.day1, ...QUIZZES.day2];
-  else if (mode === 'vocab') {
-    const v = getAllVocab().slice(0, 15);
-    if (v.length < 4) { toast('Necesitas más vocabulario'); return; }
-    qs = v.slice(0, 5).map(w => {
-      const wrongs = v.filter(x => x.german !== w.german).sort(() => Math.random() - 0.5).slice(0, 3);
-      const opts = [w.german, ...wrongs.map(x => x.german)].sort(() => Math.random() - 0.5);
-      return { q: `¿Cómo se dice "${w.spanish}" en alemán?`, opts, correct: opts.indexOf(w.german), exp: `"${w.german}"` };
+  if(mode==='all') qs = [...QUIZZES.day1, ...QUIZZES.day2, ...QUIZZES.day3];
+  else if(mode==='vocab'){
+    const pool = getAllVocab().filter(v=>v.de && v.es && !v.de.includes('/'));
+    if(pool.length<4){ toast('Necesitas más vocabulario'); return; }
+    const shuffled = [...pool].sort(()=>Math.random()-0.5).slice(0,6);
+    qs = shuffled.map(w=>{
+      const wrong = pool.filter(x=>x.de!==w.de).sort(()=>Math.random()-0.5).slice(0,3).map(x=>x.de);
+      const opts = [w.de, ...wrong].sort(()=>Math.random()-0.5);
+      return { q:`¿Cómo se dice <strong>„${w.es}"</strong>?`, opts, correct:opts.indexOf(w.de), exp:`„${w.de}" = ${w.es}` };
     });
   } else qs = QUIZZES[mode] || [];
-  
-  if (qs.length === 0) { toast('Sin preguntas'); return; }
-  currentQuiz = qs.sort(() => Math.random() - 0.5);
-  currentQuizIndex = 0;
-  quizScore = 0;
-  document.getElementById('quizIntro').style.display = 'none';
-  document.getElementById('quizResult').style.display = 'none';
-  document.getElementById('quizActive').style.display = 'block';
-  loadQuizQuestion();
+  if(!qs.length){ toast('Sin preguntas'); return; }
+
+  quiz = qs.sort(()=>Math.random()-0.5); qIdx=0; qScore=0;
+  currentView='quiz'; renderNav();
+  renderQuizQuestion();
 }
 
-function loadQuizQuestion() {
-  const q = currentQuiz[currentQuizIndex];
-  quizAnswered = false;
-  document.getElementById('quizProgress').innerHTML = currentQuiz.map((_, i) => 
-    `<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width: ${i <= currentQuizIndex ? '100%' : '0'}"></div></div>`
-  ).join('');
-  document.getElementById('quizQuestion').textContent = q.q;
-  document.getElementById('quizOptions').innerHTML = q.opts.map((o, i) => 
-    `<button class="quiz-option" onclick="answerQuiz(${i})">${o}</button>`
-  ).join('');
-  document.getElementById('quizFeedback').style.display = 'none';
-  document.getElementById('quizFeedback').className = 'quiz-feedback';
-  document.getElementById('quizNextBtn').style.display = 'none';
+function renderQuizQuestion(){
+  const q = quiz[qIdx]; qAnswered=false;
+  $('quizArea').innerHTML = `
+    <div class="quiz-counter">Pregunta ${qIdx+1} / ${quiz.length}</div>
+    <div class="quiz-progress">
+      ${quiz.map((_,i)=>`<div class="qp-bar"><div class="qp-fill" style="width:${i<qIdx?'100':i===qIdx?'0':'0'}%"></div></div>`).join('')}
+    </div>
+    <div class="quiz-q">${q.q}</div>
+    <div id="quizOpts">
+      ${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="quiz-fb" id="quizFb"></div>
+    <div style="display:flex;gap:9px;margin-top:16px">
+      <button class="btn" onclick="quitQuiz()">Salir</button>
+      <button class="btn btn-primary" id="qNext" style="display:none;margin-left:auto" onclick="nextQuiz()">Siguiente →</button>
+    </div>`;
+  requestAnimationFrame(()=>{ const f=document.querySelector('.qp-fill'); });
+  // animate current bar
+  setTimeout(()=>{ const bars=document.querySelectorAll('.qp-fill'); if(bars[qIdx]) bars[qIdx].style.width='40%'; }, 50);
 }
 
-function answerQuiz(idx) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-  const q = currentQuiz[currentQuizIndex];
-  const opts = document.querySelectorAll('.quiz-option');
-  const fb = document.getElementById('quizFeedback');
-  opts.forEach((o, i) => {
-    if (i === q.correct) o.classList.add('correct');
-    if (i === idx && i !== q.correct) o.classList.add('wrong');
+function answerQuiz(i){
+  if(qAnswered) return; qAnswered=true;
+  const q = quiz[qIdx];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach((o,idx)=>{
+    o.disabled = true;
+    if(idx===q.correct){ o.classList.add('correct'); o.innerHTML += '<span class="mark">✓</span>'; }
+    if(idx===i && i!==q.correct){ o.classList.add('wrong'); o.innerHTML += '<span class="mark">✗</span>'; }
   });
-  if (idx === q.correct) { quizScore++; fb.textContent = `✓ ¡Correcto! ${q.exp}`; fb.classList.add('correct'); }
-  else { fb.textContent = `✗ ${q.exp}`; fb.classList.add('wrong'); }
-  fb.style.display = 'block';
-  document.getElementById('quizNextBtn').style.display = 'block';
-  document.getElementById('quizNextBtn').textContent = currentQuizIndex === currentQuiz.length - 1 ? 'Resultados →' : 'Siguiente →';
+  const fb = $('quizFb');
+  if(i===q.correct){ qScore++; fb.className='quiz-fb correct show'; fb.innerHTML=`<strong>¡Richtig! 🎉</strong>${q.exp}`; }
+  else { fb.className='quiz-fb wrong show'; fb.innerHTML=`<strong>Casi…</strong>${q.exp}`; }
+  const bars=document.querySelectorAll('.qp-fill'); if(bars[qIdx]) bars[qIdx].style.width='100%';
+  const nb=$('qNext'); nb.style.display='block'; nb.textContent = qIdx===quiz.length-1?'Ver resultado →':'Siguiente →';
+}
+function nextQuiz(){
+  qIdx++;
+  if(qIdx>=quiz.length) showResult();
+  else renderQuizQuestion();
+}
+function quitQuiz(){ if(confirm('¿Salir del quiz?')) go('quiz'); }
+
+function showResult(){
+  const pct = Math.round(qScore/quiz.length*100);
+  let emoji, msg;
+  if(pct===100){ emoji='🏆'; msg='¡Perfecto! Dominas este tema.'; }
+  else if(pct>=80){ emoji='🎉'; msg='¡Muy bien! Casi impecable.'; }
+  else if(pct>=60){ emoji='💪'; msg='Buen trabajo. Un repaso más y lo tienes.'; }
+  else { emoji='📚'; msg='Repasa la sesión y vuelve a intentarlo.'; }
+  if(pct>=80 && qScore>0){ /* keep streak vibe */ }
+  $('quizArea').innerHTML = `
+    <div class="card" style="text-align:center;padding:32px 22px">
+      <div class="result-emoji">${emoji}</div>
+      <h2 style="margin-bottom:4px">${qScore===quiz.length?'¡Sin fallos!':'¡Terminaste!'}</h2>
+      <div class="result-score">${qScore}/${quiz.length}</div>
+      <p style="color:var(--text-muted);margin-bottom:24px">${msg}</p>
+      <div style="display:flex;gap:9px">
+        <button class="btn btn-full" onclick="go('quiz')">Otro quiz</button>
+        <button class="btn btn-primary btn-full" onclick="go('home')">Inicio</button>
+      </div>
+    </div>`;
 }
 
-function nextQuizQuestion() {
-  currentQuizIndex++;
-  if (currentQuizIndex >= currentQuiz.length) showQuizResult();
-  else loadQuizQuestion();
+/* ---------- TOOLS ---------- */
+function viewTools(){
+  return `
+    <div class="eyebrow">Todo en un sitio</div>
+    <h1>Herramientas</h1>
+    <p class="view-subtitle">Diccionarios, conjugador, y el curso Nicos Weg de Deutsche Welle.</p>
+
+    <div class="card">
+      <div class="card-title"><div class="card-title-icon">🔍</div>Verificar una palabra</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">¿Escribiste bien? ¿Es der, die o das? Compruébalo.</p>
+      <input type="text" class="dict-input" id="toolsDict" placeholder="ej: der Katze, laufe, schön…" onkeydown="if(event.key==='Enter')dictGo('leo','toolsDict')">
+      <div class="dict-btns">
+        <button class="dict-btn" onclick="dictGo('leo','toolsDict')">LEO<small>verificar</small></button>
+        <button class="dict-btn" onclick="dictGo('pons','toolsDict')">PONS<small>verificar</small></button>
+        <button class="dict-btn" onclick="dictGo('dictcc','toolsDict')">dict.cc<small>verificar</small></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="card-title-icon">💬</div>Conjugar un verbo</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Todas las formas de cualquier verbo alemán.</p>
+      <input type="text" class="dict-input" id="verbDict" placeholder="ej: gehen, haben, sprechen…" onkeydown="if(event.key==='Enter')conjugate()">
+      <button class="btn btn-primary btn-full" onclick="conjugate()">Ver conjugación →</button>
+    </div>
+
+    <div class="card" style="border-color:var(--cobalt); background:linear-gradient(135deg,var(--cobalt-soft),transparent)">
+      <div class="card-title"><div class="card-title-icon" style="background:var(--cobalt-soft);color:var(--cobalt)">📺</div>Nicos Weg (DW)</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">El curso gratuito de Deutsche Welle: videos, ejercicios y transcripciones. Tu fuente principal de alemán real.</p>
+      <button class="btn btn-primary btn-full" onclick="openURL('https://learngerman.dw.com/en/overview')">Abrir Nicos Weg →</button>
+    </div>
+
+    <div class="section-label">Recursos</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <button class="resource-btn" onclick="openURL('https://dict.leo.org/deutsch-spanisch/')"><span class="r-icon">📖</span>LEO · Diccionario alemán–español<span class="r-arrow">↗</span></button>
+      <button class="resource-btn" onclick="openURL('https://es.pons.com/traduccion/aleman-espanol')"><span class="r-icon">🔊</span>PONS · con pronunciación<span class="r-arrow">↗</span></button>
+      <button class="resource-btn" onclick="openURL('https://www.verbformen.com/')"><span class="r-icon">🔤</span>Verbformen · conjugador<span class="r-arrow">↗</span></button>
+      <button class="resource-btn" onclick="openURL('https://www.dwds.de/')"><span class="r-icon">📚</span>DWDS · diccionario monolingüe<span class="r-arrow">↗</span></button>
+    </div>
+
+    <div class="section-label">Tus datos</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <button class="resource-btn" onclick="exportData()"><span class="r-icon">💾</span>Exportar mi vocabulario (respaldo)<span class="r-arrow">↓</span></button>
+      <button class="resource-btn" onclick="importData()"><span class="r-icon">📥</span>Importar respaldo<span class="r-arrow">↑</span></button>
+    </div>`;
+}
+function conjugate(){
+  const v = $('verbDict').value.trim();
+  if(!v){ toast('Escribe un verbo'); return; }
+  window.open(`https://www.verbformen.com/?w=${encodeURIComponent(v)}`,'_blank','noopener');
+}
+function openURL(u){ window.open(u,'_blank','noopener'); }
+
+/* ---------- EXPORT / IMPORT ---------- */
+function exportData(){
+  const data = JSON.stringify({ personalVocab: state.personalVocab, completed: state.completed, exportedAt: new Date().toISOString() }, null, 2);
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'deutsch-hub-respaldo.json'; a.click();
+  URL.revokeObjectURL(url);
+  toast('💾 Respaldo descargado');
+}
+function importData(){
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='.json';
+  inp.onchange = e=>{
+    const file = e.target.files[0]; if(!file) return;
+    const r = new FileReader();
+    r.onload = ()=>{
+      try {
+        const d = JSON.parse(r.result);
+        if(Array.isArray(d.personalVocab)){
+          state.personalVocab = d.personalVocab; saveState();
+          toast('✓ Respaldo importado'); go(currentView);
+        } else toast('Archivo no válido');
+      } catch(err){ toast('Error al leer el archivo'); }
+    };
+    r.readAsText(file);
+  };
+  inp.click();
 }
 
-function showQuizResult() {
-  document.getElementById('quizActive').style.display = 'none';
-  document.getElementById('quizResult').style.display = 'block';
-  const pct = Math.round((quizScore / currentQuiz.length) * 100);
-  document.getElementById('quizScore').textContent = `${quizScore}/${currentQuiz.length} (${pct}%)`;
-  let msg = pct === 100 ? '¡Perfecto! 🎯' : pct >= 80 ? '¡Excelente! 👏' : pct >= 60 ? 'Buen trabajo 💪' : 'Sigue practicando 📚';
-  document.getElementById('quizResultText').textContent = msg;
+/* ---------- INIT ---------- */
+function init(){
+  loadState();
+  applyTheme();
+  go('home');
 }
-
-function endQuiz() { if (confirm('¿Salir?')) resetQuiz(); }
-
-function resetQuiz() {
-  document.getElementById('quizActive').style.display = 'none';
-  document.getElementById('quizResult').style.display = 'none';
-  document.getElementById('quizIntro').style.display = 'block';
-}
-
-function updateStats() {
-  document.getElementById('statVocab').textContent = getAllVocab().length;
-  document.getElementById('statSessions').textContent = SESSIONS.filter(s => s.completed).length;
-}
-
 init();
-</script>
 
+</script>
 </body>
 </html>
